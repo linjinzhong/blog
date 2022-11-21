@@ -24,7 +24,7 @@
     <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://jesonlin.com/hello-world.md">
+<meta property="og:url" content="https://jesonlin.com/%E7%BB%BC%E8%BF%B0/undefined.md">
 <meta property="og:site_name" content="jesonlin">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="zh_CN">
@@ -35,11 +35,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jesonlin.com/hello-world.md">
+<link rel="canonical" href="https://jesonlin.com/%E7%BB%BC%E8%BF%B0/undefined.md">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/hello-world.md","path":"hello-world.md","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E7%BB%BC%E8%BF%B0/undefined.md","path":"综述/undefined.md","title":"Hello World"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Hello World | jesonlin</title>
@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -217,7 +217,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/hello-world.md">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E7%BB%BC%E8%BF%B0/undefined.md">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/handsome.jpg">
@@ -356,7 +356,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://jesonlin.com/hello-world.md" title="Hello World">https://jesonlin.com/hello-world.md</a>
+      <a href="https://jesonlin.com/%E7%BB%BC%E8%BF%B0/undefined.md" title="Hello World">https://jesonlin.com/综述/undefined.md</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -374,7 +374,7 @@
             <div class="post-nav-item">
             </div>
             <div class="post-nav-item">
-                <a href="/testpost.md" rel="next" title="testpost">
+                <a href="/uncategorized/undefined.md" rel="next" title="testpost">
                   testpost <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -511,7 +511,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f8b1517f6e164d9d7a25b3bc8c41af16"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"aef16306e4b91d452920c797cf143ea0"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
