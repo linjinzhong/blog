@@ -404,8 +404,8 @@ codeblock:
     light: prism
     dark: prism-dark
   # Add copy button on codeblock
-  copy_button:
-    enable: false
+  copy_button:  # jesonlin: 代码块拷贝
+    enable: true
     # Available values: default | flat | mac
     style:
 
