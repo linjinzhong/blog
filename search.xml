@@ -1,77 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/%E7%BB%BC%E8%BF%B0/index/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>hexo</title>
+    <url>/hexo/hexo/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is quick start post. Check <a href="https://hexo.io/docs/">documentation</a> for more info.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-draft"><a href="#Create-a-new-draft" class="headerlink" title="Create a new draft"></a>Create a new draft</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new draft <span class="string">&quot;My New Draft&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Publish-a-new-draft"><a href="#Publish-a-new-draft" class="headerlink" title="Publish a new draft"></a>Publish a new draft</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo publish <span class="string">&quot;My New Draft&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new post <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
       <categories>
-        <category>综述</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>hello-world</tag>
+        <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>test_jesonlin</title>
-    <url>/undefined/test_jesonlin/</url>
-    <content><![CDATA[<p>这里是摘要</p>
-<span id="more"></span>
-
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>这里是内容</p>
-]]></content>
-      <categories>
-        <category>undefined</category>
-      </categories>
-      <tags>
-        <tag>undefined</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test10</title>
-    <url>/non-classified/test10/</url>
-    <content><![CDATA[<p>这里是摘要</p>
-<span id="more"></span>
-
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>这里是内容</p>
-]]></content>
-      <categories>
-        <category>non-classified</category>
-      </categories>
-      <tags>
-        <tag>non-tag</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test11</title>
-    <url>/nonclassified/test11/</url>
-    <content><![CDATA[<p>这里是摘要</p>
-<span id="more"></span>
-
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>这里是内容</p>
-]]></content>
-      <categories>
-        <category>nonclassified</category>
-      </categories>
-      <tags>
-        <tag>nontag</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>testpost</title>
-    <url>/uncategorized/index/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
