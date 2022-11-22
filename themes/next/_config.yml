@@ -37,8 +37,8 @@ custom_file_path:
 
 # Schemes
 # scheme: Muse
-#scheme: Mist
-#scheme: Pisces
+# scheme: Mist
+# scheme: Pisces
 scheme: Gemini  # jesonlin: 使用这个主题
 
 # Dark Mode
@@ -151,7 +151,7 @@ sidebar:
   #  - always  expand for all pages automatically.
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
-  display: post
+  display: hide
 
   # Sidebar padding in pixels.
   padding: 18
@@ -742,7 +742,7 @@ livere_uid: # <your_uid>
 
 # Gitalk
 # For more information: https://gitalk.github.io
-gitalk:
+gitalk:  # https://github.com/settings/applications/new
   enable: true  # jesonlin: 开启评论
   github_id: linjinzhong  # jesonlin: github账号
   repo: blog  # jesonlin: github上博客仓库
