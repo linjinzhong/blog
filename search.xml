@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/post/index/</url>
+    <url>/%E7%BB%BC%E8%BF%B0/index/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -25,8 +25,23 @@
       </tags>
   </entry>
   <entry>
+    <title>test_jesonlin</title>
+    <url>/undefined/test_jesonlin/</url>
+    <content><![CDATA[<p>这里是摘要</p>
+<span id="more"></span>
+
+<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>这里是内容</p>
+]]></content>
+      <categories>
+        <category>undefined</category>
+      </categories>
+      <tags>
+        <tag>undefined</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test10</title>
-    <url>/post/test10/</url>
+    <url>/non-classified/test10/</url>
     <content><![CDATA[<p>这里是摘要</p>
 <span id="more"></span>
 
@@ -41,7 +56,7 @@
   </entry>
   <entry>
     <title>test11</title>
-    <url>/post/test11/</url>
+    <url>/nonclassified/test11/</url>
     <content><![CDATA[<p>这里是摘要</p>
 <span id="more"></span>
 
@@ -55,24 +70,8 @@
       </tags>
   </entry>
   <entry>
-    <title>testjesonlin</title>
-    <url>/post/testjesonlin/</url>
-    <content><![CDATA[<p>这里是摘要</p>
-<span id="more"></span>
-
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>这里是内容</p>
-]]></content>
-      <categories>
-        <category>未知分类</category>
-        <category>未知子分类</category>
-      </categories>
-      <tags>
-        <tag>未知标签</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>testpost</title>
-    <url>/post/index/</url>
+    <url>/uncategorized/index/</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
