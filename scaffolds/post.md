@@ -1,5 +1,10 @@
 ---
 title: {{ title }}
-date: {{ date }}
+urlname: {{title}}
+top:
+categories:
 tags:
+date: {{ date }}
+updated: {{ date }}
+author: {{ author }}
 ---

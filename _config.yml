@@ -3,19 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: jesonlin
 subtitle: ''
-description: ''
+description: 'choice is better than effort'
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: jesonlin
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://jesonlin.com
-permalink: :year/:month/:day/:title/
+# permalink: :year/:month/:day/:title/
+permalink: :category/:urlname/
 permalink_defaults:
+  urlname: undefined
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
@@ -28,11 +30,11 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: [README.md]
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: post
+default_layout: draft
 titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
@@ -40,7 +42,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # 将每篇博客对应生成一个文件夹目录（方便插入图片等附件）
 relative_link: false
 future: true
 highlight:
@@ -66,7 +68,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: uncategory
 category_map:
 tag_map:
 
@@ -97,7 +99,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
