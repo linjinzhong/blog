@@ -148,4 +148,136 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>mac-setting</title>
+    <url>/tool/mac-setting/</url>
+    <content><![CDATA[<p>记录下windows多年老用户切换到mac系统后更趁手的设置。</p>
+<span id="more"></span>
+
+<h2 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h2><ol>
+<li>触控板选项-轻点省力  <ol>
+<li>【系统偏好设置】-》【触控板】-》勾选【轻点来点按】  </li>
+<li>触控板有很多好用的手势，可以实时学习</li>
+</ol>
+</li>
+<li>三指拖移-拖拽超级好用<br> 【系统偏好设置】-》【辅助功能】-》【指针控制】-》【触控板选项】-》【启用拖移】三指拖移</li>
+<li>访达偏好设置 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【桌面】-》左上角【访达】-》【偏好设置】-》 【边栏】-》勾上所需</span><br></pre></td></tr></table></figure></li>
+<li>底部程序坞设置 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">鼠标置于程序坞-》双指按压-》程序坞偏好设置-》置于屏幕底部/自动隐藏</span><br></pre></td></tr></table></figure></li>
+<li>顶部图标栏 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">按住【cmd】键，三指拖拽顶部图标下拉，有出现删除标记可以删除</span><br></pre></td></tr></table></figure></li>
+<li>文件显示 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">程序坞打开【访达】-》按住【cmd】+[up]键直到最顶层 -》点击左上角显示-》</span><br><span class="line">选择【为列表】</span><br><span class="line">选择【显示标签页栏】</span><br><span class="line">选择【显示路径栏】</span><br><span class="line">选择【显示状态栏】</span><br><span class="line">选择【查看选项】-》勾选【始终以列表】-》排序方式【修改日期】-》选中【用作默认】</span><br></pre></td></tr></table></figure></li>
+<li>触发角 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【系统偏好设置】-》【桌面与屏幕保护程序】-》【触发角】</span><br><span class="line">【左上角】-》【将显示器置于休眠状态】</span><br><span class="line">【左下角】-》【启动屏幕保护程序】</span><br><span class="line">【右上角】-》【调度中心】</span><br><span class="line">【右下角】-》【桌面】</span><br></pre></td></tr></table></figure></li>
+<li>终端设置<ol>
+<li>窗口设置 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">打开终端偏好设置-》样式选中【homebrew】-》字体大小选中【18】-》窗口选中列数100行数36</span><br></pre></td></tr></table></figure></li>
+<li>brew <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br><span class="line">echo &#x27;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#x27; &gt;&gt; /Users/XXXX/.zshrc</span><br><span class="line">echo &#x27;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#x27; &gt;&gt; /Users/jesonlin/.zshrc</span><br></pre></td></tr></table></figure></li>
+<li>zsh  <ol>
+<li>安装   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure></li>
+<li>显示当前目录绝对路径   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim ~/.oh-my-zsh/themes/robbyrussell.zsh-theme</span><br><span class="line">PROMPT+=&#x27; %&#123;$fg[cyan]%&#125;%d%&#123;$reset_color%&#125; $(git_prompt_info)&#x27;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>别名的快捷操作 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br><span class="line">export PATH=$HOME/bin:/usr/local/bin:/usr/bin:$PATH</span><br><span class="line">alias ll=&#x27;ls -alhF&#x27;</span><br><span class="line">alias subl=&quot;/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl&quot;</span><br><span class="line">alias -s py=subl</span><br><span class="line">eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>Python环境<ol>
+<li>安装pyenv   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash</span><br><span class="line">vim ~/.zshrc</span><br><span class="line">export PATH=&quot;$HOME/.pyenv/bin:$PATH&quot;</span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;   </span><br></pre></td></tr></table></figure></li>
+<li>查看看着Python版本 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyenv install -l</span><br></pre></td></tr></table></figure></li>
+<li>安装python指定版本（m1 pro有问题） <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyenv install 3.6.8</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>SMB共享的网络磁盘上DS_Store文件的阻止生成方案<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【终端】-》defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol start="0">
+<li>复制&#x3D;&#x3D;拷贝+粘贴   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】+ 【d】</span><br></pre></td></tr></table></figure></li>
+<li>拷贝 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【c】</span><br></pre></td></tr></table></figure></li>
+<li>粘贴  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【v】</span><br></pre></td></tr></table></figure></li>
+<li>剪切（文本）   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【x】</span><br></pre></td></tr></table></figure></li>
+<li>剪切（文件）   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【c】, 【cmd】 + 【opt】 + 【v】</span><br></pre></td></tr></table></figure></li>
+<li>关闭软件   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【q】</span><br></pre></td></tr></table></figure></li>
+<li>任务管理器   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【opt】 + 【esc】</span><br></pre></td></tr></table></figure></li>
+<li>预览  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单击中 + 空格  / 三指单击</span><br></pre></td></tr></table></figure></li>
+<li>数据查询和英文翻译   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">三指单击</span><br></pre></td></tr></table></figure></li>
+<li>截图  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">全屏：【shift】 +【cmd】 + 【3】  </span><br><span class="line">指定区域：【shift】 + 【cmd】 + 【4】  </span><br><span class="line">特定窗口：【shift】 + 【cmd】 + 【4】 + 【space】  </span><br></pre></td></tr></table></figure></li>
+<li>录屏<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【shift】 + 【cmd】 + 【5】</span><br></pre></td></tr></table></figure></li>
+<li>聚焦搜索(升级为Alfred)<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】 + 【space】</span><br></pre></td></tr></table></figure></li>
+<li>调出访达搜索<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【cmd】+【opt】+【space】</span><br></pre></td></tr></table></figure></li>
+<li>delete<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【fn】+【backpace】</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><ol>
+<li><p>连接服务器</p>
+<ol>
+<li>连接服务器 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">【桌面】-》【前往】-》【连接服务器】（【cmd】+【k】）</span><br><span class="line">smb://XXX.XXX.XXX.XXX/文件夹路径</span><br></pre></td></tr></table></figure></li>
+<li>连接远程服务器<ol>
+<li>安装smb服务 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install samba</span><br></pre></td></tr></table></figure></li>
+<li>选择要共享的文件夹，添加权限 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod 777 /root</span><br></pre></td></tr></table></figure></li>
+<li>打开smb配置文件 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/samba/smb.conf</span><br><span class="line">// 在global下面添加一行访问端口，因为运营商常把445端口拦截了</span><br><span class="line">[global]</span><br><span class="line">        smb ports = 1315 1314</span><br><span class="line">// 文件末尾添加访问名及其对应共享文件夹</span><br><span class="line">[share]</span><br><span class="line">    comment = Share Directories</span><br><span class="line">    path=/root</span><br><span class="line">    public = yes</span><br><span class="line">    browseable = yes</span><br><span class="line">    writable = yes</span><br><span class="line">    create mask = 0777</span><br><span class="line">    directory mask = 0777</span><br></pre></td></tr></table></figure></li>
+<li>创建smb登录用户名 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /etc/samba/smbpasswd #新建文件</span><br><span class="line">smbpasswd -a root</span><br></pre></td></tr></table></figure></li>
+<li>并且将smb设置为开机自启动 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chkconfig --level 3 smb on</span><br></pre></td></tr></table></figure></li>
+<li>重新启动smb <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service smb start</span><br></pre></td></tr></table></figure></li>
+<li>腾讯云服务器-》防火墙-》开启1314 1315端口</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>键位映射-karabiner-elements-神器-模拟filco键盘键位  </p>
+<ol>
+<li>【系统偏好设置】-》【键盘】-》【按下地球仪fn键时】-》选中不做任何操作 </li>
+<li>mac键位映射-》打开karabiner-elements<ol>
+<li>【Profiles】  <ol>
+<li>删除所有，保留一个默认的’default’</li>
+<li>新建一个’mac’，这些配置会出现在【菜单栏karabiner-elements的下拉列表】</li>
+<li>将配置文件mac.json放在【~&#x2F;.config&#x2F;karabiner&#x2F;assets&#x2F;complex_modifications】</li>
+<li>文件路径也可在【Misc】-》【Export &amp; Import】双击打开</li>
+</ol>
+</li>
+<li>【Device】选择【Apple Internal Keyboard】</li>
+<li>【Simple modifications】-》【Apple Internal Keyboard】: 简单的键位映射 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn -&gt; caps lock</span><br><span class="line">caps lock -&gt; left_command</span><br><span class="line">left_command -&gt; fn</span><br></pre></td></tr></table></figure></li>
+<li>【Complex modifications】-》【Apple Internal Keyboard】：复杂的组合映射<ol>
+<li>【Add rule】</li>
+<li>选择刚才mac.json中的四条映射规则<ol>
+<li>fn + aesdfg &#x3D; head&#x2F;上&#x2F;左&#x2F;下&#x2F;右&#x2F;tail</li>
+<li>right_command + k&#x2F;&lt; &#x3D; home&#x2F;end</li>
+<li>right_command + l&#x2F;&gt; &#x3D; page_up&#x2F;page_down</li>
+<li>绑定fn + tab &#x3D; left_command + tab</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>filco-minila-air键位映射-》打开karabiner-elements<ol>
+<li>新建一个’filco’,会生成对应filco.json文件放在指定路径。</li>
+<li>【Device】选中连接的filco蓝牙键盘</li>
+<li>【Simple modifications】-》【FILCO XXX】: 简单的键位映射<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">left_control -&gt; caps lock</span><br><span class="line">caps lock -&gt; left_command</span><br><span class="line">left_command -&gt; left_control</span><br></pre></td></tr></table></figure></li>
+<li>【Function keys】-》【FILCO XXX】：功能键映射，将Fx键映射本身而不是mac上的功能。</li>
+<li>【Complex modifications】-》【FILCO XXX】：复杂的组合映射<ol>
+<li>【Add rule】</li>
+<li>选择刚才filco.json中的两条映射规则<ol>
+<li>left_option + esdfag &#x3D; head&#x2F;上&#x2F;左&#x2F;下&#x2F;右&#x2F;tail</li>
+<li>left_option + tab &#x3D; left_command + tab</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="必备软件"><a href="#必备软件" class="headerlink" title="必备软件"></a>必备软件</h2><ol>
+<li>屏保 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://fliqlo.com/</span><br></pre></td></tr></table></figure></li>
+<li>搜狗输入法 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://pinyin.sogou.com/mac/</span><br></pre></td></tr></table></figure></li>
+<li>谷歌浏览器 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.google.com/intl/zh-CN/chrome/</span><br><span class="line"># 插件</span><br><span class="line">https://chrome.google.com/webstore/category/extensions?hl=zh-CN</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. iTab新标签页（丰富的标签页）</span><br><span class="line">2. DJSON. JSON Viewer &amp; Formatter（json格式化）</span><br><span class="line">3. Markdown Preview Plus（可以用sublime打开md文件编辑，同时用chrome打开该文件实时刷新预览）</span><br><span class="line">4. 有道词典Chrome划词插件（翻译插件）</span><br><span class="line">5. Talend API Tester - Free Edition（发包工具）</span><br></pre></td></tr></table></figure></li>
+<li>sublime <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.sublimetext.com</span><br></pre></td></tr></table></figure></li>
+<li>xmind <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.xmind.cn/</span><br></pre></td></tr></table></figure></li>
+<li>Alfred <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 通过一个输入框快速完成文件搜索、自定义动作</span><br><span class="line">https://www.alfredapp.com/</span><br><span class="line"># 先取消原有聚焦搜索快捷键</span><br><span class="line">【系统偏好设置】-》【键盘】-》【快捷键】-》【聚焦搜索】</span><br><span class="line"># 设置Alfred快捷键</span><br><span class="line">【cmd】+【space】</span><br><span class="line"># 其他设置待摸索</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><p><a href="https://github.com/linjinzhong/Software/blob/master/filco.json">filco.json</a><br><a href="https://github.com/linjinzhong/Software/blob/master/mac.json">mac.json</a> </p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
 </search>
