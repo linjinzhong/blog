@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jesonlin.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="MySQL是目前应用最广泛的开源关系数据库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="https://jesonlin.com/db/mysql/index.html">
+<meta property="og:site_name" content="jesonlin">
+<meta property="og:description" content="MySQL是目前应用最广泛的开源关系数据库。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-08T12:07:30.000Z">
+<meta property="article:modified_time" content="2022-12-08T12:07:30.000Z">
+<meta property="article:author" content="jesonlin">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jesonlin.com/db/mysql/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/db/mysql/","path":"db/mysql/","title":"mysql"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>mysql | jesonlin</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jesonlin</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/qq-image.jpeg" alt="jesonlin">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-resources"><a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>resources</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">3.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jesonlin"
+      src="/images/handsome.jpg">
+  <p class="site-author-name" itemprop="name">jesonlin</p>
+  <div class="site-description" itemprop="description">choice is better than effort</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/linjinzhong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;linjinzhong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jesonlin@outlook.com" title="E-Mail → mailto:jesonlin@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jesonlinjz" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/jesonlinjz" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+ 
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/db/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/handsome.jpg">
+      <meta itemprop="name" content="jesonlin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jesonlin">
+      <meta itemprop="description" content="choice is better than effort">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="mysql | jesonlin">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mysql
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-08 20:07:30" itemprop="dateCreated datePublished" datetime="2022-12-08T20:07:30+08:00">2022-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>MySQL是目前应用最广泛的开源关系数据库。</p>
+<span id="more"></span>
+
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>centos7 安装MySQL <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 检查mariadb --&gt;</span><br><span class="line">rpm -qa|grep mariadb</span><br><span class="line">&lt;!-- 如有则按如下删除 --&gt;</span><br><span class="line">rpm -e --nodeps mariadb-server</span><br><span class="line">rpm -e --nodeps mariadb</span><br><span class="line">rpm -e --nodeps mariadb-libs</span><br><span class="line">&lt;!-- 检查mysql --&gt;</span><br><span class="line">rpm -qa|grep mysql</span><br><span class="line">&lt;!-- 存在则按如下删除 --&gt;</span><br><span class="line">rpm -e --nodeps 【xxx】</span><br><span class="line">&lt;!-- mysql yum源下载官网地址 --&gt;</span><br><span class="line">https://dev.mysql.com/downloads/repo/yum/</span><br><span class="line">&lt;!-- 根据自己系统版本选择 --&gt;</span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">&lt;!-- centos7 选择如下 --&gt;</span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm</span><br><span class="line">&lt;!-- 安装mysql源 --&gt;</span><br><span class="line">rpm -Uvh mysql80-community-release-el7-7.noarch.rpm</span><br><span class="line">&lt;!-- 检查是否安装成功，是否有mysql-community.repo及 mysql-community-source.repo --&gt;</span><br><span class="line">ll /etc/yum.repos.d/</span><br><span class="line">&lt;!-- 查看源中的mysql版本 --&gt;</span><br><span class="line">yum repolist all | grep mysql</span><br><span class="line">&lt;!-- 切换mysql版本 --&gt;</span><br><span class="line">yum-config-manager --disable mysql80-community</span><br><span class="line">yum-config-manager --enable mysql57-community</span><br><span class="line">&lt;!-- 检查当前启用的mysql仓库 --&gt;</span><br><span class="line">yum repolist enabled | grep mysql</span><br><span class="line">&lt;!-- 安装mysql --&gt;</span><br><span class="line">sudo yum -y install mysql-community-server</span><br><span class="line">&lt;!-- 会安装如下 --&gt;</span><br><span class="line">mysql-community-server</span><br><span class="line">mysql-community-client</span><br><span class="line">mysql-community-common</span><br><span class="line">mysql-community-libs</span><br><span class="line">numactl-libs</span><br><span class="line">&lt;!-- 启动mysql --&gt;</span><br><span class="line">sydo systemctl start mysqld.service</span><br><span class="line">&lt;!-- 查看状态 --&gt;</span><br><span class="line">sudo systemctl status mysqld.service</span><br><span class="line">&lt;!-- 停止mysql --&gt;</span><br><span class="line">sudo systemctl stop mysqld.service</span><br><span class="line">&lt;!-- 重启mysql --&gt;</span><br><span class="line">sudo systemctl restart mysqld.service</span><br><span class="line">&lt;!-- 初始密码，MySQL第一次启动后会创建超级管理员账号root@localhost，初始密码存储在日志文件中 --&gt;</span><br><span class="line">sudo grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br><span class="line">&lt;!-- 修改密码 --&gt;</span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;jesonlin&#x27;;</span><br><span class="line">&lt;!-- 关闭验证密码复杂度策略 --&gt;</span><br><span class="line">vim /etc/my.cnf</span><br><span class="line">&lt;!-- 添加如下并重启 --&gt;</span><br><span class="line">validate_password=OFF</span><br><span class="line">&lt;!-- 运行远程访问 --&gt;</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;jesonlin&#x27; WITH GRANT OPTION;</span><br><span class="line">&lt;!-- 查看并修改字符集 --&gt;</span><br><span class="line">vim /etc/my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-client-handshake=FALSE</span><br><span class="line">character_set_server=utf8mb4</span><br><span class="line">collation-server=utf8mb4_unicode_ci</span><br><span class="line">init-connect=&#x27;SET NAMES utf8mb4&#x27;</span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">&lt;!-- 重启并检查设置效果 --&gt;</span><br><span class="line">SHOW VARIABLES WHERE Variable_name LIKE &#x27;character_set_%&#x27; OR Variable_name LIKE &#x27;collation%&#x27;;</span><br><span class="line">&lt;!-- 设置开机启动 --&gt;</span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure></li>
+<li>centos8安装mysql <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 前面下载yum源步骤同上，官方源里只有mysql8版本，需要手动修改源 --&gt;</span><br><span class="line">&lt;!-- 修改mysql-community.repo --&gt;</span><br><span class="line">vim /etc/yum.repos.d/mysql-community.repo</span><br><span class="line">&lt;!-- 添加如下 --&gt;</span><br><span class="line">[mysql57-community]</span><br><span class="line">name=MySQL 5.7 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br><span class="line">&lt;!-- 禁止mysql8 --&gt;</span><br><span class="line">yum-config-manager --disable mysql80-community</span><br><span class="line">&lt;!-- 核对输出 --&gt;</span><br><span class="line">yum repolist enabled | grep mysql</span><br><span class="line">&lt;!-- 失能模块 --&gt;</span><br><span class="line">yum module disable mysql</span><br><span class="line">&lt;!-- 安装 --&gt;</span><br><span class="line">yum install mysql-community-server</span><br><span class="line">&lt;!-- 启动mysql --&gt;</span><br><span class="line">systemctl start mysqld.service</span><br><span class="line">&lt;!-- 其他步骤同上 --&gt;</span><br><span class="line">&lt;!-- 修改密码有报错执行下面 --&gt;</span><br><span class="line">flush privileges;</span><br><span class="line">&lt;!-- 重启失败，发现不能添加如下语句 --&gt;</span><br><span class="line">validate_password=OFF</span><br></pre></td></tr></table></figure></li>
+<li>docker 安装启动mysql5.7 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -p 3307:3306 --name mysql -v /data/service/docker/mysql/logs:/var/log/mysql -v /data/service/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=jesonlin -d mysql:5.7</span><br></pre></td></tr></table></figure></li>
+<li>跳过密码登录数据库 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置MYSQLD_OPTS --&gt;</span><br><span class="line">systemctl set-environment MYSQLD_OPTS=&quot;--skip-grant-tables&quot;;</span><br><span class="line">&lt;!-- 显示mysql环境变量 --&gt;</span><br><span class="line">systemctl show-environment</span><br><span class="line">&lt;!-- 撤销mysql环境变量 --&gt;</span><br><span class="line">systemctl unset-environment MYSQLD_OPTS;</span><br><span class="line">&lt;!-- 重启，脚本里有用到该参数  --&gt;</span><br><span class="line">systemctl restart mysqld.service </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><ol>
+<li>创建用户 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;[用户名]&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;[密码]&#x27;;</span><br></pre></td></tr></table></figure></li>
+<li>授予权限 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    GRANT ALL PRIVILEGES ON `[DB]`.* TO &#x27;[用户名]&#x27;@&#x27;[host]&#x27;;</span><br><span class="line">    ```  </span><br><span class="line">3. 删除用户</span><br></pre></td></tr></table></figure>
+ drop user [用户名]@’%’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 删除权限</span><br></pre></td></tr></table></figure>
+ revoke all on [DB].* from ‘[用户名]‘@’[host]’;<br> Delete from mysql.user where user &#x3D; ‘[用户名]’ and host &#x3D; ‘[host]’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5. 改密码</span><br></pre></td></tr></table></figure>
+ mysqladmin -uroot -p[旧密码] password [新密码]<br> set password for [用户名]@[host] &#x3D; password([新密码]);<br> update mysql.user set authentication_string&#x3D;password(‘新密码’) where user&#x3D;’用户名’ and Host &#x3D;’localhost’;<br> flush privileges; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 库表操作</span><br><span class="line">0. 启动、重启、停止</span><br></pre></td></tr></table></figure>
+ systemctl start&#x2F;restart&#x2F;stop mysqld.service <!-- 查看启动状态 -->
+ systemctl status mysqld.service <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. 创建数据库</span><br></pre></td></tr></table></figure>
+ create database [DB] if not exists [DB] default charset utf8mb4 collate utf8mb4_unicode_ci; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 创建数据表</span><br></pre></td></tr></table></figure>
+ CREATE TABLE <code>[表名]</code> (<br>   <code>id</code> int(11) NOT NULL AUTO_INCREMENT COMMENT ‘自增ID’,<br>   <code>name</code> varchar(32) NOT NULL COMMENT ‘名称’,<br>   <code>comment</code> varchar(255) NOT NULL COMMENT ‘备注’,<br>   <code>create_time</code> datetime DEFAULT CURRENT_TIMESTAMP COMMENT ‘创建时间’,<br>   <code>update_time</code> datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ‘更新时间’,<br>   PRIMARY KEY (<code>id</code>),<br>   KEY <code>idx_name</code> (<code>name</code>),<br> ) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;0 DEFAULT CHARSET&#x3D;utf8mb4 COMMENT &#x3D; ‘业务信息’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 插入数据</span><br></pre></td></tr></table></figure>
+ insert into [表名] (id, name, comment) values (null, ‘’, ‘’); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 拷贝表结构</span><br></pre></td></tr></table></figure>
+ create table [新表名] like [旧表名] <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5. 拷贝数据</span><br></pre></td></tr></table></figure>
+ insert into [新表名] select * from [旧表名] <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6. 导入导出数据库</span><br></pre></td></tr></table></figure>
+ mysqldump -h[IP] –set-gtid-purged&#x3D;off -uroot -p[PASSWORD] –databases [DB] &gt; [DB].sql<br> mysql -h[IP] -uroot -p[PASSWORD] &lt; [DB].sql <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7. 数据库大小</span><br></pre></td></tr></table></figure>
+ select (sum(DATA_LENGTH)+sum(INDEX_LENGTH))&#x2F;1024&#x2F;1024&#x2F;1024 from information_schema.TABLES where TABLE_SCHEMA&#x3D;’[DB]’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8. 数据库每个表大小</span><br></pre></td></tr></table></figure>
+ SELECT TABLE_NAME, DATA_LENGTH&#x2F;1024&#x2F;1024&#x2F;1024, INDEX_LENGTH&#x2F;1024&#x2F;1024&#x2F;1024 FROM information_schema.TABLES WHERE TABLE_SCHEMA&#x3D;’[DB]’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9. 数据表大小</span><br></pre></td></tr></table></figure>
+ SELECT count(TABLE_NAME) FROM information_schema.TABLES WHERE TABLE_SCHEMA&#x3D;’[DB]’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10. 查询表创建和更新时间</span><br></pre></td></tr></table></figure>
+ select * from information_schema.tables where information_schema.tables.TABLE_SCHEMA&#x3D;’[DB]’ and information_schema.tables.TABLE_NAME&#x3D;’[TB]’\G; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11. 添加表字段</span><br></pre></td></tr></table></figure>
+ alter table [TB] add [FIELD] int(11) unsigned default 0 comment “id”; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12. 到出到本地csv</span><br></pre></td></tr></table></figure>
+ mysql –host&#x3D;[HOST] –user&#x3D;[USER] –password&#x3D;[PASSWORD] -se “SELECT * FROM [DB].[TB]” | sed ‘s&#x2F;\t&#x2F;“,”&#x2F;g;s&#x2F;^&#x2F;“&#x2F;;s&#x2F;$&#x2F;“&#x2F;;s&#x2F;\n&#x2F;&#x2F;g’ &gt; app.csv <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## 字段操作</span><br><span class="line">1. 修改表字段类型：  </span><br></pre></td></tr></table></figure>
+ alter table [TB] modify 字段名 varchar(20); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 增加表字段：  </span><br></pre></td></tr></table></figure>
+ alter table [TB] add column age int(3); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 增加表字段时控制顺序（或者使用first）：  </span><br></pre></td></tr></table></figure>
+ alter table [TB] add column age int(3) after [旧字段名]; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 删除表字段：  </span><br></pre></td></tr></table></figure>
+ alter table [TB] drop [字段名]; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5. 修改表字段名：  </span><br></pre></td></tr></table></figure>
+ alter table [TB] change [字段原名] [字段新名] [字段类型]; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## 索引</span><br><span class="line">1. 普通索引</span><br></pre></td></tr></table></figure>
+ alter table 表 add idnex(字段); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 唯一索引</span><br></pre></td></tr></table></figure>
+ alter table 表 add unique(字段); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 全文索引</span><br></pre></td></tr></table></figure>
+ alter table 表 add fulltext(字段); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 主键索引</span><br></pre></td></tr></table></figure>
+ alter table 表 add primary key(字段); <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## 查看任务及其状态</span><br><span class="line">1. 查看任务及其状态 </span><br></pre></td></tr></table></figure>
+ show full processlist; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 过滤掉Sleep链接</span><br></pre></td></tr></table></figure>
+ pager grep -v Sleep <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 结束单个任务</span><br></pre></td></tr></table></figure>
+ kill Id <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 批量结束任务</span><br></pre></td></tr></table></figure>
+ select concat(‘kill ‘,id,’;’) from information_schema.processlist where info like ‘%INSERT INTO <code>log</code>%’; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5. 查看和修改最大连接</span><br></pre></td></tr></table></figure>
+ show variables like ‘%max_connections%’;<br> set GLOBAL max_connections &#x3D; 2000; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## 常用语句</span><br><span class="line">1. 配置变量查看和修改</span><br></pre></td></tr></table></figure>
+ show variables like ‘%max_allowed_packet%’;<br> set global max_allowed_packet&#x3D;1073741824; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 查看和修改引擎</span><br></pre></td></tr></table></figure>
+ ALTER TABLE table_name ENGINE&#x3D;InnoDB;<br> select CONCAT(‘alter table ‘, table_schema, ‘.’, table_name,’ engine&#x3D;InnoDB;’) FROM information_schema.tables WHERE table_schema&#x3D;”interface_manage” AND ENGINE&#x3D;”MyISAM”;     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 统计每天任务量</span><br></pre></td></tr></table></figure>
+ select count(*),DATE_FORMAT(FROM_UNIXTIME(time), ‘%Y-%m-%d’) AS t from [TB] WHERE DATE_FORMAT(FROM_UNIXTIME(time), ‘%Y’) &#x3D; ‘2020’ GROUP BY t <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 批量删除符合某些字符串的数据表</span><br></pre></td></tr></table></figure>
+ <!-- 以下拼接结果有长度限制，可重复多次得到结果 -->
+ SELECT CONCAT( ‘DROP TABLE ‘, GROUP_CONCAT(table_name) , ‘;’ ) AS statement FROM information_schema.tables WHERE table_schema &#x3D; [DB] AND table_name LIKE ‘[TB]%’; <!-- 将拼接得到的结果执行删除 -->
+ &#96;&#96;&#96;</li>
+</ol>
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384">廖雪峰SQL教程</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903870053761037">cenos安装mysql</a></p>
+
+    </div>
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">------------->本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="jesonlin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="jesonlin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>jesonlin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://jesonlin.com/db/mysql/" title="mysql">https://jesonlin.com/db/mysql/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/software/sublime/" rel="prev" title="sublime">
+                  <i class="fa fa-chevron-left"></i> sublime
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/db/sqlite3/" rel="next" title="sqlite3">
+                  sqlite3 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jesonlin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">36k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">33 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"6c51b7a70aa615572375e575a69a55f7"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
