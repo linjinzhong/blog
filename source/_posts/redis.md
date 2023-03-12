@@ -1,14 +1,14 @@
 ---
-title: redis
-urlname: redis
+title: redis-安装和使用
+urlname: redis-安装和使用
 top: false
 categories:
-  - db
+  - 存储
 tags:
   - redis
 author: jesonlin
 date: 2022-12-10 17:11:51
-updated: 2022-12-10 17:11:51
+update: 2022-12-10 17:11:51
 ---
 
 Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。Redis 通常被称为数据结构服务器。

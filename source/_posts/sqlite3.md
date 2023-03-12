@@ -1,14 +1,14 @@
 ---
-title: sqlite3
-urlname: sqlite3
+title: sqlite3-安装和使用
+urlname: sqlite3-安装和使用
 top: false
 categories:
-  - db
+  - 存储
 tags:
   - sqlite3
 author: jesonlin
 date: 2022-12-09 15:09:43
-updated: 2022-12-09 15:09:43
+update: 2022-12-09 15:09:43
 ---
 
 SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite 是在世界上最广泛部署的 SQL 数据库引擎。SQLite 源代码不受版权限制。

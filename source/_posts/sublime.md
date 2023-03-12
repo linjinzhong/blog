@@ -1,14 +1,14 @@
 ---
-title: sublime
-urlname: sublime
+title: sublime-配置和使用
+urlname: sublime-配置和使用
 top: false
 categories:
-  - software
+  - 软件
 tags:
   - sublime
 author: jesonlin
 date: 2022-12-08 19:04:07
-updated: 2022-12-08 19:04:07
+update: 2022-12-08 19:04:07
 ---
 
 Sublime Text 是一款流行的代码编辑器软件，也是HTML和散文先进的文本编辑器，可运行在Linux，Windows和Mac OS X。也是许多程序员喜欢使用的一款文本编辑器软件。

@@ -1,14 +1,14 @@
 ---
-title: hexo
-urlname: hexo
+title: hexo-快速使用
+urlname: hexo-快速使用
 top: false
 categories:
-  - hexo
+  - 工具
 tags:
   - hexo
 author: jesonlin
 date: 2022-11-22 11:11:11
-updated: 2022-11-22 11:11:11
+update: 2022-11-22 11:11:11
 ---
 
 Welcome to [Hexo](https://hexo.io/)! This is quick start post. Check [documentation](https://hexo.io/docs/) for more info.

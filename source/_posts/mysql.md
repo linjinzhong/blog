@@ -1,14 +1,14 @@
 ---
-title: mysql
-urlname: mysql
+title: mysql-安装和使用
+urlname: mysql-安装和使用
 top: false
 categories:
-  - db
+  - 存储
 tags:
   - mysql
 author: jesonlin
 date: 2022-12-08 20:07:30
-updated: 2022-12-08 20:07:30
+update: 2022-12-08 20:07:30
 ---
 
 MySQL是目前应用最广泛的开源关系数据库。

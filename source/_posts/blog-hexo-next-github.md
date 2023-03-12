@@ -3,12 +3,12 @@ title: 博客搭建-hexo+next+github
 urlname: 博客搭建-hexo+next+github
 top: false
 categories:
-  - website
+  - 工具
 tags:
-  - hexo
+  - 博客搭建
 author: jesonlin
 date: 2022-11-22 12:24:56
-updated: 2022-11-22 12:24:56
+update: 2022-11-22 12:24:56
 ---
 
 

@@ -3,17 +3,19 @@ title: elasticsearch
 urlname: elasticsearch
 top: false
 categories:
-  - db
+  - 存储
 tags:
-  - es
+  - elasticsearch
 author: jesonlin
 date: 2022-12-11 19:09:12
-updated: 2022-12-11 19:09:12
+update: 2022-12-11 19:09:12
 ---
 
 Elasticsearch 是一个分布式、高扩展、高实时的搜索与数据分析引擎。
 
 <!-- more -->
+
+待补充
 
 
 # Reference

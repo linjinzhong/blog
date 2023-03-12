@@ -1,14 +1,14 @@
 ---
-title: mac-setting
-urlname: mac-setting
+title: mac-设置
+urlname: mac-设置
 top: false
 categories:
-  - tool   
+  - 工具   
 tags:
-  - mac
+  - mac设置
 author: jesonlin
 date: 2022-12-08 16:52:56
-updated: 2022-12-08 16:52:56
+update: 2022-12-08 16:52:56
 ---
 
 记录下windows多年老用户切换到mac系统后更趁手的设置。
