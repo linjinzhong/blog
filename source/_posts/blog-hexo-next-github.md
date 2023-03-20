@@ -291,7 +291,9 @@ update: 2022-11-22 12:24:56
     default_layout: draft  # 使用hexo new [layout] <title> 默认布局改为草稿
 
     post_asset_folder: true # 将每篇博客对应生成一个文件夹目录（方便插入图片等附件）
-    
+    # 插入图片相对路径![](/xx.jpg)需要安装包
+    # npm install hexo-image-link --save
+
     default_category: uncategory
 
     ## Themes: https://hexo.io/themes/
