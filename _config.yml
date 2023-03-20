@@ -43,7 +43,7 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true # 将每篇博客对应生成一个文件夹目录（方便插入图片等附件）
-relative_link: false
+relative_link: True
 future: true
 highlight:
   enable: true
