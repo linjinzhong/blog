@@ -134,9 +134,6 @@ Git是目前世界上最先进的分布式版本控制系统，所有的版本�
 
     <!-- 跳转到指定版本（包括回退和前进，只要记得commit的id） -->
     git reset --hard 【COMMIT_ID】
-
-    <!-- 查看最后一次提交 -->
-    git config --global alias.last 'log -1'
     ```
 3. 比较差异
     ```
@@ -147,7 +144,7 @@ Git是目前世界上最先进的分布式版本控制系统，所有的版本�
     git diff HEAD <文件名>
 
     <!-- 比较暂存区和上一次commit后的修改 -->
-    git diff --cached
+    git diff --cached <文件名>
     ```
 
 
