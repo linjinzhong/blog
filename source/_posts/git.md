@@ -387,4 +387,4 @@ Git是目前世界上最先进的分布式版本控制系统，所有的版本�
 [git-官网](https://git-scm.com/)
 [廖雪峰-Git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 [菜鸟-Git教程](https://www.runoob.com/git/git-tutorial.html)
-[Git-Cheat-Sheet]()
+[Git-Cheat-Sheet](https://github.com/linjinzhong/blog/blob/source/source/_posts/git/git-cheat-sheet.pdf)
