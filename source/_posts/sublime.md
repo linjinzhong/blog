@@ -273,6 +273,6 @@ Sublime Text 是一款流行的代码编辑器软件，也是HTML和散文先进
      3. 鼠标文件名右键选则「Download Folder」
     
 
-# REFERENCE
+## REFERENCE
 [Sublime Text 3 超详细插件安装](https://zhuanlan.zhihu.com/p/91942738)
 
