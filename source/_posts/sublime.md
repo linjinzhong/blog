@@ -1,6 +1,6 @@
 ---
-title: sublime-配置和使用
-urlname: sublime-配置和使用
+title: sublime
+urlname: sublime
 top: false
 categories:
   - 软件

@@ -1,6 +1,6 @@
 ---
-title: git-操作
-urlname: git-操作
+title: git
+urlname: git
 top: false
 categories:
   - 工具

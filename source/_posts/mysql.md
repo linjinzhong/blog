@@ -1,6 +1,6 @@
 ---
-title: mysql-安装和使用
-urlname: mysql-安装和使用
+title: mysql
+urlname: mysql
 top: false
 categories:
   - 存储

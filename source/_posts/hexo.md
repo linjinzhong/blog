@@ -1,6 +1,6 @@
 ---
-title: hexo-快速使用
-urlname: hexo-快速使用
+title: hexo
+urlname: hexo
 top: false
 categories:
   - 工具

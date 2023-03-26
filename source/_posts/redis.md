@@ -1,6 +1,6 @@
 ---
-title: redis-安装和使用
-urlname: redis-安装和使用
+title: redis
+urlname: redis
 top: false
 categories:
   - 存储

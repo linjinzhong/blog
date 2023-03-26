@@ -1,6 +1,6 @@
 ---
-title: sqlite3-安装和使用
-urlname: sqlite3-安装和使用
+title: sqlite3
+urlname: sqlite3
 top: false
 categories:
   - 存储
