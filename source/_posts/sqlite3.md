@@ -15,7 +15,7 @@ SQLite 是一个软件库，实现了自给自足的、无服务器的、零配�
 
 <!-- more -->
 
-## SQLite 命令
+## SQL 命令分类
 1. DDL - 数据定义语言
     ```
     CREATE，ALTER，DROP
@@ -85,13 +85,15 @@ SQLite 是一个软件库，实现了自给自足的、无服务器的、零配�
     ```
     UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [CONDITION];
     <!-- 更新自增id -->
-    UPDATE sqlite_sequence SET seq = [下一个自增ID] WHERE name = [TABLE_NAME]; 
+    UPDATE sqlite_sequence SET seq = <下一个自增ID> WHERE name = <TABLE_NAME>; 
     ```
 8. 查询表数据
     ```
-    SELECT [COLUMN1], ..., [COLUMNN] FROM [TABLE_NAME] WHERE [CONDITION];
+    SELECT <COLUMN1>, ..., <COLUMNN> FROM <TABLE_NAME> WHERE <CONDITION>;
     ```
-9. 格式化显示
+
+
+## 格式化显示
     ```
     <!-- 显示当前设置 -->
     .show
@@ -110,7 +112,7 @@ SQLite 是一个软件库，实现了自给自足的、无服务器的、零配�
     <!-- 输出到文件/屏幕输出 -->
     .output [FILENAME]/stdout    
     <!-- 所有表信息查询 -->
-    SELECT * FROM sqlite_master;
+    sq
     <!-- 会有一个表sqlite_sequence记录表名对应自增id -->
     ```
 
@@ -118,11 +120,11 @@ SQLite 是一个软件库，实现了自给自足的、无服务器的、零配�
 1. 增加索引
     ```
     <!-- 单列索引 -->
-    CREATE INDEX [INDEX_NAME] ON [TABLE_NAME] ([COLUMN_NAME]);
+    CREATE INDEX <INDEX_NAME> ON <TABLE_NAME> (<COLUMN_NAME>);
     <!-- 唯一索引 -->
-    CREATE UNIQUE INDEX [INDEX_NAME] ON [TABLE_NAME] ([COLUMN_NAME]);
+    CREATE UNIQUE INDEX <INDEX_NAME> ON <TABLE_NAME> (<COLUMN_NAME>);
     <!-- 组合索引 -->
-    CREATE INDEX [INDEX_NAME] ON [TABLE_NAME] ([COLUMN1_NAME], [COLUMN2_NAME]);
+    CREATE INDEX <INDEX_NAME> ON <TABLE_NAME> (<COLUMN1_NAME>, <COLUMN2_NAME>);
     ```
 2. 删除索引
     ```
