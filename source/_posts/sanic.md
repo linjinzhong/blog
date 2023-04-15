@@ -117,8 +117,9 @@ pip install sanic-ext
     if __name__ == '__main__':
         app.run(host='0.0.0.0', port=8000)
     ```
-3. 启动
+3. 构建启动
     ```bash
+    docker build -t my-sanic-image .
     docker run --name mysanic -p 8000:8000 -d my-sanic-image
     # 浏览器输入
     http://<服务器IP>:8000/
@@ -154,7 +155,7 @@ pip install sanic-ext
         depends_on:
           - mysanic
         volumes:
-          - ./nginx_sanic.conf:/etc/nginx/conf.d/mysanic.conf
+          - ./mysanic.conf:/etc/nginx/conf.d/mysanic.conf
         restart: always
 
     networks:
