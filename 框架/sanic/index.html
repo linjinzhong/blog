@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jesonlin.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="下一代 Python Web 服务器&#x2F;框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sanic">
+<meta property="og:url" content="https://jesonlin.com/%E6%A1%86%E6%9E%B6/sanic/index.html">
+<meta property="og:site_name" content="jesonlin">
+<meta property="og:description" content="下一代 Python Web 服务器&#x2F;框架">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-08T06:56:57.000Z">
+<meta property="article:modified_time" content="2023-04-08T06:56:57.000Z">
+<meta property="article:author" content="jesonlin">
+<meta property="article:tag" content="sanic">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/sanic/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E6%A1%86%E6%9E%B6/sanic/","path":"框架/sanic/","title":"sanic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sanic | jesonlin</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jesonlin</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/qq-image.jpeg" alt="jesonlin">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-resources"><a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>resources</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5-helloworld"><span class="nav-number">3.</span> <span class="nav-text">实践-helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5-docker"><span class="nav-number">4.</span> <span class="nav-text">实践-docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">5.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">6.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jesonlin"
+      src="/images/handsome.jpg">
+  <p class="site-author-name" itemprop="name">jesonlin</p>
+  <div class="site-description" itemprop="description">choice is better than effort</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/linjinzhong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;linjinzhong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jesonlin@outlook.com" title="E-Mail → mailto:jesonlin@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jesonlinjz" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/jesonlinjz" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+ 
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/sanic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/handsome.jpg">
+      <meta itemprop="name" content="jesonlin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jesonlin">
+      <meta itemprop="description" content="choice is better than effort">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="sanic | jesonlin">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sanic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-08 14:56:57" itemprop="dateCreated datePublished" datetime="2023-04-08T14:56:57+08:00">2023-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>19k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>17 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>下一代 Python Web 服务器&#x2F;框架</p>
+<span id="more"></span>
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>是什么<br> Sanic 是 Python Web 服务器和 Web 框架，旨在提高性能。<br> Sanic 不仅仅是一个 框架，它还是一个 Web 服务器，具备开箱即用的功能。<br> 它可以用于编写，部署和扩展生产级 Web 应用程序。 🚀<br> Build fast. Run fast.</li>
+<li>目标<br> 提供一种简单且快速，集创建和启动于一体的方法，来实现一个易于修改和拓展的 HTTP 服务</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos7 安装 python3.9</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local</span><br><span class="line">wget https://www.python.org/ftp/python/3.9.10/Python-3.9.10.tgz</span><br><span class="line">tar xvf Python-3.9.10.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-3.9.10/</span><br><span class="line">./configure --enable-optimizations</span><br><span class="line">sudo make altinstall</span><br><span class="line">/usr/local/bin/python3.9 -m pip install --upgrade pip</span><br><span class="line">pip39 install virtualenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装sanic 23.3.0</span></span><br><span class="line">pip install sanic</span><br><span class="line"><span class="comment"># 安装扩展</span></span><br><span class="line">pip install sanic-ext</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="实践-helloworld"><a href="#实践-helloworld" class="headerlink" title="实践-helloworld"></a>实践-helloworld</h2><ol>
+<li>编辑server.py <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> text, json</span><br><span class="line"></span><br><span class="line">app = Sanic(<span class="string">&quot;MyHelloWorldApp&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># return text(&quot;Hello, world.&quot;)</span></span><br><span class="line">    <span class="keyword">return</span> json(&#123;<span class="string">&#x27;hello&#x27;</span>: <span class="string">&#x27;world&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(</span><br><span class="line">        host=<span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">        port=<span class="number">8000</span>,</span><br><span class="line">        workers=<span class="number">1</span>,</span><br><span class="line">        debug=<span class="literal">True</span>,</span><br><span class="line">        access_log=<span class="literal">True</span>,  <span class="comment"># 访问日志开关，进针对自带日志有效，自定义的无效</span></span><br><span class="line">        auto_reload=<span class="literal">True</span>,  <span class="comment"># 自动重载代码</span></span><br><span class="line">        dev=<span class="literal">True</span>,  <span class="comment"># 等价于debug+auto_reload</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure></li>
+<li>运行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">python server.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令行验证</span></span><br><span class="line">curl localhost:8000 -i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浏览器请求服务</span></span><br><span class="line">http://&lt;服务器IP&gt;:8000</span><br><span class="line"><span class="comment"># 查看OpenAPI和运行的功能</span></span><br><span class="line">http://&lt;服务器IP&gt;:8000/docs</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="实践-docker"><a href="#实践-docker" class="headerlink" title="实践-docker"></a>实践-docker</h2><ol>
+<li><p>Dockerfile</p>
+ <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> sanicframework/sanic:<span class="number">3.8</span>-latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /sanic</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;python&quot;</span>, <span class="string">&quot;server.py&quot;</span>]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>server.py</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;docker_sanic</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Request, Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> text</span><br><span class="line"></span><br><span class="line">app = Sanic(<span class="string">&quot;MySanicApp&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">8000</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>构建启动</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-sanic-image .</span><br><span class="line">docker run --name mysanic -p 8000:8000 -d my-sanic-image</span><br><span class="line"><span class="comment"># 浏览器输入</span></span><br><span class="line">http://&lt;服务器IP&gt;:8000/</span><br></pre></td></tr></table></figure></li>
+<li><p>nginx_sanic.conf</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http://mysanic:8000/;</span><br><span class="line">      proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">      proxy_set_header Connection upgrade;</span><br><span class="line">      proxy_set_header Accept-Encoding gzip;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>docker-compose.yml</p>
+ <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">mysanic:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">my-sanic-image</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8000:8000&quot;</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mynginx:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx:1.13.6-alpine</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80:80&quot;</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mysanic</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./mysanic.conf:/etc/nginx/conf.d/mysanic.conf</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">default:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line"><span class="comment"># 浏览器输入</span></span><br><span class="line">http://&lt;服务器IP&gt;:80/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;测试sanic框架</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">&quot;jesonlin&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Request, Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> text, empty, file, redirect</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> json <span class="keyword">as</span> rsp_json</span><br><span class="line"><span class="keyword">from</span> sanic.handlers <span class="keyword">import</span> ErrorHandler</span><br><span class="line"></span><br><span class="line"><span class="comment"># from sanic.log import logger</span></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> LOGGING_CONFIG</span><br><span class="line"></span><br><span class="line"><span class="comment"># from sanic_ext import openapi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义request.id属性</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyRequest</span>(<span class="title class_ inherited__">Request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;重载request加入请求id&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_id</span>(<span class="params">cls, *_</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;请求id默认自带就是用uuid&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> uuid.uuid4()</span><br><span class="line">        <span class="comment"># return time.time_ns()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义错误响应函数</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomErrorHandler</span>(<span class="title class_ inherited__">ErrorHandler</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;自定义错误响应函数&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">default</span>(<span class="params">self, request, exception</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;handles errors that have no error handlers assigned&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 自定义的错误处理逻辑</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;这里发生错误|%s&quot;</span> % exception)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>().default(request, exception)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DIR_BASE = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">DIR_LOG = <span class="string">&quot;&#123;&#125;/logs&quot;</span>.<span class="built_in">format</span>(DIR_BASE)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(DIR_LOG):</span><br><span class="line">    os.makedirs(DIR_LOG)</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化app</span></span><br><span class="line">app = Sanic(<span class="string">&quot;MyHelloWorldApp&quot;</span>, request_class=MyRequest, error_handler=CustomErrorHandler(), log_config=LOGGING_CONFIG)</span><br><span class="line"><span class="comment"># 上下文对象</span></span><br><span class="line"><span class="comment"># app.ctx.db = Database()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过配置文件加载更新配置</span></span><br><span class="line">app.update_config(<span class="string">&quot;./config.py&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="comment"># @openapi.no_autodoc  # 忽略生成文档</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;第一个sanic接口</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    这是sanic的第一个接口，这里是接口注释。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    openapi:</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    operationId: fooDots</span></span><br><span class="line"><span class="string">    tags:</span></span><br><span class="line"><span class="string">      - API</span></span><br><span class="line"><span class="string">    parameters:</span></span><br><span class="line"><span class="string">        - name: name</span></span><br><span class="line"><span class="string">          in: query</span></span><br><span class="line"><span class="string">          description: 用户名</span></span><br><span class="line"><span class="string">          required: True</span></span><br><span class="line"><span class="string">          schema:</span></span><br><span class="line"><span class="string">            type: string</span></span><br><span class="line"><span class="string">            format: str</span></span><br><span class="line"><span class="string">        - name: age</span></span><br><span class="line"><span class="string">          in: query</span></span><br><span class="line"><span class="string">          description: 用户年龄</span></span><br><span class="line"><span class="string">          required: False</span></span><br><span class="line"><span class="string">          schema:</span></span><br><span class="line"><span class="string">            type: integer</span></span><br><span class="line"><span class="string">            format: int32</span></span><br><span class="line"><span class="string">    responses:</span></span><br><span class="line"><span class="string">      &#x27;200&#x27;:</span></span><br><span class="line"><span class="string">        description: Just some dots</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    logger.info(<span class="string">&quot;Here is your logssss: hello_world&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return text(&quot;hello world.&quot;)</span></span><br><span class="line">    <span class="comment"># return rsp_json(&#123;&quot;hello&quot;: &quot;world&quot;&#125;)</span></span><br><span class="line">    <span class="keyword">return</span> rsp_json(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: request.token,</span><br><span class="line">            <span class="string">&quot;user&quot;</span>: request.ctx.user,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: <span class="built_in">str</span>(request.<span class="built_in">id</span>),</span><br><span class="line">            <span class="string">&quot;AUTO_RELOAD&quot;</span>: app.config.AUTO_RELOAD,</span><br><span class="line">            <span class="string">&quot;REQUEST_TIMEOUT&quot;</span>: app.config.REQUEST_TIMEOUT,</span><br><span class="line">            <span class="string">&quot;config&quot;</span>: <span class="built_in">str</span>(app.config),</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 响应函数: https://sanic.dev/zh/guide/basics/handlers.html#%E5%85%B3%E4%BA%8E-async-a-word-about-async</span></span><br><span class="line"><span class="comment"># 响应函数(Handlers)，也就是我们通常所说的视图(views)。</span></span><br><span class="line"><span class="comment"># 它至少以一个 request 实例作为参数，并返回一个 HTTPResponse 实例或一个执行其他操作的协同程序作为响应。</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/async&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">async_handler</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;异步响应接口，请求体&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># json -d &#x27;&#123;&quot;foo&quot;: &quot;bar&quot;&#125;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.json)  <span class="comment"># &#123;&#x27;foo&#x27;: &#x27;bar&#x27;&#125;</span></span><br><span class="line">    <span class="comment"># raw -d &#x27;&#123;&quot;foo&quot;: &quot;bar&quot;&#125;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.body)  <span class="comment"># b&#x27;&#123;&quot;foo&quot;: &quot;bar&quot;&#125;&#x27;</span></span><br><span class="line">    <span class="comment"># form -d &#x27;foo=bar&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.body)  <span class="comment"># b&#x27;foo=bar&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.form)  <span class="comment"># &#123;&#x27;foo&#x27;: [&#x27;bar&#x27;]&#125;</span></span><br><span class="line">    <span class="built_in">print</span>(request.form.get(<span class="string">&quot;foo&quot;</span>))  <span class="comment"># bar</span></span><br><span class="line">    <span class="built_in">print</span>(request.form.getlist(<span class="string">&quot;foo&quot;</span>))  <span class="comment"># [&#x27;bar&#x27;]</span></span><br><span class="line">    <span class="comment"># upload -F &#x27;my_file=@/path/to/TEST&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.body)</span><br><span class="line">    <span class="built_in">print</span>(request.files)  <span class="comment"># &#123;&#x27;my_file&#x27;: [File(type=&#x27;application/octet-stream&#x27;, body=b&#x27;hello\n&#x27;, name=&#x27;TEST&#x27;)]&#125;</span></span><br><span class="line">    <span class="built_in">print</span>(request.files.get(<span class="string">&quot;my_file&quot;</span>))  <span class="comment"># File(type=&#x27;application/octet-stream&#x27;, body=b&#x27;hello\n&#x27;, name=&#x27;TEST&#x27;)</span></span><br><span class="line">    <span class="built_in">print</span>(request.files.getlist(<span class="string">&quot;my_file&quot;</span>))  <span class="comment"># [File(type=&#x27;application/octet-stream&#x27;, body=b&#x27;hello\n&#x27;, name=&#x27;TEST&#x27;)]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> rsp_json(&#123;<span class="string">&quot;async_handlerf&quot;</span>: <span class="string">&quot;Done.&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 请求: https://sanic.dev/zh/guide/basics/request.html</span></span><br><span class="line"><span class="comment"># 所有的 响应函数 都必须返回一个 response 对象，中间件 可以自由选择是否返回 response 对象。</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">_fetch_user_by_token</span>(<span class="params">token</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;异步根据token获取用户名&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;jesonlin&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.middleware(<span class="params"><span class="string">&quot;request&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">run_before_handler</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;request中间件封装参数进上下文对象</span></span><br><span class="line"><span class="string">    通常被用来存储服务端通过某些验证后需要临时存储的身份认证信息以及专有变量等内容。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    request.ctx.user = <span class="keyword">await</span> _fetch_user_by_token(request.token)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/ctx&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">ctx</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试上下文对象取值&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;这里是接口内部&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;Hi, my name is &#123;&#125;\napp.ctx is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(request.ctx.user, app.ctx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># @app.route(&quot;/route_tag/&lt;tag:int&gt;&quot;)</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">r&quot;/route_tag/&lt;tag:[a-z]&#123;3&#125;.txt&gt;&quot;</span>, name=<span class="string">&quot;get_route_tag&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">route_tag</span>(<span class="params">request, tag: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试提取路径部分参数</span></span><br><span class="line"><span class="string">    &lt;tag:int&gt;  路径参数强制转换为int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;tag: %s\n args: %s&quot;</span> % (tag, request.args))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/args/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">args</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;返回请求参数&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 和上述的 request.form、request.files 对象一样，request.args 同样是少数几种字典之一，每个值都是一个列表。这是因为HTTP允许单个键名被重用以发送多个值。</span></span><br><span class="line">    <span class="built_in">print</span>(request.args)</span><br><span class="line">    <span class="comment"># curl &#x27;http://localhost:8000/print_args?key1=val1&amp;key2=val2&amp;key1=\[val3\]&#x27;</span></span><br><span class="line">    <span class="comment"># &#123;&#x27;key1&#x27;: [&#x27;val1&#x27;, &#x27;[val3]&#x27;], &#x27;key2&#x27;: [&#x27;val2&#x27;]&#125;</span></span><br><span class="line">    <span class="comment"># &#x27;val1&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(request.args.get(<span class="string">&quot;key1&quot;</span>))</span><br><span class="line">    <span class="comment"># [&#x27;val1&#x27;, &#x27;[val3]&#x27;]</span></span><br><span class="line">    <span class="built_in">print</span>(request.args.getlist(<span class="string">&quot;key1&quot;</span>))</span><br><span class="line">    <span class="comment"># [(&#x27;key1&#x27;, &#x27;val1&#x27;), (&#x27;key2&#x27;, &#x27;val2&#x27;), (&#x27;key1&#x27;, &#x27;[val3]&#x27;)]</span></span><br><span class="line">    <span class="built_in">print</span>(request.query_args)</span><br><span class="line">    <span class="comment"># key1=val1&amp;key2=val2&amp;key1=[val3]</span></span><br><span class="line">    <span class="built_in">print</span>(request.query_string)</span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;args - type:&#123;&#125; - value:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">type</span>(request.args), request.args))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 响应: https://sanic.dev/zh/guide/basics/response.html</span></span><br><span class="line"><span class="comment"># 所有的 响应函数 都必须返回一个 response 对象，中间件 可以自由选择是否返回 response 对象。</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/response/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">response</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试响应函数返回不同类型&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># return text(&quot;Hi 😎&quot;)</span></span><br><span class="line">    <span class="comment"># return rsp_json(&#123;&quot;foo&quot;: &quot;bar&quot;&#125;)</span></span><br><span class="line">    <span class="comment"># return redirect(&quot;/hi&quot;)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> file(<span class="string">&quot;A.jpg&quot;</span>)</span><br><span class="line">    <span class="comment"># return empty()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/route&quot;</span>, methods=[<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="comment"># @app.post(&quot;/route&quot;)</span></span><br><span class="line"><span class="comment"># @app.get(&quot;/route&quot;)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">route</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;中间件添加路由&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;OK&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 路由: https://sanic.dev/zh/guide/basics/routing.html#%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-adding-a-route</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/dynamic_route&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">dynamic_route</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;动态路由&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 您可以传递任意数量的关键字参数，任何非路由参数的部分都会被是做为查询字符串的一部分</span></span><br><span class="line">    <span class="comment"># 同样支持为一个键名传递多个值</span></span><br><span class="line">    <span class="comment"># url = app.url_for(&quot;route_tag&quot;, tag=&quot;abc.txt&quot;, arg_one=[&quot;one&quot;, &quot;two&quot;])</span></span><br><span class="line">    <span class="comment"># 有路由名称name则只能通过路由名称name</span></span><br><span class="line">    url = app.url_for(<span class="string">&quot;get_route_tag&quot;</span>, tag=<span class="string">&quot;abc.txt&quot;</span>, arg_one=[<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>])</span><br><span class="line">    <span class="keyword">return</span> redirect(url)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 监听器: https://sanic.dev/zh/guide/basics/listeners.html</span></span><br><span class="line"><span class="comment"># 允许您将功能挂载到工作进程的生命周期</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.reload_process_start</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">reload_process_start</span>(<span class="params">*_</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听重载进程，只一次&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听重载进程 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.main_process_start</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main_process_start</span>(<span class="params">*_</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听启动程序进程，只一次&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听主程序启动 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.before_server_start</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">before_server_start</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听服务启动前&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听服务启动前 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line">    app.ctx.db = <span class="string">&quot;DB_INFO&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.after_server_start</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">after_server_start</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听服务启动后&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听服务启动后 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.before_server_stop</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">before_server_stop</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听服务结束前&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听服务结束前 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.after_server_stop</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">after_server_stop</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听服务结束后&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听服务结束后 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.main_process_stop</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main_process_stop</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;监听器 设置DB&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt;&gt; 监听主程序结束 &lt;&lt;&lt;&lt;&lt;&lt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 中间件: https://sanic.dev/zh/guide/basics/middleware.html</span></span><br><span class="line"><span class="comment"># 中间件允许您将功能挂载到 HTTP 流的生命周期。</span></span><br><span class="line"><span class="comment"># 可以在执行响应函数之前或者响应函数之后执行中间件</span></span><br><span class="line"><span class="comment"># 如果中间件返回了一个 HTTPResponse 对象， 那么请求将会终止，此对象将会作为最终响应进行返回。</span></span><br><span class="line"><span class="comment"># 返回 None 值来跳过某个中间件的执行</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># @app.middleware(&quot;request&quot;)</span></span><br><span class="line"><span class="meta">@app.on_request  </span><span class="comment"># 等价于</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">extract_user</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;请求中间件&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.on_response</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">prevent_xss</span>(<span class="params">request, response</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;响应中间件&quot;&quot;&quot;</span></span><br><span class="line">    response.headers[<span class="string">&quot;X-Request-ID&quot;</span>] = request.<span class="built_in">id</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 标头: https://sanic.dev/zh/guide/basics/headers.html</span></span><br><span class="line"><span class="comment"># 令牌(Token)：从请求头中解析到的 Token &lt;token&gt; 或者 Bearer &lt;token&gt; 将会被赋值给 request.token</span></span><br><span class="line"><span class="comment"># 请求头、响应头</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/hosts&quot;</span>, name=<span class="string">&quot;foo&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hosts</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;查看hosts 信息&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> rsp_json(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;effective host&quot;</span>: request.host,  <span class="comment"># &quot;&lt;服务器IP&gt;:8000&quot;</span></span><br><span class="line">            <span class="string">&quot;host header&quot;</span>: request.headers.get(<span class="string">&quot;host&quot;</span>),  <span class="comment"># &quot;&lt;服务器IP&gt;:8000&quot;</span></span><br><span class="line">            <span class="string">&quot;forwarded host&quot;</span>: request.forwarded.get(<span class="string">&quot;host&quot;</span>),  <span class="comment"># null</span></span><br><span class="line">            <span class="string">&quot;you are here&quot;</span>: request.url_for(<span class="string">&quot;foo&quot;</span>),  <span class="comment"># &quot;http://&lt;服务器IP&gt;:8000/hosts&quot;</span></span><br><span class="line">            <span class="string">&quot;all&quot;</span>: <span class="built_in">list</span>(request.headers.items()),</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># cookies: https://sanic.dev/zh/guide/basics/cookies.html#%E8%AF%BB%E5%8F%96-reading</span></span><br><span class="line"><span class="comment"># 通过 Request 对象的 cookies 字典来访问 Cookies。</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/cookie&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">cookie</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;读取cookies&quot;&quot;&quot;</span></span><br><span class="line">    test_cookie = request.cookies.get(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">    rsp = text(<span class="string">&quot;Test cookie: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(test_cookie))</span><br><span class="line">    <span class="comment"># 写入cookies</span></span><br><span class="line">    rsp.cookies[<span class="string">&quot;test&quot;</span>] = <span class="string">&quot;cookies insert test&quot;</span></span><br><span class="line">    <span class="keyword">return</span> rsp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 后台任务: https://sanic.dev/zh/guide/basics/tasks.html#%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1-creating-tasks</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">my_task</span>(<span class="params">app</span>):  <span class="comment"># pylint: disable=redefined-outer-name</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;后台任务&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;MY TASK - PID: <span class="subst">&#123;os.getpid()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;/data/service/python_project/project_sanic/task.txt&quot;</span>, <span class="string">&quot;a&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">&quot;begint run...\n&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    app.add_task(my_task(app))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个子进程都有</span></span><br><span class="line"><span class="comment"># app.add_task(slow_work)</span></span><br><span class="line"><span class="comment"># 通过任务别名查看任务</span></span><br><span class="line"><span class="comment"># task = app.get_task(&quot;slow_task&quot;)</span></span><br><span class="line"><span class="comment"># print(&quot;task=%s&quot; % task)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 要想只为主进程添加任务，您应该考虑使用 @app.main_process_start添加任务。</span></span><br><span class="line"><span class="meta">@app.before_server_start  </span><span class="comment"># 每个子进程都有</span></span><br><span class="line"><span class="comment"># @app.main_process_start  # 没效果，暂不知道原因</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">my_outer_task</span>(<span class="params">app, loop</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=====&gt;&gt;&gt;&gt;开始添加任务&quot;</span>)</span><br><span class="line">    logger.info(<span class="string">&quot;=====&gt;&gt;&gt;&gt;开始添加任务&quot;</span>)</span><br><span class="line">    app.add_task(my_task(app))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 装饰器: https://sanic.dev/zh/guide/best-practices/decorators.html</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">check_request_for_authorization_status</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;验证权限&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">authorized</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;权限装饰器&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">f</span>):</span><br><span class="line"><span class="meta">        @wraps(<span class="params">f</span>)</span></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">decorated_function</span>(<span class="params">request, *args, **kwargs</span>):</span><br><span class="line">            <span class="comment"># run some method that checks the request</span></span><br><span class="line">            <span class="comment"># for the client&#x27;s authorization status</span></span><br><span class="line">            is_authorized = <span class="keyword">await</span> check_request_for_authorization_status(request)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> is_authorized:</span><br><span class="line">                <span class="comment"># the user is authorized.</span></span><br><span class="line">                <span class="comment"># run the handler method and return the response</span></span><br><span class="line">                rsp = <span class="keyword">await</span> f(request, *args, **kwargs)</span><br><span class="line">                <span class="keyword">return</span> rsp</span><br><span class="line">            <span class="comment"># the user is not authorized.</span></span><br><span class="line">            <span class="keyword">return</span> rsp_json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;not_authorized&quot;</span>&#125;, <span class="number">403</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> decorated_function</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 日志: https://sanic.dev/zh/guide/best-practices/logging.html</span></span><br><span class="line"><span class="comment"># 默认日志， from sanic.log import logger  logger.info(&quot;&quot;&quot;)</span></span><br><span class="line"><span class="comment"># 自定义日志</span></span><br><span class="line"><span class="comment"># import logging</span></span><br><span class="line"><span class="comment"># DIR_BASE = os.path.dirname(os.path.abspath(__file__))</span></span><br><span class="line"><span class="comment"># DIR_LOG = &quot;&#123;&#125;/logs&quot;.format(DIR_BASE)</span></span><br><span class="line"><span class="comment"># if not os.path.exists(DIR_LOG):</span></span><br><span class="line"><span class="comment">#     os.makedirs(DIR_LOG)</span></span><br><span class="line"><span class="comment"># LOGGING_CONFIG = &#123;</span></span><br><span class="line"><span class="comment">#     &quot;version&quot;: 1,</span></span><br><span class="line"><span class="comment">#     &quot;disable_existing_loggers&quot;: False,</span></span><br><span class="line"><span class="comment">#     &quot;formatters&quot;: &#123;</span></span><br><span class="line"><span class="comment">#         &quot;verbose&quot;: &#123;&quot;format&quot;: &quot;[%(levelname)s %(asctime)s %(name)s %(lineno)d %(process)d %(thread)d] %(message)s&quot;&#125;</span></span><br><span class="line"><span class="comment">#     &#125;,</span></span><br><span class="line"><span class="comment">#     &quot;handlers&quot;: &#123;</span></span><br><span class="line"><span class="comment">#         &quot;console&quot;: &#123;</span></span><br><span class="line"><span class="comment">#             &quot;level&quot;: &quot;INFO&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;class&quot;: &quot;logging.StreamHandler&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;formatter&quot;: &quot;verbose&quot;,</span></span><br><span class="line"><span class="comment">#         &#125;,</span></span><br><span class="line"><span class="comment">#         &quot;backend_file&quot;: &#123;</span></span><br><span class="line"><span class="comment">#             &quot;delay&quot;: True,</span></span><br><span class="line"><span class="comment">#             &quot;class&quot;: &quot;logging.handlers.TimedRotatingFileHandler&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;filename&quot;: &quot;./logs/main.log&quot;,  # 日志输出文件</span></span><br><span class="line"><span class="comment">#             &quot;when&quot;: &quot;D&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;backupCount&quot;: 10,  # 备份份数</span></span><br><span class="line"><span class="comment">#             &quot;formatter&quot;: &quot;verbose&quot;,  # 使用哪种formatters日志格式</span></span><br><span class="line"><span class="comment">#             &quot;level&quot;: &quot;DEBUG&quot;,</span></span><br><span class="line"><span class="comment">#         &#125;,</span></span><br><span class="line"><span class="comment">#         &quot;backend_err_file&quot;: &#123;</span></span><br><span class="line"><span class="comment">#             &quot;delay&quot;: True,</span></span><br><span class="line"><span class="comment">#             &quot;class&quot;: &quot;logging.handlers.TimedRotatingFileHandler&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;filename&quot;: &quot;./logs/main_error.log&quot;,  # 日志输出文件</span></span><br><span class="line"><span class="comment">#             &quot;when&quot;: &quot;D&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;backupCount&quot;: 10,  # 备份份数</span></span><br><span class="line"><span class="comment">#             &quot;formatter&quot;: &quot;verbose&quot;,  # 使用哪种formatters日志格式</span></span><br><span class="line"><span class="comment">#             &quot;level&quot;: &quot;ERROR&quot;,</span></span><br><span class="line"><span class="comment">#         &#125;,</span></span><br><span class="line"><span class="comment">#     &#125;,</span></span><br><span class="line"><span class="comment">#     &quot;loggers&quot;: &#123;</span></span><br><span class="line"><span class="comment">#         &quot;&quot;: &#123;</span></span><br><span class="line"><span class="comment">#             &quot;handlers&quot;: [&quot;backend_file&quot;, &quot;backend_err_file&quot;],</span></span><br><span class="line"><span class="comment">#             &quot;level&quot;: &quot;INFO&quot;,</span></span><br><span class="line"><span class="comment">#             &quot;propagate&quot;: False,</span></span><br><span class="line"><span class="comment">#         &#125;</span></span><br><span class="line"><span class="comment">#     &#125;,</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"><span class="comment"># logger = logging.getLogger(__name__)</span></span><br><span class="line"><span class="comment"># app = Sanic(&quot;MyHelloWorldApp&quot;, log_config=LOGGING_CONFIG)</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"><span class="comment"># 运行: https://sanic.dev/zh/guide/deployment/running.html#sanic-%E6%9C%8D%E5%8A%A1%E5%99%A8-sanic-server</span></span><br><span class="line"><span class="comment"># 获取系统CPU核心数量</span></span><br><span class="line"><span class="comment"># workers = multiprocessing.cpu_count()</span></span><br><span class="line"><span class="comment"># app.run(host=&#x27;0.0.0.0&#x27;, port=8000, workers=workers, fast=True)</span></span><br><span class="line"><span class="comment"># gunicorn: 一个基于 UNIX 操作系统的 WSGI HTTP 服务器。它是从 Ruby 的 Unicorn 项目中移植而来，采用的是 pre-fork worker 模型。</span></span><br><span class="line"><span class="comment"># gunicorn myapp:app --bind 0.0.0.0:1337 --worker-class sanic.worker.GunicornWorker</span></span><br><span class="line"><span class="comment"># 如果您的应用有内存泄漏的困扰，您可以通过配置 Gunicorn 使子进程在处理了一定数量的请求后平滑重启。这种方法可以很方便得减少内存泄漏带来的影响。</span></span><br><span class="line"><span class="comment"># 当通过 gunicorn 运行 Sanic 时，您将失去 async/await 带来的诸多性能优势。对于该种部署方式，请三思而后行。的确，Gunicorn 提供了很多配置选项，但它不是让 Sanic 全速运行的最佳坏境。</span></span><br><span class="line"><span class="comment"># ============================================ #</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(</span><br><span class="line">        host=<span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">        port=<span class="number">8000</span>,</span><br><span class="line">        <span class="comment"># workers=workers,</span></span><br><span class="line">        fast=<span class="literal">True</span>,  <span class="comment"># 自动以系统最大的核心数量来创建工作线程</span></span><br><span class="line">        debug=<span class="literal">True</span>,</span><br><span class="line">        access_log=<span class="literal">True</span>,  <span class="comment"># 访问日志开关，进针对自带日志有效，自定义的无效</span></span><br><span class="line">        auto_reload=<span class="literal">True</span>,  <span class="comment"># 自动重载代码</span></span><br><span class="line">        <span class="comment"># dev=True,  # 等价于debug+auto_reload</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><p><a target="_blank" rel="noopener" href="https://sanic.dev/zh/">官网</a><br><a target="_blank" rel="noopener" href="https://sanic.dev/zh/plugins/sanic-ext/openapi/autodoc.html">sanic-自助生成文档</a></p>
+
+    </div>
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">------------->本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="jesonlin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="jesonlin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>jesonlin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/sanic/" title="sanic">https://jesonlin.com/框架/sanic/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/sanic/" rel="tag"># sanic</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%A1%86%E6%9E%B6/django/" rel="prev" title="django">
+                  <i class="fa fa-chevron-left"></i> django
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%A1%86%E6%9E%B6/flask/" rel="next" title="flask">
+                  flask <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jesonlin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"923d4fd09d8038253be58ff31501ec79"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

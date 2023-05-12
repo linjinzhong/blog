@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jesonlin.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Sublime Text 是一款流行的代码编辑器软件，也是HTML和散文先进的文本编辑器，可运行在Linux，Windows和Mac OS X。也是许多程序员喜欢使用的一款文本编辑器软件。sublime英文官网sublime中文官网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sublime">
+<meta property="og:url" content="https://jesonlin.com/%E8%BD%AF%E4%BB%B6/sublime/index.html">
+<meta property="og:site_name" content="jesonlin">
+<meta property="og:description" content="Sublime Text 是一款流行的代码编辑器软件，也是HTML和散文先进的文本编辑器，可运行在Linux，Windows和Mac OS X。也是许多程序员喜欢使用的一款文本编辑器软件。sublime英文官网sublime中文官网">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-08T11:04:07.000Z">
+<meta property="article:modified_time" content="2023-05-12T08:27:54.485Z">
+<meta property="article:author" content="jesonlin">
+<meta property="article:tag" content="sublime">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jesonlin.com/%E8%BD%AF%E4%BB%B6/sublime/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E8%BD%AF%E4%BB%B6/sublime/","path":"软件/sublime/","title":"sublime"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sublime | jesonlin</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jesonlin</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/qq-image.jpeg" alt="jesonlin">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-resources"><a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>resources</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">基础配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85-%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">插件安装-步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#monikai-%E4%B8%BB%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">monikai 主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sidebar%E5%BC%BA%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">sidebar强化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#terminal-%E7%BB%88%E7%AB%AF"><span class="nav-number">7.</span> <span class="nav-text">terminal 终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json-%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">json 格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#black-Python%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">9.</span> <span class="nav-text">black-Python代码格式化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SublimeLinter-pylint%E5%92%8Cflake8%E6%A3%80%E6%9F%A5python%E4%BB%A3%E7%A0%81"><span class="nav-number"></span> <span class="nav-text">SublimeLinter-pylint和flake8检查python代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#auto-refresh"><span class="nav-number">1.</span> <span class="nav-text">auto refresh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SFTP"><span class="nav-number">2.</span> <span class="nav-text">SFTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">3.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jesonlin"
+      src="/images/handsome.jpg">
+  <p class="site-author-name" itemprop="name">jesonlin</p>
+  <div class="site-description" itemprop="description">choice is better than effort</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/linjinzhong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;linjinzhong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jesonlin@outlook.com" title="E-Mail → mailto:jesonlin@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jesonlinjz" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/jesonlinjz" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+ 
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E8%BD%AF%E4%BB%B6/sublime/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/handsome.jpg">
+      <meta itemprop="name" content="jesonlin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jesonlin">
+      <meta itemprop="description" content="choice is better than effort">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="sublime | jesonlin">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sublime
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-08 19:04:07" itemprop="dateCreated datePublished" datetime="2022-12-08T19:04:07+08:00">2022-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-12 16:27:54" itemprop="dateModified" datetime="2023-05-12T16:27:54+08:00">2023-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Sublime Text 是一款流行的代码编辑器软件，也是HTML和散文先进的文本编辑器，可运行在Linux，Windows和Mac OS X。也是许多程序员喜欢使用的一款文本编辑器软件。<br><a target="_blank" rel="noopener" href="https://www.sublimetext.com/">sublime英文官网</a><br><a target="_blank" rel="noopener" href="https://www.sublimetextcn.com/">sublime中文官网</a></p>
+<span id="more"></span>
+
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
+<li>打开&#x2F;关闭左侧目录 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【k】，【cmd】+【b】</span><br></pre></td></tr></table></figure></li>
+<li>展开&#x2F;折叠代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【k】+【0】/【1】/【2】</span><br></pre></td></tr></table></figure></li>
+<li>打开&#x2F;关闭标签页 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【w】</span><br></pre></td></tr></table></figure></li>
+<li>全屏 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【ctrl】+【f】</span><br></pre></td></tr></table></figure></li>
+<li>选中中到行首&#x2F;选中到行尾 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 自定义快捷键 --&gt;</span><br><span class="line">【shift】+【home】/【end】</span><br></pre></td></tr></table></figure></li>
+<li>打开终端terminus <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【fn】|【option】+【t】</span><br></pre></td></tr></table></figure></li>
+<li>json 格式化&#x2F;反格式化 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 自定义快捷键 --&gt;</span><br><span class="line">【cmd】+【fn】|【opt】+【j】/【m】</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>根据<a target="_blank" rel="noopener" href="https://www.sublimetext.com/docs/linux_repositories.html">官方地址</a>下载安装</p>
+<h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><ol>
+<li><p>安装 Package Control 插件包管理器</p>
+<ol>
+<li>旧版本安装<ol>
+<li>快捷键打开控制台 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + `</span><br></pre></td></tr></table></figure></li>
+<li>输入代码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os,hashlib; h = &#x27;6f4c264a24d933ce70df5dedcf1dcaee&#x27; + &#x27;ebe013ee18cced0ef93d5f746d80ef60&#x27;; pf = &#x27;Package Control.sublime-package&#x27;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#x27;http://packagecontrol.io/&#x27; + pf.replace(&#x27; &#x27;, &#x27;%20&#x27;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#x27;Error validating download (got %s instead of %s), please try manual install&#x27; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#x27;wb&#x27; ).write(by) </span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>新版本安装<ol>
+<li>快捷键打开查找栏 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】 +【shift】+【p】</span><br></pre></td></tr></table></figure></li>
+<li>输入如下回车安装 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install Package Control</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>其他常规配置</p>
+<ol>
+<li>打开侧边栏 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【shift】+【p】-》view: toggle side bar  or (【cmd】+【k】/【b】)</span><br></pre></td></tr></table></figure></li>
+<li>打开上边栏  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【cmd】+【shift】+【p】-》view: toggle tab</span><br></pre></td></tr></table></figure></li>
+<li>设置主题、字体大小及tab等 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Preferences -&gt; Settings -&gt; User or 【cmd】+【,】</span><br><span class="line">&quot;font_size&quot;: 21,</span><br><span class="line">&quot;tab_size&quot;: 4,</span><br><span class="line">&quot;translate_tabs_to_spaces&quot;: true,</span><br><span class="line">&quot;theme&quot;: &quot;Monokai Classic.sublime-theme&quot;,</span><br><span class="line">&quot;color_scheme&quot;: &quot;Monokai Classic.sublime-color-scheme&quot;,</span><br><span class="line">&quot;show_full_path&quot;: true,</span><br><span class="line">&quot;save_on_focus_lost&quot;: false,</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h2 id="插件安装-步骤"><a href="#插件安装-步骤" class="headerlink" title="插件安装-步骤"></a>插件安装-步骤</h2><ol>
+<li>所有插件安装都是通过插件包管理器</li>
+<li>【cmd】+【shift】+【p】</li>
+<li>Install Package</li>
+<li>输入对应插件名称</li>
+</ol>
+<h2 id="monikai-主题"><a href="#monikai-主题" class="headerlink" title="monikai 主题"></a>monikai 主题</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Theme-monokai pro</span><br></pre></td></tr></table></figure></li>
+<li>配置主题 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">「Preference」-&gt; 「Package Settings」-&gt; 「Theme-Monokai Pro」-&gt; 选择「Monikai Classic」</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="sidebar强化"><a href="#sidebar强化" class="headerlink" title="sidebar强化"></a>sidebar强化</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SideBarEnhancements</span><br></pre></td></tr></table></figure></li>
+<li>配置主题 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">「Preference」-&gt; 「Package Settings」-&gt; 「Theme-Monokai Pro」-&gt; 选择「Side Bar」</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="terminal-终端"><a href="#terminal-终端" class="headerlink" title="terminal 终端"></a>terminal 终端</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terminus</span><br></pre></td></tr></table></figure></li>
+<li>配置快捷键 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">「Preference」 -&gt; 「Key Bindings」 -&gt; 「User」</span><br><span class="line">&#123;&quot;keys&quot;: [&quot;command+fn+t&quot;], &quot;command&quot;: &quot;toggle_terminus_panel&quot;&#125;,</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="json-格式化"><a href="#json-格式化" class="headerlink" title="json 格式化"></a>json 格式化</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pretty_json</span><br></pre></td></tr></table></figure></li>
+<li>配置快捷键 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">「Preference」 -&gt; 「Key Bindings」 -&gt; 「User」</span><br><span class="line">&#123; &quot;keys&quot;: [&quot;command+fn+m&quot;], &quot;command&quot;: &quot;un_pretty_json&quot; &#125;,</span><br><span class="line">&#123; &quot;keys&quot;: [&quot;command+option+m&quot;], &quot;command&quot;: &quot;un_pretty_json&quot; &#125;,</span><br><span class="line">&#123; &quot;keys&quot;: [&quot;command+fn+j&quot;], &quot;command&quot;: &quot;pretty_json&quot; &#125;,</span><br><span class="line">&#123; &quot;keys&quot;: [&quot;command+option+j&quot;], &quot;command&quot;: &quot;pretty_json&quot; &#125;,</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="black-Python代码格式化"><a href="#black-Python代码格式化" class="headerlink" title="black-Python代码格式化"></a>black-Python代码格式化</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sublack</span><br></pre></td></tr></table></figure></li>
+<li>配置快捷键 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">「Preference」-&gt; 「Package Settings」-&gt; 「sublack」-&gt;「Settings」</span><br><span class="line">&#123;</span><br><span class="line">    &quot;black_on_save&quot;: false,</span><br><span class="line">    &quot;black_line_length&quot;: 80,</span><br><span class="line">    &quot;black_command&quot;: &quot;/Users/jesonlin/Library/Python/3.8/bin/black&quot;,</span><br><span class="line">&#125;</span><br><span class="line">「Preference」 -&gt; 「Key Bindings」 -&gt; 「User」</span><br><span class="line">&#123;&quot;keys&quot;: [&quot;command+fn+b&quot;], &quot;command&quot;: &quot;black_file&quot;&#125;, </span><br><span class="line">&#123;&quot;keys&quot;: [&quot;command+option+b&quot;], &quot;command&quot;: &quot;black_file&quot;&#125;, </span><br><span class="line">&#123;&quot;keys&quot;: [&quot;command+fn+shift+b&quot;], &quot;command&quot;: &quot;black_diff&quot;&#125;, </span><br><span class="line">&#123;&quot;keys&quot;: [&quot;command+option+shift+b&quot;], &quot;command&quot;: &quot;black_diff&quot;&#125;, </span><br></pre></td></tr></table></figure></li>
+<li>依赖python环境   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 intall black</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="SublimeLinter-pylint和flake8检查python代码"><a href="#SublimeLinter-pylint和flake8检查python代码" class="headerlink" title="SublimeLinter-pylint和flake8检查python代码"></a>SublimeLinter-pylint和flake8检查python代码</h1><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SublimeLinter</span><br></pre></td></tr></table></figure></li>
+<li>配置快捷键 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">「Preference」-&gt; 「Package Settings」-&gt; 「SublimeLinter」-&gt;「Settings」</span><br><span class="line">// SublimeLinter Settings - User</span><br><span class="line">&#123;</span><br><span class="line">    &quot;linters&quot;: &#123;</span><br><span class="line">        &quot;pylint&quot;: &#123;</span><br><span class="line">            &quot;disable&quot;: false,</span><br><span class="line">            &quot;args&quot;: [&quot;--max-line-length=120&quot;],</span><br><span class="line">            &quot;executable&quot;: &quot;/Users/jesonlin/Library/Python/3.9/bin/pylint&quot;,</span><br><span class="line">            &quot;env&quot;: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">            // Exclude files that match the given pattern(s).</span><br><span class="line">            &quot;excludes&quot;: [&quot;!*.py&quot;],</span><br><span class="line">            // E.g. [&quot;warning: &quot;, &quot;W3\d\d: &quot;, &quot;missing &lt;!DOCTYPE&gt; declaration&quot;]</span><br><span class="line">            &quot;filter_errors&quot;: [&quot;R0903&quot;,&quot;E0401&quot;,&quot;C0111&quot;,&quot;I0011&quot;,&quot;I0012&quot;,&quot;W0704&quot;,&quot;W0142&quot;,&quot;W0212&quot;,&quot;W0232&quot;,&quot;W0613&quot;,&quot;W0702&quot;,&quot;R0201&quot;,&quot;W0614&quot;,&quot;R0914&quot;,&quot;R0912&quot;,&quot;R0915&quot;,&quot;R0913&quot;,&quot;R0904&quot;,&quot;R0801&quot;,&quot;C0209&quot;],</span><br><span class="line">            &quot;lint_mode&quot;: &quot;background&quot;,</span><br><span class="line">            &quot;selector&quot;: &quot;&quot;,</span><br><span class="line">            &quot;styles&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;codes&quot;: [&quot;&quot;]</span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            // The current working dir the lint job will run in.</span><br><span class="line">            &quot;working_dir&quot;: &quot;&quot;,</span><br><span class="line">            &quot;python&quot;: 3,</span><br><span class="line">            &quot;disable_if_not_dependency&quot;: false</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;flake8&quot;: &#123;</span><br><span class="line">            &quot;disable&quot;: false,</span><br><span class="line">            &quot;args&quot;: [&quot;--max-line-length=120&quot;],</span><br><span class="line">            &quot;executable&quot;: &quot;/Users/jesonlin/Library/Python/3.9/bin/flake8&quot;,</span><br><span class="line">            &quot;env&quot;: &#123;&#125;,</span><br><span class="line">            // Exclude files that match the given pattern(s).</span><br><span class="line">            &quot;excludes&quot;: [&quot;!*.py&quot;],</span><br><span class="line">            &quot;filter_errors&quot;: [&quot;E203&quot;],</span><br><span class="line">            &quot;lint_mode&quot;: &quot;background&quot;,</span><br><span class="line">            &quot;selector&quot;: &quot;&quot;,</span><br><span class="line">            &quot;styles&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;codes&quot;: [&quot;&quot;]</span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            &quot;working_dir&quot;: &quot;&quot;,</span><br><span class="line">            &quot;python&quot;: 3,</span><br><span class="line">            &quot;disable_if_not_dependency&quot;: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>依赖pylint和flake8 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pylint</span><br><span class="line">pip3 install flake8</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="auto-refresh"><a href="#auto-refresh" class="headerlink" title="auto refresh"></a>auto refresh</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto refresh</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="SFTP"><a href="#SFTP" class="headerlink" title="SFTP"></a>SFTP</h2><ol>
+<li>打开包管理器输入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp</span><br></pre></td></tr></table></figure></li>
+<li>配置 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">「File」-&gt; 「SFT|FTP」-&gt;「Setup Server」-&gt;打开文件编辑保存即可</span><br><span class="line">&quot;host&quot;: &quot;XXX.XXX.XXX.XXX&quot;,</span><br><span class="line">&quot;user&quot;: &quot;root&quot;,</span><br><span class="line">&quot;password&quot;: &quot;XXX&quot;,</span><br><span class="line">&quot;remote_path&quot;: &quot;XXX&quot;,</span><br></pre></td></tr></table></figure></li>
+<li>使用<ol>
+<li>同步到本地<ol>
+<li>新建一个待同步的空白文件夹</li>
+<li>在文件名右键「SFTP|FTP」-&gt;「Map to Remote」-&gt; 弹出文件配置远程信息保存 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;host&quot;: &quot;XXX.XXX.XXX.XXX&quot;,</span><br><span class="line">    &quot;user&quot;: &quot;root&quot;,</span><br><span class="line">    &quot;password&quot;: &quot;XXX&quot;,</span><br><span class="line">&quot;remote_path&quot;: &quot;XXX&quot;,</span><br><span class="line">    &quot;keepalive&quot;: 3600,</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>鼠标文件名右键选则「Download Folder」</li>
+</ol>
+</li>
+</ol>
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91942738">Sublime Text 3 超详细插件安装</a></p>
+
+    </div>
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">------------->本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="jesonlin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="jesonlin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>jesonlin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://jesonlin.com/%E8%BD%AF%E4%BB%B6/sublime/" title="sublime">https://jesonlin.com/软件/sublime/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/sublime/" rel="tag"># sublime</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%B7%A5%E5%85%B7/mac-%E8%AE%BE%E7%BD%AE/" rel="prev" title="mac-设置">
+                  <i class="fa fa-chevron-left"></i> mac-设置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%AD%98%E5%82%A8/mysql/" rel="next" title="mysql">
+                  mysql <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jesonlin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"dff1b9452feb85504b65a4c0ac297986"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

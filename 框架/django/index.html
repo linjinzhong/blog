@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jesonlin.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Django是一个由Python编写的具有完整架站能力的开源Web框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django">
+<meta property="og:url" content="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/index.html">
+<meta property="og:site_name" content="jesonlin">
+<meta property="og:description" content="Django是一个由Python编写的具有完整架站能力的开源Web框架。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/web_frame.png">
+<meta property="og:image" content="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/MTV.png">
+<meta property="article:published_time" content="2023-04-08T06:56:51.000Z">
+<meta property="article:modified_time" content="2023-04-08T06:56:51.000Z">
+<meta property="article:author" content="jesonlin">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/web_frame.png">
+
+
+<link rel="canonical" href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/","path":"框架/django/","title":"django"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>django | jesonlin</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jesonlin</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/qq-image.jpeg" alt="jesonlin">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-resources"><a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>resources</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B"><span class="nav-number"></span> <span class="nav-text">创建项目过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%8A%95%E7%A5%A8%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">创建投票项目应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">3.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jesonlin"
+      src="/images/handsome.jpg">
+  <p class="site-author-name" itemprop="name">jesonlin</p>
+  <div class="site-description" itemprop="description">choice is better than effort</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/linjinzhong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;linjinzhong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jesonlin@outlook.com" title="E-Mail → mailto:jesonlin@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jesonlinjz" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/jesonlinjz" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+ 
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/handsome.jpg">
+      <meta itemprop="name" content="jesonlin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jesonlin">
+      <meta itemprop="description" content="choice is better than effort">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="django | jesonlin">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          django
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-08 14:56:51" itemprop="dateCreated datePublished" datetime="2023-04-08T14:56:51+08:00">2023-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>10k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Django是一个由Python编写的具有完整架站能力的开源Web框架。</p>
+<span id="more"></span>
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>web 框架架构 <img src="/%E6%A1%86%E6%9E%B6/django/web_frame.png" class="" title="web 框架架构"></li>
+<li>django 架构<ol>
+<li>Django本身基于MVC架构，即Model（模型）+View（视图）+ Controller（控制器）设计模式，因此天然具有MVC的出色基因：开发快捷、部署方便、可重用性高、维护成本低等优点。</li>
+<li>Django是一个全栈Web框架。所谓全栈框架，是指除了封装网络和线程操作，还提供HTTP请求和响应、数据库读写管理、HTML模板渲染等一系列功能的框架。</li>
+<li>强大的数据库访问API。Django的Model层自带数据库ORM组件。</li>
+<li>丰富的Template模板功能：Django自带类似jinjia的模板语言，不但原生功能丰富，还可以自定义模板标签和过滤器。并且以类似Python的调用机制和视图默契配合。</li>
+<li>自带后台管理应用admin：只需要通过简单的几行配置和代码就可以实现一个完整的后台数据管理控制平台。这是Django最受欢迎的功能。</li>
+</ol>
+</li>
+<li>MVC设计模式：<ol>
+<li>模型(Model)：用于封装与应用程序的业务逻辑相关的数据及对数据的处理方法，是Web应用程序中用于处理应用程序的数据逻辑的部分，Model只提供功能性的接口，通过这些接口可以获取Model的所有功能。白话说，这个模块就是业务逻辑和数据库的交互层，定义了数据表。</li>
+<li>视图(View)：负责数据的显示和呈现，是对用户的直接输出。</li>
+<li>控制器(Controller)：负责从用户端收集用户的输入，可以看成提供View的反向功能。</li>
+</ol>
+</li>
+<li>MTV设计模式<ol>
+<li>模型(Model)：和MVC中的定义一样  </li>
+<li>模板(Template)：将模型数据与HTML页面结合起来的引擎  </li>
+<li>视图(View)：负责实际的业务逻辑实现</li>
+</ol>
+</li>
+<li>Django对传统的MVC设计模式进行了修改<br> 将视图分成View模块和Template模块两部分，将动态的逻辑处理与静态的页面展示分离开。而Model采用了ORM技术，将关系型数据库表抽象成面向对象的Python类，将数据库的表操作转换成Python的类操作，避免了编写复杂的SQL语句。 <img src="/%E6%A1%86%E6%9E%B6/django/MTV.png" class="" title="web 框架架构"></li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 安装</span><br><span class="line">python3 -m pip install Django</span><br><span class="line"># 或者</span><br><span class="line">pip3 install Django</span><br><span class="line"></span><br><span class="line"># 查看版本</span><br><span class="line">python -m django --version</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="创建项目过程"><a href="#创建项目过程" class="headerlink" title="创建项目过程"></a>创建项目过程</h1><ol>
+<li>创建项目 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 创建项目目录</span><br><span class="line">mkdir -p /data/service/mysite</span><br><span class="line">cd /data/service/mysite</span><br><span class="line"></span><br><span class="line"># 创建虚拟环境</span><br><span class="line">virtualenv venv</span><br><span class="line"># 如果没有virtualenv则按照</span><br><span class="line">python3 -m pip install virtualenv</span><br><span class="line"># 激活虚拟环境</span><br><span class="line">source venv/bin/activate </span><br><span class="line"></span><br><span class="line"># 安装django</span><br><span class="line">python3 -m pip install Django</span><br><span class="line"></span><br><span class="line"># 当前目录下生成django项目</span><br><span class="line">django-admin startproject mysite .</span><br><span class="line"># 生成如下结构</span><br><span class="line">mysite/</span><br><span class="line">├── manage.py</span><br><span class="line">├── mysite</span><br><span class="line">│   ├── asgi.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">└── venv</span><br><span class="line">    ├── bin</span><br><span class="line">    ├── lib</span><br><span class="line">    ├── lib64</span><br><span class="line">    └── pyvenv.cfg</span><br></pre></td></tr></table></figure></li>
+<li>更新sqlite3(如果需要) <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 下载</span><br><span class="line">wget https://www.sqlite.org/2023/sqlite-autoconf-3410200.tar.gz</span><br><span class="line"></span><br><span class="line"># 解压编译</span><br><span class="line">tar zxvf sqlite-autoconf-3410200.tar.gz</span><br><span class="line">cd sqlite-autoconf-3410200/</span><br><span class="line">./configure --prefix=/usr/local</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"># 删除旧的，关联新的</span><br><span class="line">mv /usr/bin/sqlite3 /usr/bin/sqlite3_old</span><br><span class="line">ln -s /usr/local/bin/sqlite3 /usr/bin/sqlite3</span><br><span class="line">echo &#x27;/usr/local/lib&#x27; &gt; /etc/ld.so.conf.d/sqlite3.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line"># 查看版本</span><br><span class="line">sqlite3 -version</span><br></pre></td></tr></table></figure></li>
+<li>运行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 添加远程主机，防火墙也要放开监听端口通过</span><br><span class="line">vim mysite/settings.py </span><br><span class="line">ALLOWED_HOSTS = [&#x27;云主机IP&#x27;]</span><br><span class="line"></span><br><span class="line"># 仅本机浏览器查看，以127.0.0.1:8000这个默认配置启动开发服务器。</span><br><span class="line">python3 manage.py runserver</span><br><span class="line"></span><br><span class="line"># 远程云主机浏览器也能查看</span><br><span class="line">python3 manage.py runserver 0:8000</span><br><span class="line"></span><br><span class="line"># 浏览器查看</span><br><span class="line">http://&lt;服务器IP&gt;:8000</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="创建投票项目应用"><a href="#创建投票项目应用" class="headerlink" title="创建投票项目应用"></a>创建投票项目应用</h2><ol start="0">
+<li>项目内容<br> 一个可以让公众用户进行投票和查看投票结果的站点<br> 一个可以进行增、删、改、查的后台管理界面，也就是我们常说的admin站点</li>
+<li>请求和响应<ol>
+<li>创建应用 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py startapp polls</span><br><span class="line"></span><br><span class="line"># 结构如下</span><br><span class="line">polls/</span><br><span class="line">├── admin.py</span><br><span class="line">├── apps.py</span><br><span class="line">├── __init__.py</span><br><span class="line">├── migrations</span><br><span class="line">│   └── __init__.py</span><br><span class="line">├── models.py</span><br><span class="line">├── tests.py</span><br><span class="line">└── views.py</span><br></pre></td></tr></table></figure></li>
+<li>修改<ol>
+<li><p>根路由：vim mysite&#x2F;urls.py</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.contrib import admin</span><br><span class="line">from django.urls import include, path</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    # include语法相当于多级路由，它把接收到的url地址去除与此项匹配的部分</span><br><span class="line">    path(&#x27;polls/&#x27;, include(&#x27;polls.urls&#x27;)),</span><br><span class="line">    path(&#x27;admin/&#x27;, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li><p>应用app路由：vim polls&#x2F;urls.py</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">from django.urls import path</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line"># 应用名，模版中防止不同应用相同路由</span><br><span class="line">app_name = &#x27;polls&#x27;</span><br><span class="line">urlpatterns = [</span><br><span class="line">    # ex: /polls/</span><br><span class="line">    path(&#x27;&#x27;, views.index, name=&#x27;index&#x27;),</span><br><span class="line"></span><br><span class="line">    # ex: /polls/5/</span><br><span class="line">    path(&#x27;&lt;int:question_id&gt;/&#x27;, views.detail, name=&#x27;detail&#x27;),</span><br><span class="line"></span><br><span class="line">    # ex: /polls/5/results/</span><br><span class="line">    path(&#x27;&lt;int:question_id&gt;/results/&#x27;, views.results, name=&#x27;results&#x27;),</span><br><span class="line"></span><br><span class="line">    # ex: /polls/5/vote/</span><br><span class="line">    path(&#x27;&lt;int:question_id&gt;/vote/&#x27;, views.vote, name=&#x27;vote&#x27;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li><p>模版文件：vim polls&#x2F;templates&#x2F;polls&#x2F;xxx.html</p>
+<ol>
+<li>展示最近5个问题：index.html <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;index&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&#123;% if latest_question_list %&#125;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">    &#123;% for question in latest_question_list %&#125;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;&#123;%url &#x27;polls:detail&#x27; question.id %&#125;&quot;&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">    &lt;p&gt;No polls are available.&lt;/p&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+<li>展示某个问题详情包括问题本身和投票项目 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;&#123;% url &#x27;polls:vote&#x27; question.id %&#125;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">&lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;&lt;h1&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/h1&gt;&lt;/legend&gt;</span><br><span class="line">    &#123;% if error_message %&#125;&lt;p&gt;&lt;strong&gt;&#123;&#123; error_message &#125;&#125;&lt;/strong&gt;&lt;/p&gt;&#123;% endif %&#125;</span><br><span class="line">    &#123;% for choice in question.choice_set.all %&#125;</span><br><span class="line">        &lt;input type=&quot;radio&quot; name=&quot;choice&quot; id=&quot;choice&#123;&#123; forloop.counter &#125;&#125;&quot; value=&quot;&#123;&#123; choice.id &#125;&#125;&quot;&gt;       &lt;label for=&quot;choice&#123;&#123; forloop.counter &#125;&#125;&quot;&gt;&#123;&#123; choice.choice_text &#125;&#125;&lt;/label&gt;&lt;br&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">&lt;/fieldset&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; value=&quot;Vote&quot;&gt;</span><br><span class="line">&lt;/form&gt;               </span><br></pre></td></tr></table></figure></li>
+<li>展示某个问题投票后结果 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&#123;% for choice in question.choice_set.all %&#125;</span><br><span class="line">    &lt;li&gt;&#123;&#123; choice.choice_text &#125;&#125; -- &#123;&#123; choice.votes &#125;&#125; vote&#123;&#123; choice.votes|pluralize &#125;&#125;&lt;/li&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;&#123;% url &#x27;polls:detail&#x27; question.id %&#125;&quot;&gt;Vote again?&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>视图函数：vim polls&#x2F;views.py</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render, get_object_or_404</span><br><span class="line">from django.http import HttpResponse, HttpResponseRedirect, Http404</span><br><span class="line">from .models import Question</span><br><span class="line">from django.urls import reverse</span><br><span class="line"></span><br><span class="line"># Create your views here.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def index(request):</span><br><span class="line">    &quot;&quot;&quot;展示最近5个问题&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    latest_question_list = Question.objects.order_by(&#x27;-pub_date&#x27;)[:5]</span><br><span class="line">    context = &#123;</span><br><span class="line">        &#x27;latest_question_list&#x27;: latest_question_list,</span><br><span class="line">    &#125;</span><br><span class="line">    return render(request, &#x27;polls/index.html&#x27;, context)</span><br><span class="line">    # return HttpResponse(template.render(context, request))</span><br><span class="line">    # return HttpResponse(&quot;hello, world. You&#x27;re at the polls index.&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def detail(request, question_id):</span><br><span class="line">    &quot;&quot;&quot;展示每个问题详情&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    # try:</span><br><span class="line">    #     question = Question.objects.get(pk=question_id)</span><br><span class="line">    # except Question.DoesNotExist:</span><br><span class="line">    #     raise Http404(&quot;Question does not exist&quot;)</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    return render(request, &#x27;polls/detail.html&#x27;, &#123;&#x27;question&#x27;: question&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def results(request, question_id):</span><br><span class="line">    &quot;&quot;&quot;投票结果&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    return render(request, &#x27;polls/results.html&#x27;, &#123;&#x27;question&#x27;: question&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def vote(request, question_id):</span><br><span class="line">    &quot;&quot;&quot;投票&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    try:</span><br><span class="line">        selected_choice = question.choice_set.get(pk=request.POST[&#x27;choice&#x27;])</span><br><span class="line">    except (KeyError, Choice.DoesNotExist):</span><br><span class="line">        # 投票选项不存在,返回详情页</span><br><span class="line">        return render(request, &#x27;polls/detail.html&#x27;, &#123;</span><br><span class="line">            &#x27;question&#x27;: question,</span><br><span class="line">            &#x27;error_message&#x27;: &quot;You didn&#x27;t select a choice.&quot;,</span><br><span class="line">        &#125;)</span><br><span class="line">    else:</span><br><span class="line">        # 投票选项存在,增加该选项值,返回投票结果页</span><br><span class="line">        selected_choice.votes += 1</span><br><span class="line">        selected_choice.save()</span><br><span class="line">        return HttpResponseRedirect(reverse(&#x27;polls:results&#x27;, args=(question.id,)))</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>启动 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 浏览器输入</span><br><span class="line">http://&lt;服务器IP&gt;:8000/polls/</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>模型和数据库<ol>
+<li>默认数据库sqlite3切换为mysql<br> vim mysite&#x2F;settings.py <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    &#x27;default&#x27;: &#123;</span><br><span class="line">        &#x27;ENGINE&#x27;: &#x27;django.db.backends.mysql&#x27;,</span><br><span class="line">        &#x27;NAME&#x27;: &#x27;mysite&#x27;,</span><br><span class="line">        &#x27;USER&#x27;: &#x27;root&#x27;,</span><br><span class="line">        &#x27;PASSWORD&#x27;: &#x27;jesonlin&#x27;,</span><br><span class="line">        &#x27;HOST&#x27;: &#x27;127.0.0.1&#x27;,</span><br><span class="line">        &#x27;OPTIONS&#x27;: &#123;&#x27;init_command&#x27;: &#x27;set names utf8mb4;&#x27;, &#x27;charset&#x27;: &#x27;utf8mb4&#x27;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 需要依赖包</span><br><span class="line">yum install mysql-devel</span><br><span class="line">yum install python3-devel</span><br><span class="line">yum install gcc</span><br><span class="line">pip3 install mysqlclient</span><br><span class="line"></span><br><span class="line"># 为 INSTALLED_APPS 默认应用创建表</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure></li>
+<li>其他设置<br> vim mysite&#x2F;settings.py <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TIME_ZONE = &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    &#x27;polls&#x27;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li>创建模型 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># polls/models.py</span><br><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Question(models.Model):</span><br><span class="line">    question_text = models.CharField(max_length=200)</span><br><span class="line">    pub_date = models.DateTimeField(&#x27;date published&#x27;)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.question_text</span><br><span class="line">    def was_published_recently(self):</span><br><span class="line">        return self.pub_date &gt;= timezone.now() - datetime.timedelta(days=1)</span><br><span class="line"></span><br><span class="line">class Choice(models.Model):</span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(max_length=200)</span><br><span class="line">    votes = models.IntegerField(default=0)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.choice_text       </span><br></pre></td></tr></table></figure></li>
+<li>将模型生效到数据库 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 生成迁移文件</span><br><span class="line">python manage.py makemigrations polls</span><br><span class="line"># 查看具体sql语句</span><br><span class="line">python manage.py sqlmigrate polls 0001</span><br><span class="line"># 执行sql语句</span><br><span class="line">python manage.py migrate polls</span><br><span class="line"># 有多个数据库时候路由</span><br><span class="line"># python manage.py migrate polls --database config</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>django的python交互式命令行<ol>
+<li>启动交互式命令行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量</span><br><span class="line"># 这个变量会让 Django 根据 mysite/settings.py 文件来设置 Python 包的导入路径。</span><br><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure></li>
+<li>通过orm插入DB数据 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from polls.models import Choice, Question</span><br><span class="line">&gt;&gt;&gt; Question.objects.all()</span><br><span class="line">&lt;QuerySet []&gt;</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line">&gt;&gt;&gt; from django.utils import timezone</span><br><span class="line">&gt;&gt;&gt; q = Question(question_text=&quot;What&#x27;s new?&quot;, pub_date=timezone.now())</span><br><span class="line">&gt;&gt;&gt; q.save()</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line">&gt;&gt;&gt; q.id</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; q.question_text</span><br><span class="line">&quot;What&#x27;s new?&quot;</span><br><span class="line">&gt;&gt;&gt; q.pub_date</span><br><span class="line">datetime.datetime(2023, 4, 11, 13, 12, 18, 914351, tzinfo=&lt;UTC&gt;)</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line">&gt;&gt;&gt; q.question_text = &quot;What&#x27;s up?&quot;</span><br><span class="line">&gt;&gt;&gt; q.save()</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line">&gt;&gt;&gt; Question.objects.all()</span><br><span class="line">&lt;QuerySet [&lt;Question: What&#x27;s up?&gt;]&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; current_year = timezone.now().year</span><br><span class="line">&gt;&gt;&gt; Question.objects.get(pub_date__year=current_year)</span><br><span class="line">&lt;Question: What&#x27;s up?&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"># pk 是primary key的简写</span><br><span class="line">&gt;&gt;&gt; q = Question.objects.get(pk=1)</span><br><span class="line">&gt;&gt;&gt; q.was_published_recently()</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; q.choice_set.all()</span><br><span class="line">&lt;QuerySet []&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"># 插入外键关联的数据</span><br><span class="line">&gt;&gt;&gt; q.choice_set.create(choice_text=&#x27;Not much&#x27;, votes=0)</span><br><span class="line">&lt;Choice: Not much&gt;</span><br><span class="line">&gt;&gt;&gt; q.choice_set.create(choice_text=&#x27;The sky&#x27;, votes=0)</span><br><span class="line">&lt;Choice: The sky&gt;</span><br><span class="line">&gt;&gt;&gt; c = q.choice_set.create(choice_text=&#x27;Just hacking again&#x27;, votes=0)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"># 被外键关联，查看所有关联项目</span><br><span class="line">&gt;&gt;&gt; q.choice_set.all()</span><br><span class="line">&lt;QuerySet [&lt;Choice: Not much&gt;, &lt;Choice: The sky&gt;, &lt;Choice: Just hacking again&gt;]&gt;</span><br><span class="line">&gt;&gt;&gt; q.choice_set.count()</span><br><span class="line">3</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>amdin 管理页面<ol start="0">
+<li>管理页面 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://&lt;服务器IP&gt;:8000/admin/</span><br></pre></td></tr></table></figure></li>
+<li>创建登录管理页面的超级用户 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br><span class="line"># 按提示输入超级用户信息</span><br><span class="line"># 此时数据表auth_user就会插入一条用户信息</span><br></pre></td></tr></table></figure></li>
+<li>向管理页面添加投票应用 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># polls/admin.py</span><br><span class="line">from django.contrib import admin</span><br><span class="line">from .models import Question</span><br><span class="line"># Register your models here.</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>模版<ol start="0">
+<li>配置 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># mysite/setting.py</span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        &#x27;APP_DIRS&#x27;: True, # 表示优先找每个app下的templates文件夹</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><pre><code>商品管理和展示（待实践）
+</code></pre>
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><p><a target="_blank" rel="noopener" href="https://www.djangoproject.com/">官网</a><br><a target="_blank" rel="noopener" href="https://www.liujiangblog.com/course/django/">刘江-django教程</a></p>
+
+    </div>
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">------------->本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="jesonlin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="jesonlin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>jesonlin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://jesonlin.com/%E6%A1%86%E6%9E%B6/django/" title="django">https://jesonlin.com/框架/django/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/django/" rel="tag"># django</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/bash/" rel="prev" title="bash">
+                  <i class="fa fa-chevron-left"></i> bash
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%A1%86%E6%9E%B6/sanic/" rel="next" title="sanic">
+                  sanic <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jesonlin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"300cacca89491dfed5cf4bdefd1e3e9c"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
