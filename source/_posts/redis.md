@@ -19,55 +19,49 @@ Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持�
 1. 介绍   
     Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。Redis 通常被称为数据结构服务器。
 2. 特点  
-    与其他 key - value 缓存产品有以下三个特点：
-    ```
     1. Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
-    2. Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。
+    2. Redis不仅仅支持简单的key-value类型的数据，同时还提供string/list/set/zset/hash等数据结构的存储。
     3. Redis支持数据的备份，即master-slave模式的数据备份。
-    ```
 3. 优势
-    ```
     1. 性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 
     2. 丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。
     3. 原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。
     4. 丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。
-    ```
 4. redis 的 key 只能是字符串
 5. redis 的 value 可以是如下
-    ```
     1. String: 字符串
-    2. Hash: 散列
-    3. List: 列表
-    4. Set: 集合
-    5. Sorted Set: 有序集合
-    ```
+    2. List: 列表
+    3. Set: 集合
+    4. zset: 有序集合
+    5. Hash: 散列
 
 
 ## 安装和启动
 1. 源码安装
-    ```
-    # wget http://download.redis.io/releases/redis-5.0.14.tar.gz
-    # tar xzf redis-5.0.14.tar.gz
-    # cd redis-5.0.14
-    # make
-    # 执行完 make 命令后，redis-5.0.14 的 src 目录下会出现编译后的 redis 服务程序 #redis-server，还有用于测试的客户端程序 redis-cli
+    ```bash
+    wget http://download.redis.io/releases/redis-5.0.14.tar.gz
+    tar xzf redis-5.0.14.tar.gz
+    cd redis-5.0.14
+    make
+    执行完 make 命令后，redis-5.0.14 的 src 目录下会出现编译后的 redis 服务程序 
+    redis-server，还有用于测试的客户端程序 redis-cli
     ```
 2. 启动
-    ```
-    # cd src
-    # ./redis-server ../redis.conf
-    # cd src
-    # ./redis-cli
+    ```bash
+    cd src
+    ./redis-server ../redis.conf
+    cd src
+    ./redis-cli
     ```
 
 
 ## 配置
 1. 使用 * 号获取所有配置项
-    ```
+    ```bash
     redis 127.0.0.1:6379> CONFIG GET *
     ```
 2. 使用 CONFIG SET 修改配置
-    ```
+    ```bash
     redis 127.0.0.1:6379> CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE
     ```
 3. 主要配置
@@ -246,6 +240,37 @@ Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持�
                 表示自动清理过程所用CPU时间的比例不低于25%，保证清理能正常开展；
             2. active-defrag-cycle-max 75
                 示自动清理过程所用CPU时间的比例不高于75%，一旦超过，就停止清理，从而避免在清理时，大量的内存拷贝阻塞Redis，导致响应延迟升高。
+
+
+## 面试
+1. 什么是Redis？
+    1. Redis 是一种基于内存的数据库，因此读写非常快，常用作缓存、消息队列、分布式锁等场景。
+    2. Redis 提供多种数据类型：String(字符串)、Hash(哈希)、List(列表)、Set(集合)、Zset(有序集合)、Bitmaps(位图)、HyperLogLog(基数统计)、GEO(地理信息)、Stream(流)。并且对数据类型的操作都是原子性的，因为执行命令是单线程负责，不存在并发竞争问题。
+    3. Redis 还支持事务、持久化、Lua脚本、多种集群方案（主从复制、哨兵模式、切片机群模式）、发布/订阅模式、内存淘汰机制、过期删除机制等。
+2. Redis 和 Memcached 有什么区别？
+    1. 相同点
+        1. 都是基于内存的数据库，一般都用来当做缓存使用。
+        2. 都有过期策略。
+        3. 两者的性能都非常高。
+    2. 不同点
+        1. Redis 支持的数据类型更丰富（String、Hash、List、Set、ZSet），而 Memcached 只支持最简单的 key-value 数据类型；
+        2. Redis 支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用，而 Memcached 没有持久化功能，数据全部存在内存之中，Memcached 重启或者挂掉后，数据就没了；
+        3. Redis 原生支持集群模式，Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据。
+        4. Redis 支持发布订阅模型、Lua 脚本、事务等功能，而 Memcached 不支持；
+3. 为什么用 Redis 作为 MySQL 的缓存？
+    1. 主要是因为 Redis 具备「高性能」和「高并发」两种特性。
+    2. 高性能：访问 MySQL 数据是从硬盘读取，比较慢。而数据缓存在redis中，就是直接读取内存，速度非常快。
+    3. 高并发：单台设备的redis的qps是mysql的10倍，能轻松突破10w，而mysql单机很难突破1w。
+4. Redis 数据类型以及使用场景分别是什么？
+    1. Redis 提供了丰富的数据类型，常见的有五种数据类型：String（字符串），Hash（哈希），List（列表），Set（集合）、Zset（有序集合）。
+    <img src="./redis常用5种数据结构.webp" width = "50%" height = "50%" alt="redis常用5种数据结构" align=center />
+    2. 应用场景
+        1. String 类型的应用场景：缓存对象、常规计数、分布式锁、共享 session 信息等。
+        2. List 类型的应用场景：消息队列（但是有两个问题：1. 生产者需要自行实现全局唯一 ID；2. 不能以消费组形式消费数据）等。
+        3. Hash 类型：缓存对象、购物车等。
+        4. Set 类型：聚合计算（并集、交集、差集）场景，比如点赞、共同关注、抽奖活动等。
+        5. Zset 类型：排序场景，比如排行榜、电话和姓名排序等。
+5. 五种常见的 Redis 数据类型是怎么实现？
 
 
 # Reference
