@@ -1,6 +1,6 @@
 ---
-title: 二叉树遍历
-urlname: 二叉树遍历
+title: 二叉树遍历、构建、展开
+urlname: 二叉树遍历、构建、展开
 top: false
 categories:
   - 算法
@@ -144,6 +144,81 @@ def level_order_traversal(root):
                 que.append(cur.right)
         res.append(level)
     return res
+```
+
+## 构建二叉树
+1. 根据前序遍历和中序遍历构建
+    对于任意一颗树而言，前序遍历的形式总是
+
+        [ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+
+    即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是
+
+        [ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+```py
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+def dfs(preorder, inorder, map_v2i, p_l, p_r, i_l, i_r):
+    if p_l > p_r:
+        return None
+    
+    p_root = p_l  # 根节点在前序遍历的索引
+    i_root = map_v2i[preorder[p_root]]  # 根节点在在中序遍历的索引
+    num_l = i_root - i_l
+    
+    root = TreeNode(preorder[p_root])
+
+    root.left = dfs(preorder, inorder, map_v2i, p_l + 1, p_l + num_l, i_l, i_root - 1)
+    root.right = dfs(preorder, inorder, map_v2i, p_l + num_l + 1, p_r, i_root + 1, i_r)
+    return root
+    
+
+def buildTree(preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+    # 构建中序遍历hash映射
+    map_v2i = {v:i for i, v in enumerate(inorder)}
+    return dfs(preorder, inorder, map_v2i, 0, len(preorder) - 1, 0, len(inorder) - 1)
+
+```
+
+## 二叉树展开为链表
+```py
+# 展开后的单链表应该与二叉树 先序遍历 顺序相同
+def flatten(root):
+    cur = root
+    while cur:
+        if cur.left:  # 左子结点存在，找到其最右节点（即左子树先序遍历的最后一个元素）
+            pre = cur.left
+            while pre.right:
+                pre = pre.right
+            pre.right = cur.right  # 当前节点右子树作为左子树最右节点的右子树
+            cur.right = cur.left  # 将当前节点左子树改为右子树，因为是【根左右】关系，左子树转到右子树一样顺序，右子树是左子树最右节点的右子树
+            cur.left = None  # 当前节点左子树变为None
+
+```
+
+##  二叉树的最近公共祖先
+```py
+def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    if not root:
+        return None
+        
+    if root == p or root == q:
+        return root
+
+    left = self.lowestCommonAncestor(root.left, p, q)
+    right = self.lowestCommonAncestor(root.right, p, q)
+
+    if left is not None and right is not None:
+        return root
+    if left is not None:
+        return left
+    if right is not None:
+        return right
+    return None
 ```
 
 
