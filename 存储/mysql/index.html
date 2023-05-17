@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://jesonlin.com/%E5%AD%98%E5%82%A8/mysql/%E6%95%B0%E6%8D%AE%E9%A1%B5%E7%BB%93%E6%9E%84.webp">
 <meta property="og:image" content="https://jesonlin.com/%E5%AD%98%E5%82%A8/mysql/B+tree_more.webp">
 <meta property="article:published_time" content="2022-12-08T12:07:30.000Z">
-<meta property="article:modified_time" content="2023-05-12T08:27:54.455Z">
+<meta property="article:modified_time" content="2023-05-16T04:41:12.509Z">
 <meta property="article:author" content="jesonlin">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -184,7 +184,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -266,7 +266,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-05-12 16:27:54" itemprop="dateModified" datetime="2023-05-12T16:27:54+08:00">2023-05-12</time>
+      <time title="修改时间：2023-05-16 12:41:12" itemprop="dateModified" datetime="2023-05-16T12:41:12+08:00">2023-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -292,14 +292,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>18k</span>
+      <span>20k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>17 分钟</span>
+      <span>18 分钟</span>
     </span>
 </div>
 
@@ -340,6 +340,7 @@
 <li>语法分析。</li>
 </ol>
 </li>
+<li>预处理器</li>
 <li>优化器-怎么做<ol>
 <li>在表里面有多个索引的时候，决定使用哪个索引；</li>
 <li>在一个语句有多表关联（join）的时候，决定各个表的连接顺序。</li>
@@ -577,13 +578,31 @@
 <li>执行一条SQL查询语句，期间发生什么？<ol>
 <li>连接器-管理链接，验证权限</li>
 <li>查询缓存-key是sql语句，value是查询结果，命中返回，mysql8.0取消</li>
-<li>分析器-词法分析、语法分析</li>
+<li>解析SQL-分析器-<ol>
+<li>词法分析</li>
+<li>语法分析</li>
+</ol>
+</li>
+<li>执行SQL<ol>
 <li>预处理-字段、表存在检查、*扩展等</li>
-<li>优化器-执行计划生成，索引选择</li>
+<li>优化器-执行计划生成，索引选择<ol>
+<li>索引分类：主键索引（聚簇索引）、二级索引（非聚簇索引）</li>
+<li>单纯查B+树的话，查询主键索引的 B+ 树的成本会比查询二级索引的 B+ 的成本大</li>
+<li>覆盖索引，直接在二级索引就能查找到结果，不需要回表。</li>
+</ol>
+</li>
 <li>执行器-操作引擎，返回结果<ol>
 <li>主键索引查询</li>
 <li>全表扫描</li>
-<li>索引下推：二级索引在查询时的回表操作，提高查询的效率，因为它将 Server 层部分负责的事情，交给存储引擎层去处理了。</li>
+<li>索引下推<ol start="0">
+<li>联合索引当遇到范围查询 (&gt;、&lt;) 就会停止匹配。</li>
+<li>即二级索引在查询时的不进行回表操作，就能提高查询的效率，因为它将 Server 层部分负责的事情，交给存储引擎层去处理了。</li>
+<li>二级索引在定位到后，先不执行回表操作，而是判断索引中包含的列是否满足另外条件，满足才回表再返回结果给server层。</li>
+<li>将其他条件中的联合索引部分条件在引擎层判断，减少回表后在server层判断的次数。</li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 </li>
 </ol>
@@ -617,7 +636,7 @@
 </ol>
 </li>
 <li>行溢出处理<ol>
-<li>MySQL 中磁盘和内存交互的基本单位是页，一个页的大小一般是 16KB，也就是 16384字节；</li>
+<li>MySQL 中磁盘和内存交互的基本单位是页，一个页的大小一般是 16KB（16384字节）；</li>
 <li>而一个 varchar(n) 类型的列最多可以存储 65532字节，一些大对象如 TEXT、BLOB 可能存储更多的数据；</li>
 <li>一个页可能就存不了一条记录。这个时候就会发生行溢出，多的数据就会存到另外的「溢出页」中。</li>
 <li>当发生行溢出时，在记录的真实数据处只会保存该列的一部分数据，而把剩余的数据放在「溢出页」中，然后真实数据处用 20 字节存储指向溢出页的地址，从而可以找到剩余数据所在的页。</li>
@@ -633,45 +652,91 @@
 </ol>
 </li>
 <li>索引<ol>
-<li>索引的定义<br> 帮助存储引擎快速获取数据的一种数据结构，形象的说就是索引是数据的目录。</li>
-<li>索引分类<ol>
+<li><p>索引的定义<br> 帮助存储引擎快速获取数据的一种数据结构，形象的说就是索引是数据的目录。</p>
+</li>
+<li><p>索引分类</p>
+<ol>
 <li>数据结构：B+tree索引、hash索引、Full-text索引</li>
 <li>物理存储：聚簇索引（主键索引）、非聚簇索引（二级索引、辅助索引）</li>
 <li>字段特性：主键索引、唯一索引、普通索引、前缀索引</li>
 <li>字段个数：单列索引、联合索引</li>
 </ol>
 </li>
-<li>InnoDB存储引擎索引选择<ol>
+<li><p>InnoDB存储引擎索引选择</p>
+<ol>
 <li>默认使用主键作为聚簇索引的索引建；</li>
 <li>没有主键使用第一个不包含NULL值得唯一列作为聚簇索引的索引键；</li>
 <li>都没有情况下，默认生成隐式自助id列作为聚簇索引的索引建；</li>
 </ol>
 </li>
-<li>B+tree索引<ol start="0">
+<li><p>B+tree索引</p>
+<ol start="0">
 <li>B+tree索引结构（图中叶子节点需改为双向列表） <img src="./B+tree.webp" width = "50%" height = "50%" alt="COMPACT行格式" align=center /></li>
 <li>多叉树，叶子节点才存放数据，非叶子节点只存放索引，每个节点里的数据是按主键顺序存放的。</li>
 <li>叶子节点中包括了所有的索引值信息，有两个指针，分别指向下一个叶子节点和上一个叶子节点，双向链表。</li>
 <li>主键索引的 B+Tree 的叶子节点存放的是实际数据，二级索引的 B+Tree 的叶子节点存放的是主键值。</li>
 <li>在二级索引的 B+Tree 就能查询到结果的过程就叫作「覆盖索引」，也就是只需要查一个 B+Tree 就能找到数据。</li>
-<li>B+Tree 只在叶子节点存储数据，而 B 树 的非叶子节点也要存储数据，所以 B+Tree 的单个节点的数据量更小，在相同的磁盘 I&#x2F;O 次数下，就能查询更多的节点。</li>
-<li>另外，B+Tree 叶子节点采用的是双链表连接，适合 MySQL 中常见的基于范围的顺序查找，而 B 树无法做到这一点。</li>
-<li>联合索引的最左匹配原则，在遇到范围查询（如 &gt;、&lt;）的时候，就会停止匹配，也就是范围查询的字段可以用到联合索引，但是在范围查询字段的后面的字段无法用到联合索引。注意，对于 &gt;&#x3D;、&lt;&#x3D;、BETWEEN、like 前缀匹配的范围查询，并不会停止匹配。</li>
-<li>而 MySQL 5.6 引入的索引下推优化（index condition pushdown)， 可以在联合索引遍历过程中，对联合索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</li>
 </ol>
 </li>
-<li>索引最好设置NOT NULL<ol>
-<li>因为可为 NULL 的列会使索引、索引统计和值比较都更复杂。比如进行索引统计时，count 会省略值为NULL 的行。</li>
-<li>NULL 值是一个没意义的值，但是它会占用物理空间，所以会带来的存储空间的问题。因为 InnoDB 存储记录的时候，如果表中存在允许为 NULL 的字段，那么行格式 (opens new window)中至少会用 1 字节空间存储 NULL 值列表。</li>
+<li><p>为什么 MySQL InnoDB 选择 B+tree 作为索引的数据结构？</p>
+<ol>
+<li><p>B+Tree vs B Tree<br> B+Tree 只在叶子节点存储数据，而 B 树 的非叶子节点也要存储数据，所以 B+Tree 的单个节点的数据量更小，在相同的磁盘 I&#x2F;O 次数下，就能查询更多的节点。</p>
+<p> 另外，B+Tree 叶子节点采用的是双链表连接，适合 MySQL 中常见的基于范围的顺序查找，而 B 树无法做到这一点。B树则需要通过中序遍历才能完成查询范围的查找。</p>
+</li>
+<li><p>B+Tree vs 二叉树<br> 对于有 N 个叶子节点的 B+Tree，其搜索复杂度为O(logdN)，其中 d 表示节点允许的最大子节点个数为 d 个。</p>
+<p> 在实际的应用当中， d 值是大于100的，这样就保证了即使数据达到千万级别时，B+Tree 的高度依然维持在 3<del>4 层左右，也就是说一次数据查询操作只需要做 3</del>4 次的磁盘 I&#x2F;O 操作就能查询到目标数据。</p>
+<p> 而二叉树的每个父节点的儿子节点个数只能是 2 个，意味着其搜索复杂度为 O(logN)，这已经比 B+Tree 高出不少，因此二叉树检索到目标数据所经历的磁盘 I&#x2F;O 次数要更多。</p>
+</li>
+<li><p>B+Tree vs Hash<br> Hash 在做等值查询的时候效率贼快，搜索复杂度为 O(1)。</p>
+<p> 但是 Hash 表不适合做范围查询，它更适合做等值的查询，这也是 B+Tree 索引要比 Hash 表索引有着更广泛的适用场景的原因。</p>
+</li>
 </ol>
 </li>
-<li>索引失效情况<ol>
-<li>当我们使用左或者左右模糊匹配的时候，也就是 like %xx 或者 like %xx%这两种方式都会造成索引失效；</li>
-<li>当我们在查询条件中对索引列做了计算、函数、类型转换操作；</li>
+<li><p>联合索引的最左匹配原则<br> 按照最左优先的方式进行索引的匹配</p>
+<p> 在遇到范围查询（如 &gt;、&lt;）的时候，就会停止匹配，也就是范围查询的字段可以用到联合索引，但是在范围查询字段的后面的字段无法用到联合索引。注意，对于 &gt;&#x3D;、&lt;&#x3D;、BETWEEN、like 前缀匹配的范围查询，并不会停止匹配。</p>
+<ol>
+<li>a &gt; 1 and b &gt; 2，从 a &gt; 1 开始扫描</li>
+<li>a &gt;&#x3D; 1 and b &#x3D; 2，从 a &#x3D; 1 and b &#x3D; 2 开始扫描</li>
+<li>a between 2 and 8 and b &#x3D; 2，从 a &#x3D; 2 and b &#x3D; 2 开始扫描</li>
+<li>name like ‘j%’ and age &#x3D; 22，从 name &#x3D; ‘j’ and age &#x3D; 22 开始扫描</li>
+</ol>
+</li>
+<li><p>索引下推<br> 而 MySQL 5.6 引入的索引下推优化（index condition pushdown)， 可以在联合索引遍历过程中，对联合索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
+</li>
+<li><p>索引是否需要创建</p>
+<ol>
+<li>需要<ol>
+<li>字段有唯一性限制</li>
+<li>经常用于where&#x2F;group&#x2F;order by的字段</li>
+</ol>
+</li>
+<li>不需要<ol>
+<li>区分度底，某个值出现率超过30%优化器会忽略索引使用全表扫描</li>
+<li>不经常用于where&#x2F;group&#x2F;order by的字段</li>
+<li>表数据太少</li>
+<li>经常更新的字段</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>索引优化</p>
+<ol>
+<li>前缀索引优化，减少索引字段大小，增加索引页中存储的索引值</li>
+<li>覆盖索引优化，查询的字段在二级索引的叶子节点都能找到，减少回表操作</li>
+<li>主键索引最好是自增的，插入是追加操作，不需要重新移动数据。否则需要移动数据，会造成页分裂，还会造成大量内存碎片</li>
+<li>索引最好设置NOT NULL，统计复杂且占用物理空间</li>
+</ol>
+</li>
+<li><p>索引失效情况</p>
+<ol>
+<li>左或者左右模糊匹配的时候，也就是 like %xx 或者 like %xx%这两种方式都会造成索引失效；(例外情况，查询的字段在二级索引叶子节点（主键+二级索引字段）都能找到，直接全扫描二级索引树)</li>
+<li>查询条件中对索引列做了计算、函数、类型转换操作；</li>
 <li>联合索引要能正确使用需要遵循最左匹配原则，也就是按照最左优先的方式进行索引的匹配，否则就会导致索引失效；</li>
 <li>在 WHERE 子句中，如果在 OR 前的条件列是索引列，而在 OR 后的条件列不是索引列，那么索引会失效。</li>
 </ol>
 </li>
-<li>explain 查看查询计划<ol start="0">
+<li><p>explain 查看查询计划</p>
+<ol start="0">
 <li>explain 结果结构 <img src="./explain结果结构.webp" width = "50%" height = "50%" alt="explain结果结构" align=center /></li>
 <li>参数说明<br> a. possible_keys 字段表示可能用到的索引；<br> b. key 字段表示实际用的索引，如果这一项为 NULL，说明没有使用索引；<br> c. key_len 表示索引的长度；<br> d. rows 表示扫描的数据行数。<br> e. type 表示数据扫描类型，我们需要重点看这个。<br> f. extra 额外说明</li>
 <li>type 字段参数说明<br> a. All（全表扫描）；<br> b. index（全索引扫描）；<br> c. range（索引范围扫描）；<br> d. ref（非唯一索引扫描）；<br> e. eq_ref（唯一索引扫描）；eq_ref 通常用于多表联查中；<br> f. const（结果只有一条的主键或唯一索引扫描）。const 是与常量进行比较，查询效率会更快；</li>
@@ -690,6 +755,11 @@
 <li>B+ 树是如何进行查询的<ol>
 <li>“矮胖”的 B+ 树数据结构，更适合进行关键字的范围查询。</li>
 <li>InnoDB 里的 B+ 树中的每个节点都是一个数据页。 <img src="./B+tree_more.webp" width = "50%" height = "50%" alt="B+tree_more" align=center /></li>
+</ol>
+</li>
+<li>count()比较<ol>
+<li>功能<br> 统计符合查询条件的记录中，函数指定的参数不为 NULL 的记录有多少个。</li>
+<li>耗时比较<br> count(*) &#x3D;&#x3D; count(0) &#x3D;&#x3D; count(1) &gt; count(主键) &gt; count(字段)<br> |—-优先选择key_len少的二级索引（节点大小考虑）—|</li>
 </ol>
 </li>
 </ol>
@@ -797,14 +867,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">163k</span>
+    <span title="站点总字数">167k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:28</span>
+    <span title="站点阅读时长">2:31</span>
   </span>
 </div>
 <div class="busuanzi-count">
