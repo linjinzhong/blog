@@ -136,7 +136,7 @@ def level_order_traversal(root):
         n = len(que)  # 每层数量
         level = []  # 每层结果
         for i in range(n):
-            cur = que.pop()
+            cur = que.pop(0)
             level.append(cur.val)
             if cur.left:
                 que.append(cur.left)
