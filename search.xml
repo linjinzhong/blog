@@ -432,15 +432,15 @@
       </tags>
   </entry>
   <entry>
-    <title>binary_tree_traversal</title>
-    <url>/%E7%AE%97%E6%B3%95/binary_tree_traversal/</url>
+    <title>二叉树遍历</title>
+    <url>/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<p>二叉树的遍历包括深度遍历和广度遍历。深度遍历有前序、中序以及后序三种遍历方法，广度遍历即我们平常所说的层次遍历。</p>
 <span id="more"></span>
 
 
 <h2 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h2><ol start="0">
 <li><p>基础</p>
- <img src="/%E7%AE%97%E6%B3%95/binary_tree_traversal/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
+ <img src="/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
 
 <p> 已知中序遍历和另一种遍历顺序，则可把这棵树构造出来：由先序遍历或后序遍历知根节点，而中序遍历中根节点左端的为左子树，右端的右子树，再由先序遍历或后序遍历知子根节点，递归地构造子树。</p>
 </li>

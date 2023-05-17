@@ -23,28 +23,28 @@
 
     <meta name="description" content="二叉树的遍历包括深度遍历和广度遍历。深度遍历有前序、中序以及后序三种遍历方法，广度遍历即我们平常所说的层次遍历。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="binary_tree_traversal">
-<meta property="og:url" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/index.html">
+<meta property="og:title" content="二叉树遍历">
+<meta property="og:url" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="jesonlin">
 <meta property="og:description" content="二叉树的遍历包括深度遍历和广度遍历。深度遍历有前序、中序以及后序三种遍历方法，广度遍历即我们平常所说的层次遍历。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
 <meta property="article:published_time" content="2023-05-17T03:41:31.000Z">
 <meta property="article:modified_time" content="2023-05-17T03:41:31.000Z">
 <meta property="article:author" content="jesonlin">
 <meta property="article:tag" content="二叉树遍历">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta name="twitter:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
 
 
-<link rel="canonical" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/">
+<link rel="canonical" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/","path":"算法/binary_tree_traversal/","title":"binary_tree_traversal"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/","path":"算法/二叉树遍历/","title":"二叉树遍历"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>binary_tree_traversal | jesonlin</title>
+<title>二叉树遍历 | jesonlin</title>
   
 
 
@@ -218,7 +218,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/handsome.jpg">
@@ -231,12 +231,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="binary_tree_traversal | jesonlin">
+      <meta itemprop="name" content="二叉树遍历 | jesonlin">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          binary_tree_traversal
+          二叉树遍历
         </h1>
 
         <div class="post-meta-container">
@@ -297,7 +297,7 @@
 
 <h2 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h2><ol start="0">
 <li><p>基础</p>
- <img src="/%E7%AE%97%E6%B3%95/binary_tree_traversal/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
+ <img src="/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
 
 <p> 已知中序遍历和另一种遍历顺序，则可把这棵树构造出来：由先序遍历或后序遍历知根节点，而中序遍历中根节点左端的为左子树，右端的右子树，再由先序遍历或后序遍历知子根节点，递归地构造子树。</p>
 </li>
@@ -360,7 +360,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://jesonlin.com/%E7%AE%97%E6%B3%95/binary_tree_traversal/" title="binary_tree_traversal">https://jesonlin.com/算法/binary_tree_traversal/</a>
+      <a href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" title="二叉树遍历">https://jesonlin.com/算法/二叉树遍历/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -515,7 +515,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"01d9a40909e31ba17ce8f55d97e702f6"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4a966452c30298bc80107697c60f4622"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
