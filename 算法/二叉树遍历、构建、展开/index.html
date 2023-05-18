@@ -23,28 +23,28 @@
 
     <meta name="description" content="二叉树的遍历包括深度遍历和广度遍历。深度遍历有前序、中序以及后序三种遍历方法，广度遍历即我们平常所说的层次遍历。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树遍历">
-<meta property="og:url" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:title" content="二叉树遍历、构建、展开">
+<meta property="og:url" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/index.html">
 <meta property="og:site_name" content="jesonlin">
 <meta property="og:description" content="二叉树的遍历包括深度遍历和广度遍历。深度遍历有前序、中序以及后序三种遍历方法，广度遍历即我们平常所说的层次遍历。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
 <meta property="article:published_time" content="2023-05-17T03:41:31.000Z">
 <meta property="article:modified_time" content="2023-05-17T03:41:31.000Z">
 <meta property="article:author" content="jesonlin">
 <meta property="article:tag" content="二叉树遍历">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta name="twitter:image" content="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/%E4%BA%8C%E5%8F%89%E6%A0%91.png">
 
 
-<link rel="canonical" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/">
+<link rel="canonical" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/","path":"算法/二叉树遍历/","title":"二叉树遍历"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/","path":"算法/二叉树遍历、构建、展开/","title":"二叉树遍历、构建、展开"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>二叉树遍历 | jesonlin</title>
+<title>二叉树遍历、构建、展开 | jesonlin</title>
   
 
 
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">深度遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86"><span class="nav-number">2.</span> <span class="nav-text">广度遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RERERENCE"><span class="nav-number">3.</span> <span class="nav-text">RERERENCE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">深度遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86"><span class="nav-number">2.</span> <span class="nav-text">广度遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">构建二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">二叉树展开为链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-number">5.</span> <span class="nav-text">二叉树的最近公共祖先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RERERENCE"><span class="nav-number">6.</span> <span class="nav-text">RERERENCE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -218,7 +218,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/handsome.jpg">
@@ -231,12 +231,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="二叉树遍历 | jesonlin">
+      <meta itemprop="name" content="二叉树遍历、构建、展开 | jesonlin">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          二叉树遍历
+          二叉树遍历、构建、展开
         </h1>
 
         <div class="post-meta-container">
@@ -273,14 +273,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
+      <span>3.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -297,7 +297,7 @@
 
 <h2 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h2><ol start="0">
 <li><p>基础</p>
- <img src="/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
+ <img src="/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/%E4%BA%8C%E5%8F%89%E6%A0%91.png" class="" title="二叉树">
 
 <p> 已知中序遍历和另一种遍历顺序，则可把这棵树构造出来：由先序遍历或后序遍历知根节点，而中序遍历中根节点左端的为左子树，右端的右子树，再由先序遍历或后序遍历知子根节点，递归地构造子树。</p>
 </li>
@@ -311,8 +311,24 @@
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root, res</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    dfs(root.left, res)  <span class="comment"># 递归左节点</span></span><br><span class="line">    dfs(root.right, res)  <span class="comment"># 递归右节点</span></span><br><span class="line">    res.append(root.val)  <span class="comment"># 将根节点加入结果</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">iterative</span>(<span class="params">root, res</span>):  <span class="comment"># 与前序遍历相反操作在结果取反</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    cur, stack = root, []</span><br><span class="line">    <span class="keyword">while</span> stack <span class="keyword">or</span> cur:</span><br><span class="line">        <span class="keyword">while</span> cur:  <span class="comment"># 根节点及其右孩子入栈</span></span><br><span class="line">            res.append(cur.val)  <span class="comment"># 加入结果</span></span><br><span class="line">            stack.append(cur)</span><br><span class="line">            cur = cur.right</span><br><span class="line">        tmp = stack.pop()  <span class="comment"># 每弹出一个元素，就到该元素的左子节点处理</span></span><br><span class="line">        cur = tmp.left</span><br><span class="line">    res.reverse()  <span class="comment"># 原地反转</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">post_order_traversal</span>(<span class="params">root</span>):</span><br><span class="line">    res = []</span><br><span class="line">    <span class="comment"># dfs(root, res)</span></span><br><span class="line">    iterative(root, res)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="广度遍历"><a href="#广度遍历" class="headerlink" title="广度遍历"></a>广度遍历</h2><ol>
-<li>层序遍历<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">level_order_traversal</span>(<span class="params">root</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">    que, res = [root], []</span><br><span class="line">    <span class="keyword">while</span> que:</span><br><span class="line">        n = <span class="built_in">len</span>(que)  <span class="comment"># 每层数量</span></span><br><span class="line">        level = []  <span class="comment"># 每层结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            cur = que.pop()</span><br><span class="line">            level.append(cur.val)</span><br><span class="line">            <span class="keyword">if</span> cur.left:</span><br><span class="line">                que.append(cur.left)</span><br><span class="line">            <span class="keyword">if</span> cur.right:</span><br><span class="line">                que.append(cur.right)</span><br><span class="line">        res.append(level)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></li>
+<li>层序遍历<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">level_order_traversal</span>(<span class="params">root</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">    que, res = [root], []</span><br><span class="line">    <span class="keyword">while</span> que:</span><br><span class="line">        n = <span class="built_in">len</span>(que)  <span class="comment"># 每层数量</span></span><br><span class="line">        level = []  <span class="comment"># 每层结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            cur = que.pop(<span class="number">0</span>)</span><br><span class="line">            level.append(cur.val)</span><br><span class="line">            <span class="keyword">if</span> cur.left:</span><br><span class="line">                que.append(cur.left)</span><br><span class="line">            <span class="keyword">if</span> cur.right:</span><br><span class="line">                que.append(cur.right)</span><br><span class="line">        res.append(level)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></li>
 </ol>
+<h2 id="构建二叉树"><a href="#构建二叉树" class="headerlink" title="构建二叉树"></a>构建二叉树</h2><ol>
+<li><p>根据前序遍历和中序遍历构建<br> 对于任意一颗树而言，前序遍历的形式总是</p>
+<pre><code> [ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+</code></pre>
+<p> 即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
+<pre><code> [ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+</code></pre>
+</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">preorder, inorder, map_v2i, p_l, p_r, i_l, i_r</span>):</span><br><span class="line">    <span class="keyword">if</span> p_l &gt; p_r:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    p_root = p_l  <span class="comment"># 根节点在前序遍历的索引</span></span><br><span class="line">    i_root = map_v2i[preorder[p_root]]  <span class="comment"># 根节点在在中序遍历的索引</span></span><br><span class="line">    num_l = i_root - i_l</span><br><span class="line">    </span><br><span class="line">    root = TreeNode(preorder[p_root])</span><br><span class="line"></span><br><span class="line">    root.left = dfs(preorder, inorder, map_v2i, p_l + <span class="number">1</span>, p_l + num_l, i_l, i_root - <span class="number">1</span>)</span><br><span class="line">    root.right = dfs(preorder, inorder, map_v2i, p_l + num_l + <span class="number">1</span>, p_r, i_root + <span class="number">1</span>, i_r)</span><br><span class="line">    <span class="keyword">return</span> root</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">buildTree</span>(<span class="params">preorder: <span class="type">List</span>[<span class="built_in">int</span>], inorder: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">    <span class="comment"># 构建中序遍历hash映射</span></span><br><span class="line">    map_v2i = &#123;v:i <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(inorder)&#125;</span><br><span class="line">    <span class="keyword">return</span> dfs(preorder, inorder, map_v2i, <span class="number">0</span>, <span class="built_in">len</span>(preorder) - <span class="number">1</span>, <span class="number">0</span>, <span class="built_in">len</span>(inorder) - <span class="number">1</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉树展开为链表"><a href="#二叉树展开为链表" class="headerlink" title="二叉树展开为链表"></a>二叉树展开为链表</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 展开后的单链表应该与二叉树 先序遍历 顺序相同</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">flatten</span>(<span class="params">root</span>):</span><br><span class="line">    cur = root</span><br><span class="line">    <span class="keyword">while</span> cur:</span><br><span class="line">        <span class="keyword">if</span> cur.left:  <span class="comment"># 左子结点存在，找到其最右节点（即左子树先序遍历的最后一个元素）</span></span><br><span class="line">            pre = cur.left</span><br><span class="line">            <span class="keyword">while</span> pre.right:</span><br><span class="line">                pre = pre.right</span><br><span class="line">            pre.right = cur.right  <span class="comment"># 当前节点右子树作为左子树最右节点的右子树</span></span><br><span class="line">            cur.right = cur.left  <span class="comment"># 将当前节点左子树改为右子树，因为是【根左右】关系，左子树转到右子树一样顺序，右子树是左子树最右节点的右子树</span></span><br><span class="line">            cur.left = <span class="literal">None</span>  <span class="comment"># 当前节点左子树变为None</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉树的最近公共祖先"><a href="#二叉树的最近公共祖先" class="headerlink" title="二叉树的最近公共祖先"></a>二叉树的最近公共祖先</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line"></span><br><span class="line">    left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">    right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> left <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> right <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">    <span class="keyword">if</span> left <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> left</span><br><span class="line">    <span class="keyword">if</span> right <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> right</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+
 <h2 id="RERERENCE"><a href="#RERERENCE" class="headerlink" title="RERERENCE"></a>RERERENCE</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/solution/tu-jie-er-cha-shu-de-si-chong-bian-li-by-z1m/">图解 二叉树的四种遍历</a></p>
 
     </div>
@@ -360,7 +376,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" title="二叉树遍历">https://jesonlin.com/算法/二叉树遍历/</a>
+      <a href="https://jesonlin.com/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E3%80%81%E6%9E%84%E5%BB%BA%E3%80%81%E5%B1%95%E5%BC%80/" title="二叉树遍历、构建、展开">https://jesonlin.com/算法/二叉树遍历、构建、展开/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -414,14 +430,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">167k</span>
+    <span title="站点总字数">177k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:31</span>
+    <span title="站点阅读时长">2:41</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -515,7 +531,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4a966452c30298bc80107697c60f4622"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"7b5f6e769036653be3af4ee726e7295d"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
