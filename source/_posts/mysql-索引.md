@@ -34,7 +34,7 @@ update: 2022-12-08 22:07:30
 
 ## B+tree索引
 1. B+tree索引结构（图中叶子节点需改为双向列表）
-    <img src="./B+tree.webp" width = "50%" height = "50%" alt="COMPACT行格式" align=center />
+    <img src="./B+tree.webp" width = "50%" height = "50%" alt="B+tree" align=center />
     
     1. 多叉树，叶子节点才存放数据，非叶子节点只存放索引，每个节点里的数据是按主键顺序存放的。
     2. 叶子节点中包括了所有的索引值信息，有两个指针，分别指向下一个叶子节点和上一个叶子节点，双向链表。
