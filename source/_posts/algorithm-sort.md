@@ -3,7 +3,7 @@ title: 排序算法
 urlname: 排序算法
 top: false
 categories:
-  - 算法
+  - 面试
 tags:
   - 排序算法
 author: jesonlin

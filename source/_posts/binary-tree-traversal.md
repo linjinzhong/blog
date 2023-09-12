@@ -3,7 +3,7 @@ title: 二叉树遍历、构建、展开
 urlname: 二叉树遍历、构建、展开
 top: false
 categories:
-  - 算法
+  - 面试
 tags:
   - 二叉树遍历
 author: jesonlin
