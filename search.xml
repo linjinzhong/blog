@@ -2333,6 +2333,371 @@ MySQL 引入了 binlog 组提交（group commit）机制，当有多个事务提
       </tags>
   </entry>
   <entry>
+    <title>network-面试</title>
+    <url>/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<p>network 面试要点</p>
+<span id="more"></span>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="TCP-x2F-IP-网络模型分层"><a href="#TCP-x2F-IP-网络模型分层" class="headerlink" title="TCP&#x2F;IP 网络模型分层"></a>TCP&#x2F;IP 网络模型分层</h2><ol>
+<li>应用层：向用户提供一组应用程序<br> 操作系统中的用户态，专注为用户提供应用功能，比如 HTTP、FTP、Telnet、DNS、SMTP 等。</li>
+<li>传输层：负责端到端的通信<br> 为应用层提供网络支持，有两个传输协议，分别是 TCP 和 UDP。<ol>
+<li>TCP：流量控制、超时重传、拥塞控制保障数据包可靠传输到对方。</li>
+<li>UDP：只负责发送数据包、不保证到达，实时性相对较好，传输效率高。也可以实现可靠穿梭，把 TCP 的特性在应用层上实现就可以。</li>
+<li>当传输层数据超过 MSS（TCP 最大报文段长度），需要分段传输，称为一个 TCP 段。同时需要端口号来区分不同的应用数据。</li>
+</ol>
+</li>
+<li>网络层：负责网络包的封装、分片、路由、转发<br> 比如 IP、ICMP 等<br> IP 协议，将传输层的报文作为数据部分，再加上 IP 头组装成 IP 报文。如果大小超过 MTU （以太网中一般为 1500 字节），就会再次分片。 <img src="./网络模型分层.webp" width = "50%" height = "50%" alt="网络模型分层" align=center />
+ IP 地址分成两种意义
+
+<pre><code> 1. 一个是网络号，负责标识该 IP 地址是属于哪个「子网」的；
+ 2. 一个是主机号，负责标识同一「子网」下的不同主机；
+</code></pre>
+ IP 寻址和路由：IP 协议的寻址作用是告诉我们去往下一个目的地该朝哪个方向走，路由则是根据「下一个目的地」选择路径。寻址更像在导航，路由更像在操作方向盘。</li>
+<li>网络接口层：网络包在物理网络中的传输<br> 网络接口层主要为网络层提供「链路级别」传输的服务，负责在以太网、WiFi 这样的底层网络上发送原始数据包。<br> 比如网络包的封帧、 MAC 寻址、差错检测，以及通过网卡传输网络帧等。</li>
+<li>总结 <img src="./网络模型分层数据封装.webp" width = "50%" height = "50%" alt="网络模型分层数据封装" align=center /></li>
+</ol>
+<p>网络接口层的传输单位是帧（frame），IP 层的传输单位是包（packet），TCP 层的传输单位是段（segment），HTTP 的传输单位则是消息或报文（message）。统称为数据包。</p>
+<h2 id="键入网址到网页显示过程"><a href="#键入网址到网页显示过程" class="headerlink" title="键入网址到网页显示过程"></a>键入网址到网页显示过程</h2><img src="./http请求.webp" width = "50%" height = "50%" alt="http请求" align=center />
+
+<ol>
+<li><p>解析 URL ，生成 HTTP 请求  </p>
+<ol>
+<li>生成发送给 web 服务器的请求信息。   <img src="./URL解析.webp" width = "50%" height = "50%" alt="URL解析" align=center /></li>
+<li>http请求和响应   <img src="./http请求和响应.webp" width = "50%" height = "50%" alt="http请求和响应" align=center /></li>
+</ol>
+</li>
+<li><p>DNS 域名解析查询真实 IP 地址<br> 服务器域名对应的 IP 地址。<br> DNS 保存了 web 服务器和 IP 之间的对应关系。</p>
+<ol>
+<li>域名解析会通过缓存<br> 浏览器缓存 -&gt; 操作系统缓存 -&gt; hosts -&gt; 本地 DNS 服务器</li>
+<li>域名解析的工作流程<br> 客户端首先会发出一个 DNS 请求 -&gt; 缓存 -&gt; 本地 DNS 服务器 -&gt; 根域名服务器 -&gt; 顶级域名服务器 -&gt; 权威域名服务器 -&gt; ip</li>
+</ol>
+</li>
+<li><p>指南好帮手 —— 协议栈<br> 通过 DNS 获取到 IP 后，就可以把 HTTP 的传输工作交给操作系统中的协议栈。</p>
+ <img src="./协议栈.webp" width = "50%" height = "50%" alt="协议栈" align=center />
+
+<p> 协议栈的上半部分有两块，分别是负责收发数据的 TCP 和 UDP 协议，这两个传输协议会接受应用层的委托执行收发数据的操作。<br> 协议栈的下面一半是用 IP 协议控制网络包收发操作。<br> IP 下面的网卡驱动程序负责控制网卡硬件，而最下面的网卡则负责完成实际的收发操作，也就是对网线中的信号执行发送和接收操作。</p>
+</li>
+<li><p>可靠传输 —— TCP</p>
+<ol>
+<li>三次握手建立连接，保证双方都有发送和接收的能力 <img src="./TCP三次握手.png" width = "50%" height = "50%" alt="TCP三次握手" align=center />
+
+<ol>
+<li>一开始，客户端和服务端都处于 CLOSED 状态。先是服务端主动监听某个端口，处于 LISTEN 状态。</li>
+<li>然后客户端主动发起连接 SYN，之后处于 SYN-SENT 状态。</li>
+<li>服务端收到发起的连接，返回 SYN，并且 ACK 客户端的 SYN，之后处于 SYN-RCVD 状态。</li>
+<li>客户端收到服务端发送的 SYN 和 ACK 之后，发送对 SYN 确认的 ACK，之后处于 ESTABLISHED 状态，因为它一发一收成功了。</li>
+<li>服务端收到 ACK 的 ACK 之后，处于 ESTABLISHED 状态，因为它也一发一收了。</li>
+</ol>
+</li>
+<li>TCP 分割数据<ol>
+<li>MSS：除去 IP 和 TCP 头部之后，一个网络包所能容纳的 TCP 数据的最大长度。传输层。</li>
+<li>MTU：一个网络包的最大长度，以太网中一般为 1500 字节。网路层。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>远程定位 —— IP</p>
+ <img src="./ip协议.webp" width = "50%" height = "50%" alt="ip协议" align=center />
+
+<p> 在 IP 协议里面需要有源地址 IP 和 目标地址 IP：</p>
+<pre><code> 源地址IP，即是客户端输出的 IP 地址；
+ 目标地址，即通过 DNS 域名解析得到的 Web 服务器 IP。
+</code></pre>
+</li>
+<li><p>两点传输 —— MAC<br> MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC 地址等信息。</p>
+<p> ARP（Address Resolution Protocol），即地址解析协议，是根据IP地址获取物理地址的一个TCP&#x2F;IP协议。</p>
+<p> MAC 发送方和接收方如何确认?</p>
+<pre><code> 发送方的 MAC 地址获取就比较简单了，MAC 地址是在网卡生产时写入到 ROM 里的，只要将这个值读取出来写入到 MAC 头部就可以了。
+
+ 接收方的 MAC 地址就有点复杂了，ARP 协议会在以太网中以广播的形式，对以太网所有的设备喊出：“这个 IP 地址是谁的？请把你的 MAC 地址告诉我”。
+</code></pre>
+<p> 也就是说，在发包时：</p>
+<pre><code> 先查询 ARP 缓存，如果其中已经保存了对方的 MAC 地址，就不需要发送 ARP 查询，直接使用 ARP 缓存中的地址。
+ 而当 ARP 缓存中不存在对方 MAC 地址时，则发送 ARP 广播查询。
+</code></pre>
+</li>
+<li><p>出口 —— 网卡<br> 网络包只是存放在内存中的一串二进制数字信息，没有办法直接发送给对方。因此，我们需要将数字信息转换为电信号，才能在网线上传输，也就是说，这才是真正的数据发送过程。</p>
+<p> 负责执行这一操作的是网卡，要控制网卡还需要靠网卡驱动程序。</p>
+ <img src="./数据包.webp" width = "50%" height = "50%" alt="数据包" align=center />
+</li>
+<li><p>送别者 —— 交换机<br> 交换机的设计是将网络包原样转发到目的地。交换机工作在 MAC 层，也称为二层网络设备。<br> 和网卡不同，交换机的端口不具有 MAC 地址。</p>
+</li>
+<li><p>出境大门 —— 路由器<br> 网络包经过交换机之后，现在到达了路由器，并在此被转发到下一个路由器或目标设备。</p>
+<p> 路由器和交换机是有区别的。</p>
+<pre><code> 因为路由器是基于 IP 设计的，俗称三层网络设备，路由器的各个端口都具有 MAC 地址和 IP 地址；
+ 而交换机是基于以太网设计的，俗称二层网络设备，交换机的端口不具有 MAC 地址。
+</code></pre>
+<p> 在网络包传输的过程中，源 IP 和目标 IP 始终是不会变的，一直变化的是 MAC 地址，因为需要 MAC 地址在以太网内进行两个设备之间的包传输。</p>
+</li>
+<li><p>互相扒皮 —— 服务器 与 客户端<br>数据包抵达服务器后，服务器会层层扒开数据包： MAC 头部 -&gt; IP 头 -&gt; TCP 头 -&gt; 序列号（如果是就放入缓存中然后返回一个 ACK，如果不是就丢弃。）-&gt; 端口号 -&gt; 交给监听这个端口的应用程序进程 -&gt; 将网页封装进响应报文 -&gt; 层层协议嵌套 -&gt; 网卡 -&gt; 交换机 -&gt; 路由器 -&gt; 交换机 -&gt; 网卡 -&gt; 层层协议解析 -&gt; 客户端应用进程 -&gt; 渲染页面。</p>
+</li>
+<li><p>总结<br>应用程序数据（应用层）<br>TCP 可靠传输（传输层）<br>IP 路由和寻址（网络层）<br>MAC 点对点传输（网络接口层）<br>数电转换（网卡驱动程序控制网卡）<br>交换机转发 （原样转发网络包）<br>路由器（IP 路由转发）</p>
+</li>
+</ol>
+<h2 id="Linux系统如何收发网络包"><a href="#Linux系统如何收发网络包" class="headerlink" title="Linux系统如何收发网络包"></a>Linux系统如何收发网络包</h2><ol>
+<li>网络模型 <img src="./OSI与TCP.webp" width = "50%" height = "50%" alt="OSI与TCP" align=center />
+
+ 当应用程序通过 Socket 接口发送数据包，数据包会被网络协议栈从上到下进行逐层处理后，才会被送到网卡队列中，随后由网卡将网络包发送出去。</li>
+</ol>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="HTTP-是什么"><a href="#HTTP-是什么" class="headerlink" title="HTTP 是什么"></a>HTTP 是什么</h2><p>HTTP 是超文本传输协议，是一个在计算机世界里专门在「两点」之间「传输」文字、图片、音频、视频等「超文本」数据的「约定和规范」。</p>
+<h2 id="HTTP-常见的状态码"><a href="#HTTP-常见的状态码" class="headerlink" title="HTTP 常见的状态码"></a>HTTP 常见的状态码</h2><img src="./五大类HTTP状态码.webp" width = "50%" height = "50%" alt="五大类HTTP状态码" align=center />
+
+<h2 id="GET-和-POST-有什么区别？"><a href="#GET-和-POST-有什么区别？" class="headerlink" title="GET 和 POST 有什么区别？"></a>GET 和 POST 有什么区别？</h2><ol>
+<li>GET 请求的参数位置一般是写在 URL 中，URL 规定只能支持 ASCII，所以 GET 请求的参数只允许 ASCII 字符 ，而且浏览器会对 URL 的长度有限制（HTTP协议本身对 URL长度并没有做任何规定）。</li>
+<li>POST 请求携带数据的位置一般是写在报文 body 中，body 中的数据可以是任意格式的数据，只要客户端与服务端协商好即可，而且浏览器不会对 body 大小做限制。</li>
+</ol>
+<h2 id="GET-和-POST-方法都是安全和幂等的吗？"><a href="#GET-和-POST-方法都是安全和幂等的吗？" class="headerlink" title="GET 和 POST 方法都是安全和幂等的吗？"></a>GET 和 POST 方法都是安全和幂等的吗？</h2><ol>
+<li>安全：指请求方法不会「破坏」服务器上的资源。</li>
+<li>幂等：意思是多次执行相同的操作，结果都是「相同」的。</li>
+</ol>
+<p>如果从 RFC 规范定义的语义来看：</p>
+<pre><code>GET 方法就是安全且幂等的。
+POST 方法不安全不幂等，因为是「新增或提交数据」的操作，会修改服务器上的资源，所以是不安全的，且多次提交数据就会创建多个资源，所以不是幂等的。浏览器一般不会缓存 POST 请求，也不能把 POST 请求保存为书签。
+</code></pre>
+<p>GET 请求可以带 body 吗？<br>    理论上，任何请求都可以带 body 的。 任何请求的 URL 中也可以有参数的。</p>
+<h2 id="HTTP-缓存技术"><a href="#HTTP-缓存技术" class="headerlink" title="HTTP 缓存技术"></a>HTTP 缓存技术</h2><p>HTTP 缓存有两种实现方式，分别是强制缓存和协商缓存。</p>
+<p>什么是强制缓存？<br>    1. 强缓存指的是只要浏览器判断缓存没有过期，则直接使用浏览器的本地缓存，决定是否使用缓存的主动性在于浏览器这边<br>    2. 强缓存是利用下面这两个 HTTP 响应头部（Response Header）字段实现的，它们都用来表示资源在客户端缓存的有效期：<br>        Cache-Control， 是一个相对时间；(优先级高)<br>        Expires，是一个绝对时间；<br>    3. 具体的实现流程如下：</p>
+<pre><code>    1. 当浏览器第一次请求访问服务器资源时，服务器会在返回这个资源的同时，在 Response 头部加上 Cache-Control，Cache-Control 中设置了过期时间大小；
+    2. 浏览器再次请求访问服务器中的该资源时，会先通过请求资源的时间与 Cache-Control 中设置的过期时间大小，来计算出该资源是否过期，如果没有，则使用该缓存，否则重新请求服务器；
+    3. 服务器再次收到请求后，会再次更新 Response 头部的 Cache-Control。
+</code></pre>
+<p>什么是协商缓存？<br>    协商缓存就是与服务端协商之后，通过协商结果来判断是否使用本地缓存。<br>    协商缓存可以基于两种头部来实现。</p>
+<pre><code>    1. 第一种（基于时间，可被篡改，不可靠）：请求头部中的 If-Modified-Since 字段带上缓存的响应头部中的 Last-Modified 字段实现。
+    2. 第二种（基于唯一标识，更可靠，优先级高）：请求头部中的 If-None-Match 字段带上缓存的响应头部中的 ETag 字段（唯一标识响应资源）。
+</code></pre>
+<p>协商缓存这两个字段都需要配合强制缓存中 Cache-Control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求。</p>
+<img src="./http缓存.webp" width = "50%" height = "50%" alt="http缓存" align=center />
+
+
+<h2 id="HTTP-与-HTTPS-有哪些区别？"><a href="#HTTP-与-HTTPS-有哪些区别？" class="headerlink" title="HTTP 与 HTTPS 有哪些区别？"></a>HTTP 与 HTTPS 有哪些区别？</h2><ol>
+<li>HTTP 是超文本传输协议，信息是明文传输，存在安全风险的问题。HTTPS 则解决 HTTP 不安全的缺陷，在 TCP 和 HTTP 网络层之间加入了 SSL&#x2F;TLS 安全协议，使得报文能够加密传输。</li>
+<li>HTTP 连接建立相对简单， TCP 三次握手之后便可进行 HTTP 的报文传输。而 HTTPS 在 TCP 三次握手之后，还需进行 SSL&#x2F;TLS 的握手过程，才可进入加密报文传输。</li>
+<li>两者的默认端口不一样，HTTP 默认端口号是 80，HTTPS 默认端口号是 443。</li>
+<li>HTTPS 协议需要向 CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。</li>
+</ol>
+<h2 id="HTTPS-解决了-HTTP-的哪些问题？"><a href="#HTTPS-解决了-HTTP-的哪些问题？" class="headerlink" title="HTTPS 解决了 HTTP 的哪些问题？"></a>HTTPS 解决了 HTTP 的哪些问题？</h2><ol>
+<li>HTTP 由于是明文传输，所以安全上存在以下三个风险 <ol>
+<li>窃听风险，比如通信链路上可以获取通信内容，用户号容易没。</li>
+<li>篡改风险，比如强制植入垃圾广告，视觉污染，用户眼容易瞎。</li>
+<li>冒充风险，比如冒充淘宝网站，用户钱容易没。</li>
+</ol>
+</li>
+</ol>
+<img src="./HTTPS与HTTP.webp" width = "50%" height = "50%" alt="HTTPS与HTTP" align=center />
+
+<ol start="2">
+<li>HTTPS 在 HTTP 与 TCP 层之间加入了 SSL&#x2F;TLS 协议，可以很好的解决了上述的风险：<ol>
+<li>信息加密（混合加密实现信息的机密性）：交互信息无法被窃取。</li>
+<li>校验机制（摘要算法的方式来实现完整性）：无法篡改通信内容，篡改了就不能正常显示。</li>
+<li>身份证书（服务器公钥放入到数字证书）：证明淘宝是真的淘宝网。</li>
+</ol>
+</li>
+</ol>
+<h2 id="http1-0-x2F-1-1-x2F-2-x2F-3比较"><a href="#http1-0-x2F-1-1-x2F-2-x2F-3比较" class="headerlink" title="http1.0&#x2F;1.1&#x2F;2&#x2F;3比较"></a>http1.0&#x2F;1.1&#x2F;2&#x2F;3比较</h2><img src="./http123比较.webp" width = "50%" height = "50%" alt="http123比较" align=center />
+
+<ol>
+<li><p>http1.1 优点</p>
+<ol>
+<li>使用长连接的方式改善1.0短连接造成的性能开销</li>
+<li>支持管道网络传输，不必等前一个请求回来就可以发出下一个请求，减少整体响应时间</li>
+</ol>
+</li>
+<li><p>http2（基于https） 优点</p>
+<ol>
+<li>头部压缩（HPACK 算法，维护头信息表，只发送索引号）</li>
+<li>二进制格式（头信息和数据体都是二进制，统称为帧）</li>
+<li>并发传输（多个stream复用tcp链接，解决http层面队头阻塞问题）</li>
+<li>服务器主动推送（客户端stream为奇数号，服务端为偶数号，比如网页中的其他css依赖）</li>
+</ol>
+</li>
+<li><p>http3 优点</p>
+<ol>
+<li>把http下层的 tcp 协议改成了 udp 。<br> UDP 发送是不管顺序，也不管丢包的，所以不会出现像 HTTP&#x2F;2 队头阻塞的问题。</li>
+<li>增加 基于 UDP 的 QUIC 协议实现类似 TCP 的可靠传输。<ol>
+<li>无队头阻塞</li>
+<li>更快的连接建立</li>
+<li>连接迁移<ol>
+<li>tcp 四元组（源地址、源端口、目的地址、目的端口）</li>
+<li>QUIC 链接ID<br> 所以， QUIC 是一个在 UDP 之上的伪 TCP + TLS + HTTP&#x2F;2 的多路复用的协议。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><h2 id="基于-udp-实现可靠传输"><a href="#基于-udp-实现可靠传输" class="headerlink" title="基于 udp 实现可靠传输"></a>基于 udp 实现可靠传输</h2><p>TCP 可靠传输的特性（序列号、确认应答、超时重传、流量控制、拥塞控制）在应用层实现一遍。</p>
+<pre><code>1.  TCP 协议四个方面的缺陷：
+    1. 升级 TCP 的工作很困难；
+    2. TCP 建立连接的延迟；
+    3. TCP 存在队头阻塞问题；
+    4. 网络迁移需要重新建立 TCP 连接;
+</code></pre>
+<p>市面上已经有基于 UDP 协议实现的可靠传输协议的成熟方案了，那就是 QUIC 协议，已经应用在了 HTTP&#x2F;3。</p>
+<h2 id="什么是-TCP-？"><a href="#什么是-TCP-？" class="headerlink" title="什么是 TCP ？"></a>什么是 TCP ？</h2><p>TCP 是面向连接的、可靠的、基于字节流的传输层通信协议。</p>
+<h2 id="什么是-TCP-连接？"><a href="#什么是-TCP-连接？" class="headerlink" title="什么是 TCP 连接？"></a>什么是 TCP 连接？</h2><p>用于保证可靠性和流量控制维护的某些状态信息，这些信息的组合，包括 Socket、序列号和窗口大小称为连接。</p>
+<p>建立一个 TCP 连接是需要客户端与服务端达成上述三个信息的共识。</p>
+<pre><code>Socket：由 IP 地址和端口号组成
+序列号：用来解决乱序问题等
+窗口大小：用来做流量控制
+</code></pre>
+<h2 id="UDP-和-TCP-有什么区别呢？"><a href="#UDP-和-TCP-有什么区别呢？" class="headerlink" title="UDP 和 TCP 有什么区别呢？"></a>UDP 和 TCP 有什么区别呢？</h2><ol>
+<li>连接<ol>
+<li>TCP 是面向连接的传输层协议，传输数据前先要建立连接。</li>
+<li>UDP 是不需要连接，即刻传输数据。</li>
+</ol>
+</li>
+<li>服务对象<ol>
+<li>TCP 是一对一的两点服务，即一条连接只有两个端点。</li>
+<li>UDP 支持一对一、一对多、多对多的交互通信。</li>
+</ol>
+</li>
+<li>可靠性<ol>
+<li>TCP 是可靠交付数据的，数据可以无差错、不丢失、不重复、按序到达。</li>
+<li>UDP 是尽最大努力交付，不保证可靠交付数据。</li>
+</ol>
+</li>
+<li>拥塞控制、流量控制<ol>
+<li>TCP 有拥塞控制和流量控制机制，保证数据传输的安全性。</li>
+<li>UDP 则没有，即使网络非常拥堵了，也不会影响 UDP 的发送速率。</li>
+</ol>
+</li>
+<li>首部开销<ol>
+<li>TCP 首部长度较长，会有一定的开销。</li>
+<li>UDP 首部只有 8 个字节，并且是固定不变的，开销较小。</li>
+</ol>
+</li>
+<li>传输方式<ol>
+<li>TCP 是流式传输，没有边界，但保证顺序和可靠。</li>
+<li>UDP 是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+</ol>
+</li>
+</ol>
+<h2 id="端口的TCP最大连接数是多少？"><a href="#端口的TCP最大连接数是多少？" class="headerlink" title="端口的TCP最大连接数是多少？"></a>端口的TCP最大连接数是多少？</h2><pre><code>TCP最大连接数 = 客户端的ip数 x 客户端的端口数
+            = 2^32 x 2^16
+            = 2^48
+</code></pre>
+<p>还受以下影响</p>
+<pre><code>1. 文件描述符
+    每个 TCP 连接都是一个文件，如果文件描述符被占满了，会发生 Too many open files。
+2. 内存限制
+    每个 TCP 连接都要占用一定内存，操作系统的内存是有限的，如果内存资源被占满后，会发生 OOM。
+</code></pre>
+<h2 id="TCP-和-UDP-可以同时绑定相同的端口吗？"><a href="#TCP-和-UDP-可以同时绑定相同的端口吗？" class="headerlink" title="TCP 和 UDP 可以同时绑定相同的端口吗？"></a>TCP 和 UDP 可以同时绑定相同的端口吗？</h2><p>可以的。<br>传输层有两个传输协议分别是 TCP 和 UDP，在内核中是两个完全独立的软件模块。</p>
+<h2 id="多个-TCP-服务进程可以绑定同一个端口吗？"><a href="#多个-TCP-服务进程可以绑定同一个端口吗？" class="headerlink" title="多个 TCP 服务进程可以绑定同一个端口吗？"></a>多个 TCP 服务进程可以绑定同一个端口吗？</h2><p>如果两个 TCP 服务进程同时绑定的 IP 地址和端口都相同，那么执行 bind() 时候就会出错，错误是“Address already in use”。</p>
+<h2 id="重启-TCP-服务进程时，为什么会有“Address-in-use”的报错信息？"><a href="#重启-TCP-服务进程时，为什么会有“Address-in-use”的报错信息？" class="headerlink" title="重启 TCP 服务进程时，为什么会有“Address in use”的报错信息？"></a>重启 TCP 服务进程时，为什么会有“Address in use”的报错信息？</h2><p>当我们重启 TCP 服务进程的时候，意味着通过服务器端发起了关闭连接操作，于是就会经过四次挥手，而对于主动关闭方，会在 TIME_WAIT 这个状态里停留一段时间，这个时间大约为 2MSL。</p>
+<h2 id="客户端的端口可以重复使用吗？"><a href="#客户端的端口可以重复使用吗？" class="headerlink" title="客户端的端口可以重复使用吗？"></a>客户端的端口可以重复使用吗？</h2><p>可以，因为内核是通过四元组信息来定位一个 TCP 连接的，并不会因为客户端的端口号相同，而导致连接冲突的问题。</p>
+<h2 id="tcp-为什么是三次握手"><a href="#tcp-为什么是三次握手" class="headerlink" title="tcp 为什么是三次握手"></a>tcp 为什么是三次握手</h2><p>TCP 建立连接时，通过三次握手能防止历史连接的建立，能减少双方不必要的资源开销，能帮助双方同步初始化序列号。序列号能够保证数据包不重复、不丢弃和按序传输。</p>
+<p>不使用「两次握手」和「四次握手」的原因：</p>
+<pre><code>「两次握手」：无法防止历史连接的建立，会造成双方资源的浪费，也无法可靠的同步双方序列号；
+「四次握手」：三次握手就已经理论上最少可靠连接建立，所以不需要使用更多的通信次数。
+</code></pre>
+<h2 id="为什么每次建立-TCP-连接时，初始化的序列号都要求不一样呢？"><a href="#为什么每次建立-TCP-连接时，初始化的序列号都要求不一样呢？" class="headerlink" title="为什么每次建立 TCP 连接时，初始化的序列号都要求不一样呢？"></a>为什么每次建立 TCP 连接时，初始化的序列号都要求不一样呢？</h2><ol>
+<li>为了防止历史报文被下一个相同四元组的连接接收（主要方面）。</li>
+<li>为了安全性，防止黑客伪造的相同序列号的 TCP 报文被对方接收；</li>
+</ol>
+<h2 id="既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？"><a href="#既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？" class="headerlink" title="既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？"></a>既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？</h2><ol>
+<li>如果仅有IP分片，那么当如果一个 IP 分片丢失，整个 IP 报文的所有分片都得重传。<br>因为 IP 层本身没有超时重传机制，它由传输层的 TCP 来负责超时和重传。<br>经过 TCP 层分片后，如果一个 TCP 分片丢失后，进行重发时也是以 MSS 为单位，而不用重传所有的分片，大大增加了重传的效率。</li>
+</ol>
+<h2 id="为什么挥手需要四次？"><a href="#为什么挥手需要四次？" class="headerlink" title="为什么挥手需要四次？"></a>为什么挥手需要四次？</h2><p>在特定情况下，四次挥手是可以变成三次挥手的。主要看服务端关闭后是否需要处理数据，如果不需要处理数据，则可以直接将第二次和第三次挥手整合成一次。</p>
+<h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><h2 id="ping-的工作原理"><a href="#ping-的工作原理" class="headerlink" title="ping 的工作原理"></a>ping 的工作原理</h2><p>ping 是基于网络层的 ICMP 协议工作的，是其查询报文类型的使用。</p>
+<p>ICMP 全称是 Internet Control Message Protocol，也就是互联网控制报文协议。</p>
+<p>ICMP 主要的功能包括：确认 IP 包是否成功送达目标地址、报告发送过程中 IP 包被废弃的原因和改善网络设置等。</p>
+<p>ICMP 的这种通知消息会使用 IP 进行发送 。</p>
+<p>ping 这个程序是使用了 ICMP 里面的 ECHO REQUEST（类型为 8 ） 和 ECHO REPLY （类型为 0）。</p>
+<h2 id="断网了，还能-ping-通-127-0-0-1-吗？"><a href="#断网了，还能-ping-通-127-0-0-1-吗？" class="headerlink" title="断网了，还能 ping 通 127.0.0.1 吗？"></a>断网了，还能 ping 通 127.0.0.1 吗？</h2><p>拔了网线，ping 127.0.0.1 是能ping通的。</p>
+<p>从应用层到传输层再到网络层。这段路径跟ping外网的时候是几乎是一样的。到了网络层，系统会根据目的IP，在路由表中获取对应的路由信息，而这其中就包含选择哪个网卡把消息发出。</p>
+<pre><code>当发现目标IP是外网IP时，会从&quot;真网卡&quot;发出。
+当发现目标IP是回环地址时，就会选择本地网卡。
+</code></pre>
+<p>IPV4: 127 开头的都属于回环地址，127.0.0.1是众多回环地址中的一个。<br>IPV6: 回环地址是 ::1，中间把连续的0给省略了，之所以不是7个 冒号，而是2个冒号: ， 是因为一个 IPV6 地址中只允许出现⼀次两个连续的冒号。</p>
+<p>在IPV4下用的是 ping 127.0.0.1 命令。在IPV6下用的是 ping6 ::1 命令。</p>
+<p>虽然ICMP协议和IP协议都属于网络层协议，但其实ICMP也是利用了IP协议进行消息的传输。</p>
+<h2 id="TCP发数据和ping的区别"><a href="#TCP发数据和ping的区别" class="headerlink" title="TCP发数据和ping的区别"></a>TCP发数据和ping的区别</h2><p>TCP: mac头 + IP头 + TCP头 + tcp数据<br>PING: mac头 + IP头 + ICMP头 + ping数据</p>
+<h2 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h2><p>linux里万物皆文件，那你要发消息的目的地，也是个文件，这里就引出了socket 的概念。</p>
+<p>在 TCP 传输中创建的方式是 socket(AF_INET, SOCK_STREAM, 0);，其中 AF_INET 表示将使用 IPV4 里 host:port 的方式去解析待会你输入的网络地址。SOCK_STREAM 是指使用面向字节流的 TCP 协议，工作在传输层。</p>
+<p>创建好了 socket 之后，就可以愉快的把要传输的数据写到这个文件里。调用 socket 的sendto接口的过程中进程会从用户态进入到内核态，最后会调用到 sock_sendmsg 方法。</p>
+<p>然后进入传输层，带上TCP头。网络层带上IP头，数据链路层带上 MAC头等一系列操作后。进入网卡的发送队列 ring buffer ，顺着网卡就发出去了。</p>
+<p>回到 ping ， 整个过程也基本跟 TCP 发数据类似，差异的地方主要在于，创建 socket 的时候用的是 socket(AF_INET,SOCK_RAW,IPPROTO_ICMP)，SOCK_RAW 是原始套接字 ，工作在网络层， 所以构建ICMP（网络层协议）的数据，是再合适不过了。ping 在进入内核态后最后也是调用的 sock_sendmsg 方法，进入到网络层后加上ICMP和IP头后，数据链路层加上MAC头，也是顺着网卡发出。因此 本质上ping 跟 普通应用发消息 在程序流程上没太大差别。</p>
+<h2 id="ping回环地址和ping本机地址有什么区别"><a href="#ping回环地址和ping本机地址有什么区别" class="headerlink" title="ping回环地址和ping本机地址有什么区别"></a>ping回环地址和ping本机地址有什么区别</h2><p>ping回环地址和ping本机地址没有区别。</p>
+<p>相关的网络数据，都是走的 lo0 “假网卡”，都会经过网络层和数据链路层等逻辑，最后在快要出网卡前狠狠拐了个弯， 将数据插入到一个链表后就软中断通知 ksoftirqd 来进行收数据的逻辑，压根就不出网络。所以断网了也能 ping 通回环地址。</p>
+<h2 id="127-0-0-1-和-localhost-以及-0-0-0-0-有区别吗"><a href="#127-0-0-1-和-localhost-以及-0-0-0-0-有区别吗" class="headerlink" title="127.0.0.1 和 localhost 以及 0.0.0.0 有区别吗"></a>127.0.0.1 和 localhost 以及 0.0.0.0 有区别吗</h2><p>127.0.0.1: 本地回环地址<br>localhost: 是一个域名，只不过默认会把它解析为 127.0.0.1，当然这可以在 &#x2F;etc&#x2F;hosts 文件下进行修改。<br>0.0.0.0: 执行 ping 0.0.0.0，是会失败的，因为它在IPV4中表示的是无效的目标地址。<br>    我们启动服务器的时候，一般会 listen 一个 IP 和端口，等待客户端的连接。<br>    如果此时 listen 的是本机的 0.0.0.0 , 那么它表示本机上的所有IPV4地址。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://xiaolincoding.com/network/">图解网络介绍</a></p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx</title>
+    <url>/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/</url>
+    <content><![CDATA[<p>Nginx是一款轻量级的Web服务器、反向代理服务器，由于它的内存占用少，启动极快，高并发能力强，在互联网项目中广泛应用。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="centos7-安装-Nginx"><a href="#centos7-安装-Nginx" class="headerlink" title="centos7 安装 Nginx"></a>centos7 安装 Nginx</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加yum源</span></span><br><span class="line">rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">yum repolist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum intall nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动和其他命令"><a href="#启动和其他命令" class="headerlink" title="启动和其他命令"></a>启动和其他命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动并进行测试</span></span><br><span class="line">nginx -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start nginx</span><br><span class="line">nginx -c /PAHT/TO/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">systemctl restart nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载</span></span><br><span class="line">systemctl reload nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 热更新配置</span></span><br><span class="line">nginx -s reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查配置文件并定位</span></span><br><span class="line">nginx -t</span><br><span class="line">nginx -t -c /PAHT/TO/nginx.conf</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><img src="./nginx.webp" width = "50%" height = "50%" alt="nginx" align=center />
+
+<p>Nginx的Master-Worker模式Nginx的Master-Worker模式</p>
+<img src="./Master-Worker.webp" width = "50%" height = "50%" alt="Master-Worker" align=center />
+
+<p>Master进程的作用是？<br>    读取并验证配置文件nginx.conf；管理worker进程；</p>
+<p>Worker进程的作用是？<br>    每一个Worker进程都维护一个线程（避免线程切换），处理连接和请求；注意Worker进程的个数由配置文件决定，一般和CPU个数相关（有利于进程切换），配置几个就有几个Worker进程。</p>
+<h1 id="Nginx如何做到热部署？"><a href="#Nginx如何做到热部署？" class="headerlink" title="Nginx如何做到热部署？"></a>Nginx如何做到热部署？</h1><p>所谓热部署，就是配置文件nginx.conf修改后，不需要stop Nginx，不需要中断请求，就能让配置文件生效。（nginx -s reload ）</p>
+<h2 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h2><p>修改配置文件nginx.conf后，主进程master负责推送给woker进程更新配置信息，woker进程收到信息后，更新进程内部的线程信息。（有点valatile的味道）</p>
+<h2 id="方案二（Nginx采用）："><a href="#方案二（Nginx采用）：" class="headerlink" title="方案二（Nginx采用）："></a>方案二（Nginx采用）：</h2><p>修改配置文件nginx.conf后，重新生成新的worker进程，当然会以新的配置进行处理请求，而且新的请求必须都交给新的worker进程，至于老的worker进程，等把那些以前的请求处理完毕后，kill掉即可。</p>
+<h1 id="Nginx如何做到高并发下的高效处理？"><a href="#Nginx如何做到高并发下的高效处理？" class="headerlink" title="Nginx如何做到高并发下的高效处理？"></a>Nginx如何做到高并发下的高效处理？</h1><p>上文已经提及Nginx的worker进程个数与CPU绑定、worker进程内部包含一个线程高效回环处理请求，这的确有助于效率，但这是不够的。</p>
+<p>作为专业的程序员，我们可以开一下脑洞：BIO&#x2F;NIO&#x2F;AIO、异步&#x2F;同步、阻塞&#x2F;非阻塞…</p>
+<p>要同时处理那么多的请求，要知道，有的请求需要发生IO，可能需要很长时间，如果等着它，就会拖慢worker的处理速度。</p>
+<p>Nginx采用了Linux的epoll模型，epoll模型基于事件驱动机制，它可以监控多个事件是否准备完毕，如果OK，那么放入epoll队列中，这个过程是异步的。worker只需要从epoll队列循环处理即可。</p>
+<h1 id="Nginx挂了怎么办？"><a href="#Nginx挂了怎么办？" class="headerlink" title="Nginx挂了怎么办？"></a>Nginx挂了怎么办？</h1><p>Nginx既然作为入口网关，很重要，如果出现单点问题，显然是不可接受的。</p>
+<p>Keepalived+Nginx实现高可用。</p>
+<p>Keepalived是一个高可用解决方案，主要是用来防止服务器单点发生故障，可以通过和Nginx配合来实现Web服务的高可用。（其实，Keepalived不仅仅可以和Nginx配合，还可以和很多其他服务配合）。</p>
+<p>Keepalived+Nginx实现高可用的思路：</p>
+<p>第一：请求不要直接打到Nginx上，应该先通过Keepalived（这就是所谓虚拟IP，VIP）</p>
+<p>第二：Keepalived应该能监控Nginx的生命状态（提供一个用户自定义的脚本，定期检查Nginx进程状态，进行权重变化,，从而实现Nginx故障切换）</p>
+<h1 id="配置-nginx-conf"><a href="#配置-nginx-conf" class="headerlink" title="配置 nginx.conf"></a>配置 nginx.conf</h1><h2 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h2><pre><code>其实这是把Nginx作为web server来处理静态资源。
+
+第一：location可以进行正则匹配，应该注意正则的几种形式以及优先级。（这里不展开）
+
+第二：Nginx能够提高速度的其中一个特性就是：动静分离，就是把静态资源放到Nginx上，由Nginx管理，动态请求转发给后端。
+
+第三：我们可以在Nginx下把静态资源、日志文件归属到不同域名下（也即是目录），这样方便管理维护。
+
+第四：Nginx可以进行IP访问控制，有些电商平台，就可以在Nginx这一层，做一下处理，内置一个黑名单模块，那么就不必等请求通过Nginx达到后端在进行拦截，而是直接在Nginx这一层就处理掉。
+</code></pre>
+<h2 id="反向代理【proxy-pass】"><a href="#反向代理【proxy-pass】" class="headerlink" title="反向代理【proxy_pass】"></a>反向代理【proxy_pass】</h2><pre><code>所谓反向代理，很简单，其实就是在location这一段配置中的root替换成proxy_pass即可。root说明是静态资源，可以由Nginx进行返回；而proxy_pass说明是动态请求，需要进行转发，比如代理到Tomcat上。
+
+反向代理，上面已经说了，过程是透明的，比如说request -&gt; Nginx -&gt; Tomcat，那么对于Tomcat而言，请求的IP地址就是Nginx的地址，而非真实的request地址，这一点需要注意。不过好在Nginx不仅仅可以反向代理请求，还可以由用户自定义设置HTTP HEADER。
+</code></pre>
+<h2 id="负载均衡【upstream】"><a href="#负载均衡【upstream】" class="headerlink" title="负载均衡【upstream】"></a>负载均衡【upstream】</h2><pre><code>上面的反向代理中，我们通过proxy_pass来指定Tomcat的地址，很显然我们只能指定一台Tomcat地址，那么我们如果想指定多台来达到负载均衡呢？
+
+第一，通过upstream来定义一组Tomcat，并指定负载策略（IPHASH、加权论调、最少连接），健康检查策略（Nginx可以监控这一组Tomcat的状态）等。
+
+第二，将proxy_pass替换成upstream指定的值即可。
+
+负载均衡可能带来的问题？
+    负载均衡所带来的明显的问题是，一个请求，可以到A server，也可以到B server，这完全不受我们的控制，当然这也不是什么问题，只是我们得注意的是：用户状态的保存问题，如Session会话信息，不能在保存到服务器上。
+</code></pre>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><pre><code>缓存，是Nginx提供的，可以加快访问速度的机制，说白了，在配置上就是一个开启，同时指定目录，让缓存可以存储到磁盘上。具体配置，大家可以参考Nginx官方文档，这里就不在展开了。
+</code></pre>
+<h1 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h1><p><a href="https://zhuanlan.zhihu.com/p/34943332">8分钟带你深入浅出搞懂Nginx
+</a><br><a href="https://mp.weixin.qq.com/s/XoqGvYBabW8YBl9xEeNYZw">Nginx详解，睡前十分钟啃完值了！</a><br><a href="https://mp.weixin.qq.com/s/TYM83F2O-keMvn4ZYa5nqw">一文详解负载均衡和反向代理的真实区别</a><br><a href="https://juejin.cn/post/6844904129987526663">连前端都看得懂的《Nginx 入门指南》</a></p>
+]]></content>
+      <categories>
+        <category>Web服务器</category>
+        <category>反向代理服务器</category>
+      </categories>
+      <tags>
+        <tag>中间件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>process-thread</title>
     <url>/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/process-thread/</url>
     <content><![CDATA[<p>运行中的程序，就被称为「进程」（Process）。</p>
@@ -3180,6 +3545,472 @@ len，encoding+data的总长度；
 ]]></content>
       <categories>
         <category>存储</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis-面试</title>
+    <url>/%E9%9D%A2%E8%AF%95/redis-%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<p>Redis 面试要点</p>
+<span id="more"></span>
+
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="什么是redis"><a href="#什么是redis" class="headerlink" title="什么是redis"></a>什么是redis</h2><ol>
+<li><p>redis 是开源的基于内存的数据库，读写都在内存中，因此速度非常快，常用于缓存、消息队列、分布式锁等场景。</p>
+</li>
+<li><p>redis 提供了5种常用的数据类型：String(字符串)、List (列表)、Hash(哈希)、Set(集合)、Zset(有序集合)，并且对数据类型的操作都是原子性的，因为是由单线程来执行命令，不存在并发竞争问题。</p>
+</li>
+<li><p>redis 还支持事务、持久化、lua脚本、多集群方案（主从复制模式、哨兵模式、切片机群模式）、发布&#x2F;订阅模式，内存淘汰机制、过期删除机制等等。</p>
+</li>
+</ol>
+<h2 id="redis-和-memcached-区别"><a href="#redis-和-memcached-区别" class="headerlink" title="redis 和 memcached 区别"></a>redis 和 memcached 区别</h2><ol>
+<li><p>共同点</p>
+<ol>
+<li>都是基于内存的数据库，一般都用来当做缓存。</li>
+<li>都有过期策略。</li>
+<li>性能都非常高</li>
+</ol>
+</li>
+<li><p>区别</p>
+<ol>
+<li>数据类型丰富<br> redis支持丰富的数据类型，而memcached只支持最简单的key-value数据类型。</li>
+<li>持久化到磁盘<br> redis支持数据的持久化到磁盘中，而memcached重启或者挂掉后，内存数据会丢失。</li>
+<li>原生支持集群模式<br> redis原生支持集群模式，而memcached原生无集群，需要依靠客户端实现往集群中分片写入。</li>
+<li>提供更多功能<br> redis支持发布订阅模型、lua脚本、事务等功能，而memcached不支持。</li>
+</ol>
+</li>
+</ol>
+<h2 id="为什么用redis作为mysql的缓存"><a href="#为什么用redis作为mysql的缓存" class="headerlink" title="为什么用redis作为mysql的缓存"></a>为什么用redis作为mysql的缓存</h2><p>主要是因为redis具备【高性能】和【高并发】两种特性。</p>
+<ol>
+<li><p>高性能<br> redis 数据存在于内存中，所以速度非常快。</p>
+</li>
+<li><p>高并发<br> 单设备的redis的qps是mysql的10倍，能轻松破10万，而mysql单机的QPS很难破1万。</p>
+</li>
+</ol>
+<h2 id="redis-高并发的原因"><a href="#redis-高并发的原因" class="headerlink" title="redis 高并发的原因"></a>redis 高并发的原因</h2><ol>
+<li>基于内存，读写速度非常快。</li>
+<li>单线程，省去很多上下文切换线程的开销。</li>
+<li>采用多路 I&#x2F;O 复用技术可以让单个线程高效的处理多个连接请求。</li>
+</ol>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="数据类型及使用场景"><a href="#数据类型及使用场景" class="headerlink" title="数据类型及使用场景"></a>数据类型及使用场景</h2><img src="./redis数据类型.webp" width = "50%" height = "50%" alt="redis数据类型" align=center />
+
+<ol>
+<li><p>Redis 提供了丰富的数据类型，常见的有五种数据类型：String（字符串），List（列表），Hash（哈希），Set（集合）、Zset（有序集合）。</p>
+</li>
+<li><p>应用场景</p>
+<ol>
+<li>string: 缓存对象、常规计数、分布式锁、共享session信息。</li>
+<li>list: 消息队列。</li>
+<li>hash: 缓存对象、购物车。</li>
+<li>set: 聚合计算，比如点赞、共同关注、抽奖活动。</li>
+<li>zset: 排序场景，比如排行榜、电话和姓名排序等。</li>
+</ol>
+</li>
+</ol>
+<h2 id="数据类型底层结构实现"><a href="#数据类型底层结构实现" class="headerlink" title="数据类型底层结构实现"></a>数据类型底层结构实现</h2><img src="./redis数据结构实现.webp" width = "50%" height = "50%" alt="redis数据结构实现" align=center />
+
+<pre><code>string -&gt; SDS
+list -&gt; 压缩列表/双向链表 -&gt; （listpack+双向链表）quicklist
+hash -&gt; 压缩列表/哈希表 -&gt;  listpack/哈希表
+set -&gt; 哈希表/整数集合
+zset -&gt; 压缩列表/跳表 -&gt; listpack/跳表
+</code></pre>
+<h3 id="String-类型实现"><a href="#String-类型实现" class="headerlink" title="String 类型实现"></a>String 类型实现</h3><img src="./SDS数据结构.webp" width = "50%" height = "50%" alt="SDS数据结构" align=center />
+
+<p>String 类型的底层的数据结构实现主要是 SDS（简单动态字符串），相比C语言的原生字符串：</p>
+<ol>
+<li>SDS 不仅可以保留文本数据，还可以保存二进制数据。因为SDS使用len属性而不是空字符来判断字符串结束。</li>
+<li>SDS 获取字符串长度的时间复杂度为O(1)。</li>
+<li>SDS api是安全的，拼接字符串不会造成缓冲区溢出。</li>
+</ol>
+<h3 id="List-类型实现"><a href="#List-类型实现" class="headerlink" title="List 类型实现"></a>List 类型实现</h3><img src="./list数据结构.webp" width = "50%" height = "50%" alt="list数据结构" align=center />
+
+<ol>
+<li><p>在 Redis 3.0 之前，List 对象的底层数据结构是双向链表或者压缩列表。</p>
+<ol>
+<li>双向链表<ol>
+<li>优点：可以保存不用类型的值、快速获取某个节点的前后节点</li>
+<li>缺点：无法很好地利用cpu缓存，额外指针内存开销大</li>
+</ol>
+</li>
+<li>压缩列表<ol>
+<li>优点：内存紧凑，连续内存空间，很好地利用cpu缓存。</li>
+<li>缺点：不能保存过多元素，否则查询效率低，新增或修改可能导致连锁更新问题。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>然后在 Redis 3.2 的时候，List 对象的底层改由 【quicklist】 数据结构实现。</p>
+<ol>
+<li>其实 quicklist 就是「双向链表 + 压缩列表」组合。</li>
+<li>通过控制每个链表节点中的压缩列表的大小或者元素个数，来规避连锁更新的问题。因为压缩列表元素越少或越小，连锁更新带来的影响就越小，从而提供了更好的访问性能。</li>
+</ol>
+</li>
+</ol>
+<h3 id="Hash-类型实现"><a href="#Hash-类型实现" class="headerlink" title="Hash 类型实现"></a>Hash 类型实现</h3><ol>
+<li><p>在 Redis 7.0 之前，Hash 类型的底层数据结构是由压缩列表或哈希表实现的</p>
+</li>
+<li><p>在 Redis 7.0 中，压缩列表数据结构已经废弃了，交由 【listpack】 和【哈希表】来实现了。</p>
+</li>
+<li><p>哈希</p>
+<img src="./hash数据结构.webp" width = "50%" height = "50%" alt="hash数据结构" align=center />
+<img src="./hash-rehash-1.webp" width = "50%" height = "50%" alt="hash-rehash-1" align=center />
+<img src="./hash-rehash-2.webp" width = "50%" height = "50%" alt="hash-rehash-2" align=center />
+
+<ol>
+<li>哈希表实际上是数组，所以可以通过索引值快速查询到数据。</li>
+<li>在哈希表大小固定的情况下，随着数据不断增多，那么哈希冲突的可能性也会越高。</li>
+<li>redis采用链式哈希解决哈希冲突，将具有相同哈希值的数据串起来。</li>
+<li>rehash<ol>
+<li>给「哈希表 2」 分配空间，一般会比「哈希表 1」 大 2 倍；</li>
+<li>将「哈希表 1 」的数据迁移到「哈希表 2」 中；</li>
+<li>迁移完成后，「哈希表 1 」的空间会被释放;</li>
+<li>并把「哈希表 2」 设置为「哈希表 1」;</li>
+<li>然后在「哈希表 2」 新创建一个空白的哈希表，为下次 rehash 做准备。</li>
+</ol>
+</li>
+<li>渐进式 rehash<ol>
+<li>给「哈希表 2」 分配空间；</li>
+<li>在 rehash 进行期间，<ol>
+<li>查找：先查找「哈希表 1」，如果没有，则查找「哈希表 2」；</li>
+<li>新增：保存到「哈希表 2 」，而「哈希表 1」 则不进行任何操作；</li>
+<li>删除：依次对「哈希表 1」和「哈希表 2」删除；</li>
+<li>更新：如果在「哈希表 1」上，则删除并新增到「哈希表 2」上；</li>
+</ol>
+</li>
+<li>这样就巧妙地把一次性大量数据迁移工作的开销，分摊到了多次处理请求的过程中，避免了一次性 rehash 的耗时操作。</li>
+</ol>
+</li>
+<li>rehash触发条件<ol>
+<li>负载因子 &#x3D; 已保存节点数量 &#x2F; 哈希表大小 </li>
+<li>当负载因子大于等于 1 ，并且 Redis 没有在执行 bgsave 命令或者 bgrewriteaof 命令，也就是没有执行 RDB 快照或没有进行 AOF 重写的时候，就会进行 rehash 操作。</li>
+<li>当负载因子大于等于 5 时，此时说明哈希冲突非常严重了，不管有没有有在执行 RDB 快照或 AOF 重写，都会强制进行 rehash 操作。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>listpack</p>
+<img src="./listpack.webp" width = "50%" height = "50%" alt="listpack" align=center /></li>
+</ol>
+<p>listpack 没有压缩列表中记录前一个节点长度的字段了，listpack 只记录当前节点的长度，当我们向 listpack 加入一个新元素的时候，不会影响其他节点的长度字段的变化，从而避免了压缩列表的连锁更新问题。</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>Set 类型的底层数据结构是由【哈希表】或【整数集合】实现的：</p>
+<pre><code>1. 如果集合中的元素都是整数且元素个数小于 512 （默认值，set-maxintset-entries配置）个，Redis 会使用整数集合作为 Set 类型的底层数据结构；
+2. 如果集合中的元素不满足上面条件，则 Redis 使用哈希表作为 Set 类型的底层数据结构。
+</code></pre>
+<ol>
+<li>整数集合<img src="./整数集合数据结构.webp" width = "50%" height = "50%" alt="整数集合数据结构" align=center />
+
+<ol>
+<li>本质上是一块连续内存空间，每个元素定义某中int类型。</li>
+<li>整数集合的升级操作，新插入int32_t整数时，由 int16_t 升级为 int32_t。（节省内存）</li>
+<li>升级过程先扩容，然后从后向前遍历旧元素往最终位置移动。</li>
+</ol>
+</li>
+</ol>
+<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p>Zset 类型的底层数据结构是由【压缩列表】-&gt; 【listpack】或【跳表】实现的：</p>
+<pre><code>1. 如果有序集合的元素个数小于 128 个，并且每个元素的值小于 64 字节时，Redis 会使用压缩列表作为 Zset 类型的底层数据结构；
+2. 如果有序集合的元素不满足上面的条件，Redis 会使用跳表作为 Zset 类型的底层数据结构；
+</code></pre>
+<p>跳表的优势是能支持平均 O(logN) 复杂度的节点查找。</p>
+<p>zset 结构体里有两个数据结构：</p>
+<pre><code>1. 一个是跳表: 进行高效的范围查询
+2. 一个是哈希表: 高效单点查询。
+</code></pre>
+<p>跳表是在链表基础上改进过来的，实现了一种「多层」的有序链表，这样的好处是能快读定位数据。</p>
+<img src="./跳表数据结构.webp" width = "50%" height = "50%" alt="跳表数据结构" align=center />
+
+<p>跳表的相邻两层的节点数量最理想的比例是 2:1，查找复杂度可以降低到 O(logN)。</p>
+<p>Redis 则采用一种巧妙的方法是，跳表在创建节点的时候，随机生成每个节点的层数，并没有严格维持相邻两层的节点数量比例为 2 : 1 的情况。</p>
+<p>具体的做法是，跳表在创建节点时候，会生成范围为[0-1]的一个随机数，如果这个随机数小于 0.25（相当于概率 25%），那么层数就增加 1 层，然后继续生成下一个随机数，直到随机数的结果大于 0.25 结束，最终确定该节点的层数。</p>
+<p>为什么用跳表不用平衡树？</p>
+<pre><code>1. 内存上，跳表更灵活，每个节点包含的指针数目平均为1/(1-p)，p取1/4时，平均每个节点包含1.33个指针，而平衡树每个节点包含2个指针。
+2. 范围查询时，跳表操作更简单，只需要找到最小值之后，对第一层链表进行遍历即可。而平衡树需要以中序遍历寻找，实现较复杂。
+3. 算法实现难度，跳表比平衡树要简单，跳表的插入和删除只需要修改相邻节点的指针。而平衡树的插入和删除操作可能引发子树的调整，逻辑复杂。
+</code></pre>
+<h1 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h1><h2 id="redis是单线程"><a href="#redis是单线程" class="headerlink" title="redis是单线程"></a>redis是单线程</h2><p>「接收客户端请求-&gt;解析请求 -&gt;进行数据读写等操作-&gt;发送数据给客户端</p>
+<p>但是，Redis 程序并不是单线程的，Redis 在启动的时候，是会启动后台线程（BIO）的，主要用来处理「关闭文件、AOF 刷盘、释放内存」等耗时操作：<br><img src="./后台线程.webp" width = "50%" height = "50%" alt="后台线程" align=center /></p>
+<pre><code>1. Redis 在 2.6 版本，会启动 2 个后台线程，分别处理关闭文件、AOF 刷盘（AOF日志配置成everysec）这两个任务；
+2. Redis 在 4.0 版本之后，新增了一个新的后台线程，用来异步释放 Redis 内存，也就是 lazyfree 线程。例如执行 unlink key / flushdb async / flushall async 等命令，会把这些删除操作交给后台线程来执行，好处是不会导致 Redis 主线程卡顿。因此，当我们要删除一个大 key 的时候，不要使用 del 命令删除，因为 del 是在主线程处理的，这样会导致 Redis 主线程卡顿，因此我们应该使用 unlink 命令来异步删除大key。
+</code></pre>
+<h2 id="单线程模式"><a href="#单线程模式" class="headerlink" title="单线程模式"></a>单线程模式</h2><img src="./redis单线程模型.webp" width = "50%" height = "50%" alt="redis单线程模型" align=center />
+
+<p>图中的蓝色部分是一个事件循环，是由主线程负责的，可以看到网络 I&#x2F;O 和命令处理都是单线程。</p>
+<ol>
+<li><p>初始化函数  </p>
+<ol>
+<li>首先，调用 epoll_create() 创建一个 epoll 对象和调用 socket() 创建一个服务端 socket</li>
+<li>然后，调用 bind() 绑定端口和调用 listen() 监听该 socket；</li>
+<li>然后，将调用 epoll_ctl() 将 listen socket 加入到 epoll，同时注册「连接事件」处理函数。</li>
+</ol>
+</li>
+<li><p>事件循环函数</p>
+<ol>
+<li>首先，先调用处理发送队列函数，看是发送队列里是否有任务，如果有发送任务，则通过 write 函数将客户端发送缓存区里的数据发送出去，如果这一轮数据没有发送完，就会注册写事件处理函数，等待 epoll_wait 发现可写后再处理 。</li>
+<li>接着，调用 epoll_wait 函数等待事件的到来。</li>
+</ol>
+</li>
+</ol>
+<h2 id="单线程还快的原因"><a href="#单线程还快的原因" class="headerlink" title="单线程还快的原因"></a>单线程还快的原因</h2><ol>
+<li>大部分操作都在内存中完成，并且采用了高效的数据结构。因此 Redis 瓶颈可能是机器的内存或者网络带宽，而并非 CPU，既然 CPU 不是瓶颈，那么自然就采用单线程的解决方案了；</li>
+<li>单线程模型可以避免了多线程之间的竞争，省去了多线程切换带来的时间和性能上的开销。而且也不会导致死锁问题。</li>
+<li>采用了 I&#x2F;O 多路复用机制处理大量的客户端 Socket 请求，IO 多路复用机制是指一个线程处理多个 IO 流，就是我们经常听到的 select&#x2F;epoll 机制。简单来说，在 Redis 只运行单线程的情况下，该机制允许内核中，同时存在多个监听 Socket 和已连接 Socket。内核会一直监听这些 Socket 上的连接请求或数据请求。一旦有请求到达，就会交给 Redis 线程处理，这就实现了一个 Redis 线程处理多个 IO 流的效果。</li>
+</ol>
+<h2 id="为什么使用单线程"><a href="#为什么使用单线程" class="headerlink" title="为什么使用单线程"></a>为什么使用单线程</h2><p>单线程的程序是无法利用服务器的多核 CPU 的</p>
+<ol>
+<li>CPU不是制约redis性能表现的瓶颈所在，更多情况下是受到内存和网络带宽的限制。</li>
+<li>单线程可维护性高，多线程带来并发读写的一系列问题，增加系统复杂度，同时可能存在线程切换、加锁解锁、死锁造成的性能损耗。</li>
+</ol>
+<h2 id="6-0之后为什么引入多线程"><a href="#6-0之后为什么引入多线程" class="headerlink" title="6.0之后为什么引入多线程"></a>6.0之后为什么引入多线程</h2><p>在 Redis 6.0 版本之后，也采用了多个 I&#x2F;O 线程来处理网络请求，这是因为随着网络硬件的性能提升，Redis 的性能瓶颈有时会出现在网络 I&#x2F;O 的处理上。</p>
+<p>所以为了提高网络 I&#x2F;O 的并行度，Redis 6.0 对于网络 I&#x2F;O 采用多线程来处理。</p>
+<p>但是对于命令的执行，Redis 仍然使用单线程来处理。</p>
+<p>默认情况下 I&#x2F;O 多线程只针对发送响应数据（write client socket），并不会以多线程的方式处理读请求（read client socket）。要想开启多线程处理客户端读请求，就需要把 Redis.conf 配置文件中的 io-threads-do-reads 配置项设为 yes。</p>
+<p> Redis 6.0 版本之后，Redis 在启动的时候，默认情况下会额外创建 6 个线程（这里的线程数不包括主线程）：</p>
+<pre><code>1. Redis-server ： Redis的主线程，主要负责执行命令；
+2. bio_close_file、bio_aof_fsync、bio_lazy_free：三个后台线程，分别异步处理关闭文件任务、AOF刷盘任务、释放内存任务；
+3. io_thd_1、io_thd_2、io_thd_3：三个 I/O 线程，io-threads 默认是 4 ，所以会启动 3（4-1）个 I/O 多线程，用来分担 Redis 网络 I/O 的压力。
+</code></pre>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><h2 id="如何实现数据不丢失？"><a href="#如何实现数据不丢失？" class="headerlink" title="如何实现数据不丢失？"></a>如何实现数据不丢失？</h2><p>实现了数据持久化的机制，这个机制会把数据存储到磁盘，这样在 Redis 重启就能够从磁盘中恢复原有的数据。</p>
+<p>Redis 共有三种数据持久化的方式：</p>
+<pre><code>1. AOF 日志：每执行一条写操作命令，就把该命令以追加的方式写入到一个文件里；
+2. RDB 快照：将某一时刻的内存数据，以二进制的方式写入磁盘；
+3. 混合持久化方式：Redis 4.0 新增的方式，集成了 AOF 和 RBD 的优点；
+</code></pre>
+<h2 id="AOF-日志实现"><a href="#AOF-日志实现" class="headerlink" title="AOF 日志实现"></a>AOF 日志实现</h2><img src="./AOF日志.webp" width = "50%" height = "50%" alt="AOF日志" align=center />
+<img src="./AOF日志格式.webp" width = "50%" height = "50%" alt="AOF日志格式" align=center />
+
+<h3 id="先执行命令，再写入日志？"><a href="#先执行命令，再写入日志？" class="headerlink" title="先执行命令，再写入日志？"></a>先执行命令，再写入日志？</h3><p>优点：<br>    1. 避免额外的检查开销，主要是写操作命令的语法检查。<br>    2. 不会阻塞当前写操作命令的执行。<br>缺点：<br>    1. 数据可能会丢失。<br>    2. 可能阻塞其他操作，可能阻塞后续其他操作的执行。</p>
+<h3 id="AOF-写回策略有几种？"><a href="#AOF-写回策略有几种？" class="headerlink" title="AOF 写回策略有几种？"></a>AOF 写回策略有几种？</h3><p>Redis 提供了 3 种写回硬盘的策略，在 Redis.conf 配置文件中的 appendfsync 配置项。</p>
+<ol>
+<li>Always: 每次写操作命令执行完后，同步将 AOF 日志数据写回硬盘；</li>
+<li>Everysec: 先将命令写入到 AOF 文件的内核缓冲区，然后每隔一秒将缓冲区里的内容写回到硬盘；</li>
+<li>No: 先将命令写入到 AOF 文件的内核缓冲区，再由操作系统决定何时将缓冲区内容写回硬盘。</li>
+</ol>
+<h3 id="AOF-日志过大，会触发什么机制？"><a href="#AOF-日志过大，会触发什么机制？" class="headerlink" title="AOF 日志过大，会触发什么机制？"></a>AOF 日志过大，会触发什么机制？</h3><p>Redis 为了避免 AOF 文件越写越大，提供了 AOF 重写机制。</p>
+<p>Redis 的重写 AOF 过程是由后台子进程 bgrewriteaof 来完成的。</p>
+<pre><code>1. 子进程进行 AOF 重写期间，主进程可以继续处理命令请求，从而避免阻塞主进程；
+2. 子进程带有主进程的数据副本，这里使用子进程而不是线程，因为如果是使用线程，多线程之间会共享内存，那么在修改共享内存数据的时候，需要通过加锁来保证数据的安全，而这样就会降低性能。而使用子进程，创建子进程时，父子进程是共享内存数据的，不过这个共享的内存只能以只读的方式，而当父子进程任意一方修改了该共享内存，就会发生「写时复制」，于是父子进程就有了独立的数据副本，就不用加锁来保证数据安全。
+</code></pre>
+<p>在重写 AOF 期间，当 Redis 执行完一个写命令之后，它会同时将这个写命令写入到 「AOF 缓冲区」和 「AOF 重写缓冲区」。</p>
+<p>当子进程完成 AOF 重写工作（扫描数据库中所有数据，逐一把内存数据的键值对转换成一条命令，再将命令记录到重写日志）后，会向主进程发送一条信号，信号是进程间通讯的一种方式，且是异步的。</p>
+<p>主进程收到该信号后，会调用一个信号处理函数，该函数主要做以下工作：</p>
+<pre><code>1. 将 AOF 重写缓冲区中的所有内容追加到新的 AOF 的文件中，使得新旧两个 AOF 文件所保存的数据库状态一致；
+2. 新的 AOF 的文件进行改名，覆盖现有的 AOF 文件。
+</code></pre>
+<h2 id="RDB-快照实现"><a href="#RDB-快照实现" class="headerlink" title="RDB 快照实现"></a>RDB 快照实现</h2><p>AOF 日志记录的是操作命令，不是实际的数据，所以用 AOF 方法做故障恢复时，需要全量把日志都执行一遍，一旦 AOF 日志非常多，势必会造成 Redis 的恢复操作缓慢。</p>
+<p>RDB 快照就是记录某一个瞬间的全量内存数据，记录的是实际数据。</p>
+<p>因此在 Redis 恢复数据时， RDB 恢复数据的效率会比 AOF 高些，因为直接将 RDB 文件读入内存就可以，不需要像 AOF 那样还需要额外执行操作命令的步骤才能恢复数据。</p>
+<h3 id="RDB-做快照时会阻塞线程吗？"><a href="#RDB-做快照时会阻塞线程吗？" class="headerlink" title="RDB 做快照时会阻塞线程吗？"></a>RDB 做快照时会阻塞线程吗？</h3><p>Redis 提供了两个命令来生成 RDB 文件，分别是 save 和 bgsave，他们的区别就在于是否在「主线程」里执行：</p>
+<pre><code>1. 行了 save 命令，就会在主线程生成 RDB 文件，由于和执行操作命令在同一个线程，所以如果写入 RDB 文件的时间太长，会阻塞主线程；
+2. 执行了 bgsave 命令，会创建一个子进程来生成 RDB 文件，这样可以避免主线程的阻塞；
+</code></pre>
+<p>执行快照是一个比较重的操作，如果频率太频繁，可能会对 Redis 性能产生影响。如果频率太低，服务器故障时，丢失的数据会更多。</p>
+<h3 id="RDB-在执行快照的时候，数据能修改吗？"><a href="#RDB-在执行快照的时候，数据能修改吗？" class="headerlink" title="RDB 在执行快照的时候，数据能修改吗？"></a>RDB 在执行快照的时候，数据能修改吗？</h3><p>执行 bgsave 过程中，Redis 依然可以继续处理操作命令的，也就是数据是能被修改的，关键的技术就在于写时复制技术（Copy-On-Write, COW）。</p>
+<h2 id="为什么会有混合持久化？"><a href="#为什么会有混合持久化？" class="headerlink" title="为什么会有混合持久化？"></a>为什么会有混合持久化？</h2><p>RDB 优点是数据恢复速度快，但是快照的频率不好把握。频率太低，丢失的数据就会比较多，频率太高，就会影响性能。</p>
+<p>AOF 优点是丢失数据少，但是数据恢复不快。</p>
+<p> Redis 4.0 提出了混合使用 AOF 日志和内存快照，也叫混合持久化，既保证了 Redis 重启速度，又降低数据丢失风险。</p>
+<p>混合持久化工作在 AOF 日志重写过程，当开启了混合持久化时，在 AOF 重写日志时，fork 出来的重写子进程会先将与主线程共享的内存数据以 RDB 方式写入到 AOF 文件，然后主线程处理的操作命令会被记录在重写缓冲区里，重写缓冲区里的增量命令会以 AOF 方式写入到 AOF 文件，写入完成后通知主进程将新的含有 RDB 格式和 AOF 格式的 AOF 文件替换旧的的 AOF 文件。</p>
+<p>混合持久化优点：<br>    混合持久化结合了 RDB 和 AOF 持久化的优点，开头为 RDB 的格式，使得 Redis 可以更快的启动，同时结合 AOF 的优点，又减低了大量数据丢失的风险。<br>混合持久化缺点：<br>    1. AOF 文件中添加了 RDB 格式的内容，使得 AOF 文件的可读性变得很差；<br>    2. 兼容性差，如果开启混合持久化，那么此混合持久化 AOF 文件，就不能用在 Redis 4.0 之前版本了。</p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><h2 id="如何实现服务高可用？"><a href="#如何实现服务高可用？" class="headerlink" title="如何实现服务高可用？"></a>如何实现服务高可用？</h2><p>一定要从 Redis 的多服务节点来考虑，比如 Redis 的主从复制、哨兵模式、切片集群。</p>
+<h3 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h3><img src="./主从复制.webp" width = "50%" height = "50%" alt="主从复制" align=center />
+
+<p>主从复制是 Redis 高可用服务的最基础的保证。</p>
+<p>一主多从的模式，且主从服务器之间采用的是「读写分离」的方式。</p>
+<p>主从服务器之间的命令复制是异步进行的。所以，无法实现强一致性保证（主从数据时时刻刻保持一致），数据不一致是难以避免的。</p>
+<p>形成主从关系命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">replicaof &lt;服务器 A 的 IP 地址&gt; &lt;服务器 A 的 Redis 端口号&gt;</span><br></pre></td></tr></table></figure>
+
+<p>主从第一次同步<br><img src="./主从第一次同步.webp" width = "50%" height = "50%" alt="主从第一次同步" align=center /></p>
+<p>分摊主服务器的压力<br><img src="./分担主服务器压力.webp" width = "50%" height = "50%" alt="分担主服务器压力" align=center /></p>
+<p>增量同步<br>主从服务器在完成第一次同步后，就会基于长连接进行命令传播。<br>从 Redis 2.8 开始，网络断开又恢复后，从主从服务器会采用增量复制的方式继续同步。</p>
+<pre><code>1. 从服务器在恢复网络后，会发送 psync 命令给主服务器，此时的 psync 命令里的 offset 参数不是 -1；
+2. 主服务器收到该命令后，然后用 CONTINUE 响应命令告诉从服务器接下来采用增量复制的方式同步数据；
+3. 然后主服务将主从服务器断线期间，所执行的写命令发送给从服务器，然后从服务器执行这些命令。
+</code></pre>
+<p>增量同步环形缓冲区<br><img src="./增量同步环形缓冲区.webp" width = "50%" height = "50%" alt="增量同步环形缓冲区" align=center /></p>
+<h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><img src="./哨兵模式.webp" width = "50%" height = "50%" alt="哨兵模式" align=center />
+
+<p>哨兵模式可以监控主从服务器，并且提供主从节点故障转移的功能。</p>
+<h3 id="切片集群模式"><a href="#切片集群模式" class="headerlink" title="切片集群模式"></a>切片集群模式</h3><img src="./切片集群模式.webp" width = "50%" height = "50%" alt="切片集群模式" align=center />
+
+<p>将数据分布在不同的服务器上，以此来降低系统对单主节点的依赖，从而提高 Redis 服务的读写性能。</p>
+<p>采用哈希槽（Hash Slot），来处理数据和节点之间的映射关系。</p>
+<p>一个切片集群共有 16384(2^14) 个哈希槽，这些哈希槽类似于数据分区，每个键值对都会根据它的 key，被映射到一个哈希槽中，具体执行过程分为两大步：</p>
+<pre><code>1. 根据键值对的 key，按照 CRC16 算法计算一个 16 bit 的值。
+2. 再用 16bit 值对 16384 取模，得到 0~16383 范围内的模数，每个模数代表一个相应编号的哈希槽。
+</code></pre>
+<p>这些哈希槽怎么被映射到具体的 Redis 节点上的呢？有两种方案：</p>
+<pre><code>1. 平均分配： 在使用 cluster create 命令创建 Redis 集群时，Redis 会自动把所有哈希槽平均分布到集群节点上。比如集群中有 9 个节点，则每个节点上槽的个数为 16384/9 个。
+2. 手动分配： 可以使用 cluster meet 命令手动建立节点间的连接，组成集群，再使用 cluster addslots 命令，指定每个节点上的哈希槽个数。
+</code></pre>
+<h2 id="集群脑裂导致数据丢失怎么办？"><a href="#集群脑裂导致数据丢失怎么办？" class="headerlink" title="集群脑裂导致数据丢失怎么办？"></a>集群脑裂导致数据丢失怎么办？</h2><h3 id="什么是脑裂？"><a href="#什么是脑裂？" class="headerlink" title="什么是脑裂？"></a>什么是脑裂？</h3><p>由于网络问题，集群节点之间失去联系。主从数据不同步；重新平衡选举，产生两个主服务。等网络恢复，旧主节点会降级为从节点，再与新主节点进行同步复制的时候，由于从节点会清空自己的缓冲区，所以导致之前客户端写入的数据丢失了。</p>
+<p>解决方案：<br>    当主节点发现从节点下线或者通信超时的总数量小于阈值时，那么禁止主节点进行写数据，直接把错误返回给客户端。</p>
+<h2 id="Redis主从节点是长连接还是短连接？"><a href="#Redis主从节点是长连接还是短连接？" class="headerlink" title="Redis主从节点是长连接还是短连接？"></a>Redis主从节点是长连接还是短连接？</h2><p>长连接</p>
+<h2 id="怎么判断-Redis-某个节点是否正常工作？"><a href="#怎么判断-Redis-某个节点是否正常工作？" class="headerlink" title="怎么判断 Redis 某个节点是否正常工作？"></a>怎么判断 Redis 某个节点是否正常工作？</h2><p>Redis 判断节点是否正常工作，基本都是通过互相的 ping-pong 心态检测机制，如果有一半以上的节点去 ping 一个节点的时候没有 pong 回应，集群就会认为这个节点挂掉了，会断开与这个节点的连接。</p>
+<p>Redis 主从节点发送的心态间隔是不一样的，而且作用也有一点区别：</p>
+<pre><code>1. Redis 主节点默认每隔 10 秒对从节点发送 ping 命令，判断从节点的存活性和连接状态，可通过参数repl-ping-slave-period控制发送频率。
+2. Redis 从节点每隔 1 秒发送 replconf ack&#123;offset&#125; 命令，给主节点上报自身当前的复制偏移量，目的是为了：
+    1. 实时监测主从节点网络状态；
+    2. 上报自身复制偏移量， 检查复制数据是否丢失， 如果从节点数据丢失， 再从主节点的复制缓冲区中拉取丢失数据。
+</code></pre>
+<h2 id="主从复制架构中，过期key如何处理？"><a href="#主从复制架构中，过期key如何处理？" class="headerlink" title="主从复制架构中，过期key如何处理？"></a>主从复制架构中，过期key如何处理？</h2><p>主节点处理了一个key或者通过淘汰算法淘汰了一个key，这个时间主节点模拟一条del命令发送给从节点，从节点收到该命令后，就进行删除key的操作。</p>
+<h2 id="Redis-是同步复制还是异步复制？"><a href="#Redis-是同步复制还是异步复制？" class="headerlink" title="Redis 是同步复制还是异步复制？"></a>Redis 是同步复制还是异步复制？</h2><p>Redis 主节点每次收到写命令之后，先写到内部的缓冲区，然后异步发送给从节点。</p>
+<h2 id="为什么会出现主从数据不一致？"><a href="#为什么会出现主从数据不一致？" class="headerlink" title="为什么会出现主从数据不一致？"></a>为什么会出现主从数据不一致？</h2><p>主从数据不一致，就是指客户端从从节点中读取到的值和主节点中的最新值并不一致。</p>
+<p>是因为主从节点间的命令复制是异步进行的，所以无法实现强一致性保证（主从数据时时刻刻保持一致）。</p>
+<h2 id="如何应对主从数据不一致？"><a href="#如何应对主从数据不一致？" class="headerlink" title="如何应对主从数据不一致？"></a>如何应对主从数据不一致？</h2><ol>
+<li>尽量保证主从节点间的网络连接状况良好，避免主从节点在不同的机房。</li>
+<li>可以开发一个外部程序来监控主从节点间的复制进度。<ol>
+<li>先用 INFO replication 命令查到主、从节点的进度，然后，我们用 master_repl_offset 减去 slave_repl_offset，这样就能得到从节点和主节点间的复制进度差值了。</li>
+<li>如果某个从节点的进度差值大于我们预设的阈值，我们可以让客户端不再和这个从节点连接进行数据读取，这样就可以减少读到不一致数据的情况。</li>
+</ol>
+</li>
+</ol>
+<h2 id="主从切换如何减少数据丢失？"><a href="#主从切换如何减少数据丢失？" class="headerlink" title="主从切换如何减少数据丢失？"></a>主从切换如何减少数据丢失？</h2><ol>
+<li>异步复制同步丢失<ol>
+<li>原因：网络异常导致同步到从节点失败</li>
+<li>解决：减少同步丢失的可能，减少同步时间，控制主从数据同步时间，超时主节点拒绝写入新的请求。</li>
+</ol>
+</li>
+<li>集群产生脑裂数据丢失<ol>
+<li>原因：集群因为主节点网络异常导致哨兵启动选举出一个新的主节点，这时集群就有两个主节点。<br> 旧主节点在这期间还接受客户端写入请求，但由于选举出新的主节点就被迫降级为从节点，此时需要清空数据去同步导致写入请求丢失。</li>
+<li>解决：当主节点发现从节点下线数量太多，或者网络延迟太大的时候，主动禁止写操作，返回错误给客户端。</li>
+</ol>
+</li>
+</ol>
+<h2 id="主从如何做到故障自动切换？"><a href="#主从如何做到故障自动切换？" class="headerlink" title="主从如何做到故障自动切换？"></a>主从如何做到故障自动切换？</h2><p>Redis 哨兵机制就登场了，哨兵在发现主节点出现故障时，由哨兵自动完成故障发现和故障转移，并通知给应用方，从而实现高可用性。</p>
+<p>哨兵其实是一个运行在特殊模式下的 Redis 进程，所以它也是一个节点。<br>哨兵节点主要负责三件事情：监控、选主、通知。</p>
+<p>主观下线：如果主节点或者从节点没有在规定的时间内响应哨兵的 PING 命令，哨兵就会将它们标记为「主观下线」。可能只是因为主节点的系统压力比较大或者网络发送了拥塞，所以会有误判情况。</p>
+<p>客观下线：为了减少误判的情况，哨兵在部署的时候不会只部署一个节点，而是用多个节点部署成哨兵集群（最少需要三台机器来部署哨兵集群），通过多个哨兵节点一起判断，就可以就可以避免单个哨兵因为自身网络状况不好，而误判主节点下线的情况。</p>
+<p>当这个哨兵的赞同票数达到哨兵配置文件中的 quorum 配置项设定的值后，这时主节点就会被该哨兵标记为「客观下线」。quorum 的值一般设置为哨兵个数的二分之一加1，例如 3 个哨兵就设置 2。</p>
+<h2 id="主从故障转移操作包含以下四个步骤："><a href="#主从故障转移操作包含以下四个步骤：" class="headerlink" title="主从故障转移操作包含以下四个步骤："></a>主从故障转移操作包含以下四个步骤：</h2><ol>
+<li>第一步：在已下线主节点（旧主节点）属下的所有「从节点」里面，挑选出一个从节点，并将其转换为主节点。</li>
+<li>第二步：让已下线主节点属下的所有「从节点」修改复制目标，修改为复制「新主节点」；</li>
+<li>第三步：将新主节点的 IP 地址和信息，通过「发布者&#x2F;订阅者机制」通知给客户端；</li>
+<li>第四步：继续监视旧主节点，当这个旧主节点重新上线时，将它设置为新主节点的从节点；</li>
+</ol>
+<h2 id="哨兵集群是如何组成的？"><a href="#哨兵集群是如何组成的？" class="headerlink" title="哨兵集群是如何组成的？"></a>哨兵集群是如何组成的？</h2><p>哨兵节点之间是通过 Redis 的发布者&#x2F;订阅者机制来相互发现的。</p>
+<h1 id="过期删除和内存淘汰"><a href="#过期删除和内存淘汰" class="headerlink" title="过期删除和内存淘汰"></a>过期删除和内存淘汰</h1><h2 id="过期删除策略"><a href="#过期删除策略" class="headerlink" title="过期删除策略"></a>过期删除策略</h2><p>每当我们对一个 key 设置了过期时间时，Redis 会把该 key 带上过期时间存储到一个过期字典（expires dict）中，也就是说「过期字典」保存了数据库中所有 key 的过期时间。</p>
+<p>当我们查询一个 key 时，Redis 首先检查该 key 是否存在于过期字典中：</p>
+<pre><code>1. 如果不在，则正常读取键值；
+2. 如果存在，则会获取该 key 的过期时间，然后与当前系统时间进行比对，如果比系统时间大，那就没有过期，否则判定该 key 已过期。
+</code></pre>
+<p>三种过期策略对比</p>
+<pre><code>1. 定时删除：创建定时事件，事件处理器到期自动执行
+    优点：内存最友好，能尽快释放内存
+    缺点：CPU不友好，过期key较多时会占用相当一部分CPU时间
+2. 惰性删除：每次访问 key 时，都检测 key 是否过期，如果过期则删除该 key
+    优点：CPU最友好，每次访问才检查并删除过期key，只会使用很少的CPU资源。
+    缺点：内存不友好，如果不访问，过期key则永远停留在内存不会被释放。
+3. 定期删除：每隔一段时间「随机」从数据库中取出一定数量的 key 进行抽样检查，并删除其中的过期key，并根据抽样比例和删除时间确定需要继续。
+    优点：通过限制删除操作执行的时长和频率，来减少删除操作对 CPU 的影响，同时也能删除一部分过期的数据减少了过期键对空间的无效占用。
+    缺点：内存清理方面没有定时删除效果好，同时没有惰性删除使用的系统资源少。难以确定删除操作执行的时长和频率。如果执行的太频繁，定期删除策略变得和定时删除策略一样，对CPU不友好；如果执行的太少，那又和惰性删除一样了，过期 key 占用的内存不会及时得到释放。
+</code></pre>
+<p>Redis 使用的过期删除策略是「惰性删除+定期删除」这两种策略配和使用，以求在合理使用 CPU 时间和避免内存浪费之间取得平衡。<br><img src="./过期删除策略.webp" width = "50%" height = "50%" alt="过期删除策略" align=center /></p>
+<p>Redis 的定期删除的流程（默认每秒10次，每次20）：</p>
+<pre><code>1. 从过期字典中随机抽取 20 个 key；
+2. 检查这 20 个 key 是否过期，并删除已过期的 key；
+3. 判断执行时间是否超过上限？
+3. 判断过期key是否超过25%？如果本轮检查的已过期 key 的数量，超过 5 个（20/4），也就是「已过期 key 的数量」占比「随机抽取 key 的数量」大于 25%，则继续重复步骤 1；如果已过期的 key 比例小于 25%，则停止继续删除过期 key，然后等待下一轮再检查。
+</code></pre>
+<p>定期删除是一个循环的流程。那 Redis 为了保证定期删除不会出现循环过度，导致线程卡死现象，为此增加了定期删除循环流程的时间上限，默认不会超过 25ms。</p>
+<h2 id="持久化时，对过期键会如何处理的？"><a href="#持久化时，对过期键会如何处理的？" class="headerlink" title="持久化时，对过期键会如何处理的？"></a>持久化时，对过期键会如何处理的？</h2><h3 id="RDB-文件生成阶段和加载阶段。"><a href="#RDB-文件生成阶段和加载阶段。" class="headerlink" title="RDB 文件生成阶段和加载阶段。"></a>RDB 文件生成阶段和加载阶段。</h3><ol>
+<li>RDB 文件生成阶段：从内存状态持久化成 RDB（文件）的时候，会对 key 进行过期检查，过期的键「不会」被保存到新的 RDB 文件中</li>
+<li>RDB 加载阶段：<ol>
+<li>主服务器：在载入 RDB 文件时，程序会对文件中保存的键进行检查，过期键「不会」被载入到数据库中。</li>
+<li>从服务器：在载入 RDB 文件时，不论键是否过期都会被载入到数据库中。但由于主从服务器在进行数据同步时，从服务器的数据会被清空。</li>
+</ol>
+</li>
+</ol>
+<h3 id="AOF-文件写入阶段和-AOF-重写阶段。"><a href="#AOF-文件写入阶段和-AOF-重写阶段。" class="headerlink" title="AOF 文件写入阶段和 AOF 重写阶段。"></a>AOF 文件写入阶段和 AOF 重写阶段。</h3><ol>
+<li>AOF 文件写入阶段：当 Redis 以 AOF 模式持久化时，如果数据库某个过期键还没被删除，那么 AOF 文件会保留此过期键，当此过期键被删除后，Redis 会向 AOF 文件追加一条 DEL 命令来显式地删除该键值。</li>
+<li>AOF 重写阶段：执行 AOF 重写时，会对 Redis 中的键值对进行检查，已过期的键不会被保存到重写后的 AOF 文件中，因此不会对 AOF 重写造成任何影响。</li>
+</ol>
+<h2 id="主从模式中，对过期键会如何处理？"><a href="#主从模式中，对过期键会如何处理？" class="headerlink" title="主从模式中，对过期键会如何处理？"></a>主从模式中，对过期键会如何处理？</h2><p>当 Redis 运行在主从模式下时，从库不会进行过期扫描，从库对过期的处理是被动的。也就是即使从库中的 key 过期了，如果有客户端访问从库时，依然可以得到 key 对应的值，像未过期的键值对一样返回。</p>
+<p>从库的过期键处理依靠主服务器控制，主库在 key 到期时，会在 AOF 文件里增加一条 del 指令，同步到所有的从库，从库通过执行这条 del 指令来删除过期的 key。</p>
+<h2 id="内存满了，会发生什么？"><a href="#内存满了，会发生什么？" class="headerlink" title="内存满了，会发生什么？"></a>内存满了，会发生什么？</h2><p>在 Redis 的运行内存达到了某个阀值，就会触发内存淘汰机制，这个阀值就是我们设置的最大运行内存，此值在 Redis 的配置文件中可以找到，配置项为 maxmemory。</p>
+<h2 id="内存淘汰策略有哪些？"><a href="#内存淘汰策略有哪些？" class="headerlink" title="内存淘汰策略有哪些？"></a>内存淘汰策略有哪些？</h2><p>Redis 内存淘汰策略共有八种，这八种策略大体分为「不进行数据淘汰」和「进行数据淘汰」两类策略。<br><img src="./内存淘汰策略.webp" width = "50%" height = "50%" alt="内存淘汰策略" align=center /></p>
+<h3 id="不进行数据淘汰的策略"><a href="#不进行数据淘汰的策略" class="headerlink" title="不进行数据淘汰的策略"></a>不进行数据淘汰的策略</h3><p>noeviction（Redis3.0之后，默认的内存淘汰策略） ：它表示当运行内存超过最大设置内存时，不淘汰任何数据，而是不再提供服务，直接返回错误。</p>
+<h3 id="进行数据淘汰的策略"><a href="#进行数据淘汰的策略" class="headerlink" title="进行数据淘汰的策略"></a>进行数据淘汰的策略</h3><ol>
+<li><p>设置了过期时间的数据中进行淘汰</p>
+<ol>
+<li>volatile-random：随机淘汰设置了过期时间的任意键值；</li>
+<li>volatile-ttl：优先淘汰更早过期的键值。</li>
+<li>volatile-lru（Redis3.0 之前，默认的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最久未使用的键值；</li>
+<li>volatile-lfu（Redis 4.0 后新增的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最少使用的键值;</li>
+</ol>
+</li>
+<li><p>在所有数据范围内进行淘汰</p>
+<ol>
+<li>allkeys-random：随机淘汰任意键值;</li>
+<li>allkeys-lru：淘汰整个键值中最久未使用的键值；</li>
+<li>allkeys-lfu（Redis 4.0 后新增的内存淘汰策略）：淘汰整个键值中最少使用的键值。</li>
+</ol>
+</li>
+</ol>
+<h2 id="LRU-算法和-LFU-算法有什么区别？"><a href="#LRU-算法和-LFU-算法有什么区别？" class="headerlink" title="LRU 算法和 LFU 算法有什么区别？"></a>LRU 算法和 LFU 算法有什么区别？</h2><h3 id="LRU-算法"><a href="#LRU-算法" class="headerlink" title="LRU 算法"></a>LRU 算法</h3><p>LRU 全称是 Least Recently Used 翻译为最近最少使用，会选择淘汰最近最少使用的数据。</p>
+<p>传统 LRU 算法的实现是基于「链表」结构，链表中的元素按照操作顺序从前往后排列，最新操作的键会被移动到表头，当需要内存淘汰时，只需要删除链表尾部的元素即可，因为链表尾部的元素就代表最久未被使用的元素。</p>
+<p>Redis 并没有使用这样的方式实现 LRU 算法，因为传统的 LRU 算法存在两个问题：</p>
+<p>需要用链表管理所有的缓存数据，这会带来额外的空间开销；<br>当有数据被访问时，需要在链表上把该数据移动到头端，如果有大量数据被访问，就会带来很多链表移动操作，会很耗时，进而会降低 Redis 缓存性能。</p>
+<h3 id="Redis-是如何实现-LRU-算法的？"><a href="#Redis-是如何实现-LRU-算法的？" class="headerlink" title="Redis 是如何实现 LRU 算法的？"></a>Redis 是如何实现 LRU 算法的？</h3><p>Redis 实现的是一种近似 LRU 算法，目的是为了更好的节约内存，它的实现方式是在 Redis 的对象结构体中添加一个额外的字段，用于记录此数据的最后一次访问时间。</p>
+<p>当 Redis 进行内存淘汰时，会使用随机采样的方式来淘汰数据，它是随机取 5 个值（此值可配置），然后淘汰最久没有使用的那个。</p>
+<p>Redis 实现的 LRU 算法的优点：</p>
+<pre><code>不用为所有的数据维护一个大链表，节省了空间占用；
+不用在每次数据访问时都移动链表项，提升了缓存的性能；
+</code></pre>
+<p>但是 LRU 算法有一个问题，无法解决缓存污染问题，比如应用一次读取了大量的数据，而这些数据只会被读取这一次，那么这些数据会留存在 Redis 缓存中很长一段时间，造成缓存污染。</p>
+<h3 id="LFU-算法"><a href="#LFU-算法" class="headerlink" title="LFU 算法"></a>LFU 算法</h3><p>LFU 全称是 Least Frequently Used 翻译为最近最不常用的，LFU 算法是根据数据访问次数来淘汰数据的，它的核心思想是“如果数据过去被访问多次，那么将来被访问的频率也更高”。</p>
+<p>所以， LFU 算法会记录每个数据的访问次数。当一个数据被再次访问时，就会增加该数据的访问次数。这样就解决了偶尔被访问一次之后，数据留存在缓存中很长一段时间的问题，相比于 LRU 算法也更合理一些。</p>
+<h3 id="Redis-是如何实现-LFU-算法的？"><a href="#Redis-是如何实现-LFU-算法的？" class="headerlink" title="Redis 是如何实现 LFU 算法的？"></a>Redis 是如何实现 LFU 算法的？</h3><p>LFU 算法相比于 LRU 算法的实现，多记录了「数据的访问频次」的信息。Redis 对象的结构如下：</p>
+<p>Redis 对象头中的 lru 字段，在 LRU 算法下和 LFU 算法下使用方式并不相同。</p>
+<p>在 LRU 算法中，Redis 对象头的 24 bits 的 lru 字段是用来记录 key 的访问时间戳，因此在 LRU 模式下，Redis可以根据对象头中的 lru 字段记录的值，来比较最后一次 key 的访问时间长，从而淘汰最久未被使用的 key。</p>
+<p>在 LFU 算法中，Redis对象头的 24 bits 的 lru 字段被分成两段来存储，高 16bit 存储 ldt(Last Decrement Time)，用来记录 key 的访问时间戳；低 8bit 存储 logc(Logistic Counter)，用来记录 key 的访问频次。</p>
+<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><ol>
+<li>用户数据存储在数据库，数据库数据落在磁盘上，磁盘读写速度是最慢的。</li>
+<li>访问数据库的请求量一上来，容易造成数据库崩溃，所以会用redis作为缓存层。</li>
+<li>redis是内存数据库，缓存在redis相当于缓存在内存，内存读写速度比磁盘快好几个数量级。大大提高系统性能。</li>
+</ol>
+<h2 id="缓存雪崩、击穿、穿透"><a href="#缓存雪崩、击穿、穿透" class="headerlink" title="缓存雪崩、击穿、穿透"></a>缓存雪崩、击穿、穿透</h2><img src="./缓存雪崩击穿穿透.webp" width = "50%" height = "50%" alt="缓存雪崩击穿穿透" align=center />
+
+<p>缓存雪崩和缓存击穿主要原因是数据不在缓存中，而导致大量请求访问了数据库，数据库压力骤增，容易引发一系列连锁反应，导致系统奔溃。</p>
+<p>不过，一旦数据被重新加载回缓存，应用又可以从缓存快速读取数据，不再继续访问数据库，数据库的压力也会瞬间降下来。</p>
+<p>而缓存穿透主要原因是数据既不在缓存也不在数据库中。因此，缓存穿透与缓存雪崩、击穿应对的方案不太一样。</p>
+<h2 id="数据库和缓存如何保证一致性？"><a href="#数据库和缓存如何保证一致性？" class="headerlink" title="数据库和缓存如何保证一致性？"></a>数据库和缓存如何保证一致性？</h2><p>当两个请求并发更新同一条数据的时候，可能会出现缓存和数据库中的数据不一致的现象。</p>
+<ol>
+<li>先更新数据库，再更新缓存<br> 并发时容易出现缓存和数据库不一致的情况。</li>
+<li>先更新缓存，再更新数据库<br> 同样会出现不一致的现象。</li>
+<li>先删除缓存，再更新数据库<br> 同样会出现不一致的现象。 </li>
+<li>先更新数据库，再删除缓存<ol>
+<li>极端情况也是会出现不一致。</li>
+<li>但是实际中，缓存写入速度远远快于数据库写入。</li>
+<li>所以可以保证一致性。</li>
+<li>会影响缓存命中率</li>
+</ol>
+</li>
+</ol>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+<li>所有的底层数据结构都是为了高效设计的。</li>
+<li>都要考虑尽可能减少磁盘读取次数。</li>
+<li>都要考虑局部性原理，利用cpu缓存。</li>
+<li>局部性原理（cpu缓存利用）<ol>
+<li>时间局部性<br> 如果一个内存位置被引用，则在不久的将来，它很有可能被再次引用。</li>
+<li>空间局部性<br> 如果一个内存位置被引用，则在不久的将来，它附近的内存位置很可能被引用。</li>
+<li>结果<br> 正式因为程序局部性原理，计算机设计者增加了高速缓存存储器这个硬件，从而提高程序对主存的访问速度。</li>
+</ol>
+</li>
+<li>大杂居（数据增删改-链表）小聚居(局部性原理-数组)<ol>
+<li>redis list 的底层数据结构-【快表】<br> 【双向链表 + 压缩列表（类数组）】</li>
+<li>mysql InnoDB 索引 B+ Tree<br> 【双向链表 + 数据页（连续内存空间）】<ol>
+<li>非叶子节点是逐渐抽取的索引</li>
+<li>叶子节点是双向链表数据，链表节点是数据页，数据页是连续内存空间，存放多条串联的数据记录，数据记录分组链表串联，并有分组头目录。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://xiaolincoding.com/redis/">图解Redis介绍</a><br><a href="https://try.redis.io/">在线redis环境</a></p>
+]]></content>
+      <categories>
+        <category>面试</category>
       </categories>
       <tags>
         <tag>redis</tag>

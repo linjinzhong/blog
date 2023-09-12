@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jesonlin.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="network 面试要点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="network-面试">
+<meta property="og:url" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:site_name" content="jesonlin">
+<meta property="og:description" content="network 面试要点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%88%86%E5%B1%82.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%88%86%E5%B1%82%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/http%E8%AF%B7%E6%B1%82.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/URL%E8%A7%A3%E6%9E%90.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/http%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E5%8D%8F%E8%AE%AE%E6%A0%88.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/ip%E5%8D%8F%E8%AE%AE.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%8C%85.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/OSI%E4%B8%8ETCP.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E4%BA%94%E5%A4%A7%E7%B1%BBHTTP%E7%8A%B6%E6%80%81%E7%A0%81.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/http%E7%BC%93%E5%AD%98.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/HTTPS%E4%B8%8EHTTP.webp">
+<meta property="og:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/http123%E6%AF%94%E8%BE%83.webp">
+<meta property="article:published_time" content="2023-08-20T04:04:49.000Z">
+<meta property="article:modified_time" content="2023-08-28T07:34:11.460Z">
+<meta property="article:author" content="jesonlin">
+<meta property="article:tag" content="network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%88%86%E5%B1%82.webp">
+
+
+<link rel="canonical" href="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/","path":"面试/network-面试/","title":"network-面试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>network-面试 | jesonlin</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jesonlin</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/qq-image.jpeg" alt="jesonlin">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-resources"><a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>resources</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-x2F-IP-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%88%86%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">TCP&#x2F;IP 网络模型分层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">键入网址到网页显示过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E6%94%B6%E5%8F%91%E7%BD%91%E7%BB%9C%E5%8C%85"><span class="nav-number">1.3.</span> <span class="nav-text">Linux系统如何收发网络包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">2.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP 常见的状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-%E5%92%8C-POST-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">GET 和 POST 有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-%E5%92%8C-POST-%E6%96%B9%E6%B3%95%E9%83%BD%E6%98%AF%E5%AE%89%E5%85%A8%E5%92%8C%E5%B9%82%E7%AD%89%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">GET 和 POST 方法都是安全和幂等的吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF"><span class="nav-number">2.5.</span> <span class="nav-text">HTTP 缓存技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E4%B8%8E-HTTPS-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.6.</span> <span class="nav-text">HTTP 与 HTTPS 有哪些区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS-%E8%A7%A3%E5%86%B3%E4%BA%86-HTTP-%E7%9A%84%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">2.7.</span> <span class="nav-text">HTTPS 解决了 HTTP 的哪些问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http1-0-x2F-1-1-x2F-2-x2F-3%E6%AF%94%E8%BE%83"><span class="nav-number">2.8.</span> <span class="nav-text">http1.0&#x2F;1.1&#x2F;2&#x2F;3比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP"><span class="nav-number">3.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-udp-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-number">3.1.</span> <span class="nav-text">基于 udp 实现可靠传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-TCP-%EF%BC%9F"><span class="nav-number">3.2.</span> <span class="nav-text">什么是 TCP ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-TCP-%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">什么是 TCP 连接？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP-%E5%92%8C-TCP-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2%EF%BC%9F"><span class="nav-number">3.4.</span> <span class="nav-text">UDP 和 TCP 有什么区别呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E7%9A%84TCP%E6%9C%80%E5%A4%A7%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-number">3.5.</span> <span class="nav-text">端口的TCP最大连接数是多少？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-%E5%92%8C-UDP-%E5%8F%AF%E4%BB%A5%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E7%9B%B8%E5%90%8C%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%90%97%EF%BC%9F"><span class="nav-number">3.6.</span> <span class="nav-text">TCP 和 UDP 可以同时绑定相同的端口吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA-TCP-%E6%9C%8D%E5%8A%A1%E8%BF%9B%E7%A8%8B%E5%8F%AF%E4%BB%A5%E7%BB%91%E5%AE%9A%E5%90%8C%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E5%90%97%EF%BC%9F"><span class="nav-number">3.7.</span> <span class="nav-text">多个 TCP 服务进程可以绑定同一个端口吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%90%AF-TCP-%E6%9C%8D%E5%8A%A1%E8%BF%9B%E7%A8%8B%E6%97%B6%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89%E2%80%9CAddress-in-use%E2%80%9D%E7%9A%84%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="nav-number">3.8.</span> <span class="nav-text">重启 TCP 服务进程时，为什么会有“Address in use”的报错信息？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8%E5%90%97%EF%BC%9F"><span class="nav-number">3.9.</span> <span class="nav-text">客户端的端口可以重复使用吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">3.10.</span> <span class="nav-text">tcp 为什么是三次握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%8F%E6%AC%A1%E5%BB%BA%E7%AB%8B-TCP-%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%BA%8F%E5%88%97%E5%8F%B7%E9%83%BD%E8%A6%81%E6%B1%82%E4%B8%8D%E4%B8%80%E6%A0%B7%E5%91%A2%EF%BC%9F"><span class="nav-number">3.11.</span> <span class="nav-text">为什么每次建立 TCP 连接时，初始化的序列号都要求不一样呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A2%E7%84%B6-IP-%E5%B1%82%E4%BC%9A%E5%88%86%E7%89%87%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-TCP-%E5%B1%82%E8%BF%98%E9%9C%80%E8%A6%81-MSS-%E5%91%A2%EF%BC%9F"><span class="nav-number">3.12.</span> <span class="nav-text">既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8C%A5%E6%89%8B%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%EF%BC%9F"><span class="nav-number">3.13.</span> <span class="nav-text">为什么挥手需要四次？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP"><span class="nav-number">4.</span> <span class="nav-text">IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ping-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">ping 的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E7%BD%91%E4%BA%86%EF%BC%8C%E8%BF%98%E8%83%BD-ping-%E9%80%9A-127-0-0-1-%E5%90%97%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">断网了，还能 ping 通 127.0.0.1 吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP%E5%8F%91%E6%95%B0%E6%8D%AE%E5%92%8Cping%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.3.</span> <span class="nav-text">TCP发数据和ping的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket"><span class="nav-number">4.4.</span> <span class="nav-text">socket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping%E5%9B%9E%E7%8E%AF%E5%9C%B0%E5%9D%80%E5%92%8Cping%E6%9C%AC%E6%9C%BA%E5%9C%B0%E5%9D%80%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">4.5.</span> <span class="nav-text">ping回环地址和ping本机地址有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#127-0-0-1-%E5%92%8C-localhost-%E4%BB%A5%E5%8F%8A-0-0-0-0-%E6%9C%89%E5%8C%BA%E5%88%AB%E5%90%97"><span class="nav-number">4.6.</span> <span class="nav-text">127.0.0.1 和 localhost 以及 0.0.0.0 有区别吗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jesonlin"
+      src="/images/handsome.jpg">
+  <p class="site-author-name" itemprop="name">jesonlin</p>
+  <div class="site-description" itemprop="description">choice is better than effort</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/linjinzhong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;linjinzhong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jesonlin@outlook.com" title="E-Mail → mailto:jesonlin@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jesonlinjz" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/jesonlinjz" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;jesonlinjz" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+ 
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/handsome.jpg">
+      <meta itemprop="name" content="jesonlin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jesonlin">
+      <meta itemprop="description" content="choice is better than effort">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="network-面试 | jesonlin">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          network-面试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-20 12:04:49" itemprop="dateCreated datePublished" datetime="2023-08-20T12:04:49+08:00">2023-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-28 15:34:11" itemprop="dateModified" datetime="2023-08-28T15:34:11+08:00">2023-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>network 面试要点</p>
+<span id="more"></span>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="TCP-x2F-IP-网络模型分层"><a href="#TCP-x2F-IP-网络模型分层" class="headerlink" title="TCP&#x2F;IP 网络模型分层"></a>TCP&#x2F;IP 网络模型分层</h2><ol>
+<li>应用层：向用户提供一组应用程序<br> 操作系统中的用户态，专注为用户提供应用功能，比如 HTTP、FTP、Telnet、DNS、SMTP 等。</li>
+<li>传输层：负责端到端的通信<br> 为应用层提供网络支持，有两个传输协议，分别是 TCP 和 UDP。<ol>
+<li>TCP：流量控制、超时重传、拥塞控制保障数据包可靠传输到对方。</li>
+<li>UDP：只负责发送数据包、不保证到达，实时性相对较好，传输效率高。也可以实现可靠穿梭，把 TCP 的特性在应用层上实现就可以。</li>
+<li>当传输层数据超过 MSS（TCP 最大报文段长度），需要分段传输，称为一个 TCP 段。同时需要端口号来区分不同的应用数据。</li>
+</ol>
+</li>
+<li>网络层：负责网络包的封装、分片、路由、转发<br> 比如 IP、ICMP 等<br> IP 协议，将传输层的报文作为数据部分，再加上 IP 头组装成 IP 报文。如果大小超过 MTU （以太网中一般为 1500 字节），就会再次分片。 <img src="./网络模型分层.webp" width = "50%" height = "50%" alt="网络模型分层" align=center />
+ IP 地址分成两种意义
+
+<pre><code> 1. 一个是网络号，负责标识该 IP 地址是属于哪个「子网」的；
+ 2. 一个是主机号，负责标识同一「子网」下的不同主机；
+</code></pre>
+ IP 寻址和路由：IP 协议的寻址作用是告诉我们去往下一个目的地该朝哪个方向走，路由则是根据「下一个目的地」选择路径。寻址更像在导航，路由更像在操作方向盘。</li>
+<li>网络接口层：网络包在物理网络中的传输<br> 网络接口层主要为网络层提供「链路级别」传输的服务，负责在以太网、WiFi 这样的底层网络上发送原始数据包。<br> 比如网络包的封帧、 MAC 寻址、差错检测，以及通过网卡传输网络帧等。</li>
+<li>总结 <img src="./网络模型分层数据封装.webp" width = "50%" height = "50%" alt="网络模型分层数据封装" align=center /></li>
+</ol>
+<p>网络接口层的传输单位是帧（frame），IP 层的传输单位是包（packet），TCP 层的传输单位是段（segment），HTTP 的传输单位则是消息或报文（message）。统称为数据包。</p>
+<h2 id="键入网址到网页显示过程"><a href="#键入网址到网页显示过程" class="headerlink" title="键入网址到网页显示过程"></a>键入网址到网页显示过程</h2><img src="./http请求.webp" width = "50%" height = "50%" alt="http请求" align=center />
+
+<ol>
+<li><p>解析 URL ，生成 HTTP 请求  </p>
+<ol>
+<li>生成发送给 web 服务器的请求信息。   <img src="./URL解析.webp" width = "50%" height = "50%" alt="URL解析" align=center /></li>
+<li>http请求和响应   <img src="./http请求和响应.webp" width = "50%" height = "50%" alt="http请求和响应" align=center /></li>
+</ol>
+</li>
+<li><p>DNS 域名解析查询真实 IP 地址<br> 服务器域名对应的 IP 地址。<br> DNS 保存了 web 服务器和 IP 之间的对应关系。</p>
+<ol>
+<li>域名解析会通过缓存<br> 浏览器缓存 -&gt; 操作系统缓存 -&gt; hosts -&gt; 本地 DNS 服务器</li>
+<li>域名解析的工作流程<br> 客户端首先会发出一个 DNS 请求 -&gt; 缓存 -&gt; 本地 DNS 服务器 -&gt; 根域名服务器 -&gt; 顶级域名服务器 -&gt; 权威域名服务器 -&gt; ip</li>
+</ol>
+</li>
+<li><p>指南好帮手 —— 协议栈<br> 通过 DNS 获取到 IP 后，就可以把 HTTP 的传输工作交给操作系统中的协议栈。</p>
+ <img src="./协议栈.webp" width = "50%" height = "50%" alt="协议栈" align=center />
+
+<p> 协议栈的上半部分有两块，分别是负责收发数据的 TCP 和 UDP 协议，这两个传输协议会接受应用层的委托执行收发数据的操作。<br> 协议栈的下面一半是用 IP 协议控制网络包收发操作。<br> IP 下面的网卡驱动程序负责控制网卡硬件，而最下面的网卡则负责完成实际的收发操作，也就是对网线中的信号执行发送和接收操作。</p>
+</li>
+<li><p>可靠传输 —— TCP</p>
+<ol>
+<li>三次握手建立连接，保证双方都有发送和接收的能力 <img src="./TCP三次握手.png" width = "50%" height = "50%" alt="TCP三次握手" align=center />
+
+<ol>
+<li>一开始，客户端和服务端都处于 CLOSED 状态。先是服务端主动监听某个端口，处于 LISTEN 状态。</li>
+<li>然后客户端主动发起连接 SYN，之后处于 SYN-SENT 状态。</li>
+<li>服务端收到发起的连接，返回 SYN，并且 ACK 客户端的 SYN，之后处于 SYN-RCVD 状态。</li>
+<li>客户端收到服务端发送的 SYN 和 ACK 之后，发送对 SYN 确认的 ACK，之后处于 ESTABLISHED 状态，因为它一发一收成功了。</li>
+<li>服务端收到 ACK 的 ACK 之后，处于 ESTABLISHED 状态，因为它也一发一收了。</li>
+</ol>
+</li>
+<li>TCP 分割数据<ol>
+<li>MSS：除去 IP 和 TCP 头部之后，一个网络包所能容纳的 TCP 数据的最大长度。传输层。</li>
+<li>MTU：一个网络包的最大长度，以太网中一般为 1500 字节。网路层。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>远程定位 —— IP</p>
+ <img src="./ip协议.webp" width = "50%" height = "50%" alt="ip协议" align=center />
+
+<p> 在 IP 协议里面需要有源地址 IP 和 目标地址 IP：</p>
+<pre><code> 源地址IP，即是客户端输出的 IP 地址；
+ 目标地址，即通过 DNS 域名解析得到的 Web 服务器 IP。
+</code></pre>
+</li>
+<li><p>两点传输 —— MAC<br> MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC 地址等信息。</p>
+<p> ARP（Address Resolution Protocol），即地址解析协议，是根据IP地址获取物理地址的一个TCP&#x2F;IP协议。</p>
+<p> MAC 发送方和接收方如何确认?</p>
+<pre><code> 发送方的 MAC 地址获取就比较简单了，MAC 地址是在网卡生产时写入到 ROM 里的，只要将这个值读取出来写入到 MAC 头部就可以了。
+
+ 接收方的 MAC 地址就有点复杂了，ARP 协议会在以太网中以广播的形式，对以太网所有的设备喊出：“这个 IP 地址是谁的？请把你的 MAC 地址告诉我”。
+</code></pre>
+<p> 也就是说，在发包时：</p>
+<pre><code> 先查询 ARP 缓存，如果其中已经保存了对方的 MAC 地址，就不需要发送 ARP 查询，直接使用 ARP 缓存中的地址。
+ 而当 ARP 缓存中不存在对方 MAC 地址时，则发送 ARP 广播查询。
+</code></pre>
+</li>
+<li><p>出口 —— 网卡<br> 网络包只是存放在内存中的一串二进制数字信息，没有办法直接发送给对方。因此，我们需要将数字信息转换为电信号，才能在网线上传输，也就是说，这才是真正的数据发送过程。</p>
+<p> 负责执行这一操作的是网卡，要控制网卡还需要靠网卡驱动程序。</p>
+ <img src="./数据包.webp" width = "50%" height = "50%" alt="数据包" align=center />
+</li>
+<li><p>送别者 —— 交换机<br> 交换机的设计是将网络包原样转发到目的地。交换机工作在 MAC 层，也称为二层网络设备。<br> 和网卡不同，交换机的端口不具有 MAC 地址。</p>
+</li>
+<li><p>出境大门 —— 路由器<br> 网络包经过交换机之后，现在到达了路由器，并在此被转发到下一个路由器或目标设备。</p>
+<p> 路由器和交换机是有区别的。</p>
+<pre><code> 因为路由器是基于 IP 设计的，俗称三层网络设备，路由器的各个端口都具有 MAC 地址和 IP 地址；
+ 而交换机是基于以太网设计的，俗称二层网络设备，交换机的端口不具有 MAC 地址。
+</code></pre>
+<p> 在网络包传输的过程中，源 IP 和目标 IP 始终是不会变的，一直变化的是 MAC 地址，因为需要 MAC 地址在以太网内进行两个设备之间的包传输。</p>
+</li>
+<li><p>互相扒皮 —— 服务器 与 客户端<br>数据包抵达服务器后，服务器会层层扒开数据包： MAC 头部 -&gt; IP 头 -&gt; TCP 头 -&gt; 序列号（如果是就放入缓存中然后返回一个 ACK，如果不是就丢弃。）-&gt; 端口号 -&gt; 交给监听这个端口的应用程序进程 -&gt; 将网页封装进响应报文 -&gt; 层层协议嵌套 -&gt; 网卡 -&gt; 交换机 -&gt; 路由器 -&gt; 交换机 -&gt; 网卡 -&gt; 层层协议解析 -&gt; 客户端应用进程 -&gt; 渲染页面。</p>
+</li>
+<li><p>总结<br>应用程序数据（应用层）<br>TCP 可靠传输（传输层）<br>IP 路由和寻址（网络层）<br>MAC 点对点传输（网络接口层）<br>数电转换（网卡驱动程序控制网卡）<br>交换机转发 （原样转发网络包）<br>路由器（IP 路由转发）</p>
+</li>
+</ol>
+<h2 id="Linux系统如何收发网络包"><a href="#Linux系统如何收发网络包" class="headerlink" title="Linux系统如何收发网络包"></a>Linux系统如何收发网络包</h2><ol>
+<li>网络模型 <img src="./OSI与TCP.webp" width = "50%" height = "50%" alt="OSI与TCP" align=center />
+
+ 当应用程序通过 Socket 接口发送数据包，数据包会被网络协议栈从上到下进行逐层处理后，才会被送到网卡队列中，随后由网卡将网络包发送出去。</li>
+</ol>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="HTTP-是什么"><a href="#HTTP-是什么" class="headerlink" title="HTTP 是什么"></a>HTTP 是什么</h2><p>HTTP 是超文本传输协议，是一个在计算机世界里专门在「两点」之间「传输」文字、图片、音频、视频等「超文本」数据的「约定和规范」。</p>
+<h2 id="HTTP-常见的状态码"><a href="#HTTP-常见的状态码" class="headerlink" title="HTTP 常见的状态码"></a>HTTP 常见的状态码</h2><img src="./五大类HTTP状态码.webp" width = "50%" height = "50%" alt="五大类HTTP状态码" align=center />
+
+<h2 id="GET-和-POST-有什么区别？"><a href="#GET-和-POST-有什么区别？" class="headerlink" title="GET 和 POST 有什么区别？"></a>GET 和 POST 有什么区别？</h2><ol>
+<li>GET 请求的参数位置一般是写在 URL 中，URL 规定只能支持 ASCII，所以 GET 请求的参数只允许 ASCII 字符 ，而且浏览器会对 URL 的长度有限制（HTTP协议本身对 URL长度并没有做任何规定）。</li>
+<li>POST 请求携带数据的位置一般是写在报文 body 中，body 中的数据可以是任意格式的数据，只要客户端与服务端协商好即可，而且浏览器不会对 body 大小做限制。</li>
+</ol>
+<h2 id="GET-和-POST-方法都是安全和幂等的吗？"><a href="#GET-和-POST-方法都是安全和幂等的吗？" class="headerlink" title="GET 和 POST 方法都是安全和幂等的吗？"></a>GET 和 POST 方法都是安全和幂等的吗？</h2><ol>
+<li>安全：指请求方法不会「破坏」服务器上的资源。</li>
+<li>幂等：意思是多次执行相同的操作，结果都是「相同」的。</li>
+</ol>
+<p>如果从 RFC 规范定义的语义来看：</p>
+<pre><code>GET 方法就是安全且幂等的。
+POST 方法不安全不幂等，因为是「新增或提交数据」的操作，会修改服务器上的资源，所以是不安全的，且多次提交数据就会创建多个资源，所以不是幂等的。浏览器一般不会缓存 POST 请求，也不能把 POST 请求保存为书签。
+</code></pre>
+<p>GET 请求可以带 body 吗？<br>    理论上，任何请求都可以带 body 的。 任何请求的 URL 中也可以有参数的。</p>
+<h2 id="HTTP-缓存技术"><a href="#HTTP-缓存技术" class="headerlink" title="HTTP 缓存技术"></a>HTTP 缓存技术</h2><p>HTTP 缓存有两种实现方式，分别是强制缓存和协商缓存。</p>
+<p>什么是强制缓存？<br>    1. 强缓存指的是只要浏览器判断缓存没有过期，则直接使用浏览器的本地缓存，决定是否使用缓存的主动性在于浏览器这边<br>    2. 强缓存是利用下面这两个 HTTP 响应头部（Response Header）字段实现的，它们都用来表示资源在客户端缓存的有效期：<br>        Cache-Control， 是一个相对时间；(优先级高)<br>        Expires，是一个绝对时间；<br>    3. 具体的实现流程如下：</p>
+<pre><code>    1. 当浏览器第一次请求访问服务器资源时，服务器会在返回这个资源的同时，在 Response 头部加上 Cache-Control，Cache-Control 中设置了过期时间大小；
+    2. 浏览器再次请求访问服务器中的该资源时，会先通过请求资源的时间与 Cache-Control 中设置的过期时间大小，来计算出该资源是否过期，如果没有，则使用该缓存，否则重新请求服务器；
+    3. 服务器再次收到请求后，会再次更新 Response 头部的 Cache-Control。
+</code></pre>
+<p>什么是协商缓存？<br>    协商缓存就是与服务端协商之后，通过协商结果来判断是否使用本地缓存。<br>    协商缓存可以基于两种头部来实现。</p>
+<pre><code>    1. 第一种（基于时间，可被篡改，不可靠）：请求头部中的 If-Modified-Since 字段带上缓存的响应头部中的 Last-Modified 字段实现。
+    2. 第二种（基于唯一标识，更可靠，优先级高）：请求头部中的 If-None-Match 字段带上缓存的响应头部中的 ETag 字段（唯一标识响应资源）。
+</code></pre>
+<p>协商缓存这两个字段都需要配合强制缓存中 Cache-Control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求。</p>
+<img src="./http缓存.webp" width = "50%" height = "50%" alt="http缓存" align=center />
+
+
+<h2 id="HTTP-与-HTTPS-有哪些区别？"><a href="#HTTP-与-HTTPS-有哪些区别？" class="headerlink" title="HTTP 与 HTTPS 有哪些区别？"></a>HTTP 与 HTTPS 有哪些区别？</h2><ol>
+<li>HTTP 是超文本传输协议，信息是明文传输，存在安全风险的问题。HTTPS 则解决 HTTP 不安全的缺陷，在 TCP 和 HTTP 网络层之间加入了 SSL&#x2F;TLS 安全协议，使得报文能够加密传输。</li>
+<li>HTTP 连接建立相对简单， TCP 三次握手之后便可进行 HTTP 的报文传输。而 HTTPS 在 TCP 三次握手之后，还需进行 SSL&#x2F;TLS 的握手过程，才可进入加密报文传输。</li>
+<li>两者的默认端口不一样，HTTP 默认端口号是 80，HTTPS 默认端口号是 443。</li>
+<li>HTTPS 协议需要向 CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。</li>
+</ol>
+<h2 id="HTTPS-解决了-HTTP-的哪些问题？"><a href="#HTTPS-解决了-HTTP-的哪些问题？" class="headerlink" title="HTTPS 解决了 HTTP 的哪些问题？"></a>HTTPS 解决了 HTTP 的哪些问题？</h2><ol>
+<li>HTTP 由于是明文传输，所以安全上存在以下三个风险 <ol>
+<li>窃听风险，比如通信链路上可以获取通信内容，用户号容易没。</li>
+<li>篡改风险，比如强制植入垃圾广告，视觉污染，用户眼容易瞎。</li>
+<li>冒充风险，比如冒充淘宝网站，用户钱容易没。</li>
+</ol>
+</li>
+</ol>
+<img src="./HTTPS与HTTP.webp" width = "50%" height = "50%" alt="HTTPS与HTTP" align=center />
+
+<ol start="2">
+<li>HTTPS 在 HTTP 与 TCP 层之间加入了 SSL&#x2F;TLS 协议，可以很好的解决了上述的风险：<ol>
+<li>信息加密（混合加密实现信息的机密性）：交互信息无法被窃取。</li>
+<li>校验机制（摘要算法的方式来实现完整性）：无法篡改通信内容，篡改了就不能正常显示。</li>
+<li>身份证书（服务器公钥放入到数字证书）：证明淘宝是真的淘宝网。</li>
+</ol>
+</li>
+</ol>
+<h2 id="http1-0-x2F-1-1-x2F-2-x2F-3比较"><a href="#http1-0-x2F-1-1-x2F-2-x2F-3比较" class="headerlink" title="http1.0&#x2F;1.1&#x2F;2&#x2F;3比较"></a>http1.0&#x2F;1.1&#x2F;2&#x2F;3比较</h2><img src="./http123比较.webp" width = "50%" height = "50%" alt="http123比较" align=center />
+
+<ol>
+<li><p>http1.1 优点</p>
+<ol>
+<li>使用长连接的方式改善1.0短连接造成的性能开销</li>
+<li>支持管道网络传输，不必等前一个请求回来就可以发出下一个请求，减少整体响应时间</li>
+</ol>
+</li>
+<li><p>http2（基于https） 优点</p>
+<ol>
+<li>头部压缩（HPACK 算法，维护头信息表，只发送索引号）</li>
+<li>二进制格式（头信息和数据体都是二进制，统称为帧）</li>
+<li>并发传输（多个stream复用tcp链接，解决http层面队头阻塞问题）</li>
+<li>服务器主动推送（客户端stream为奇数号，服务端为偶数号，比如网页中的其他css依赖）</li>
+</ol>
+</li>
+<li><p>http3 优点</p>
+<ol>
+<li>把http下层的 tcp 协议改成了 udp 。<br> UDP 发送是不管顺序，也不管丢包的，所以不会出现像 HTTP&#x2F;2 队头阻塞的问题。</li>
+<li>增加 基于 UDP 的 QUIC 协议实现类似 TCP 的可靠传输。<ol>
+<li>无队头阻塞</li>
+<li>更快的连接建立</li>
+<li>连接迁移<ol>
+<li>tcp 四元组（源地址、源端口、目的地址、目的端口）</li>
+<li>QUIC 链接ID<br> 所以， QUIC 是一个在 UDP 之上的伪 TCP + TLS + HTTP&#x2F;2 的多路复用的协议。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><h2 id="基于-udp-实现可靠传输"><a href="#基于-udp-实现可靠传输" class="headerlink" title="基于 udp 实现可靠传输"></a>基于 udp 实现可靠传输</h2><p>TCP 可靠传输的特性（序列号、确认应答、超时重传、流量控制、拥塞控制）在应用层实现一遍。</p>
+<pre><code>1.  TCP 协议四个方面的缺陷：
+    1. 升级 TCP 的工作很困难；
+    2. TCP 建立连接的延迟；
+    3. TCP 存在队头阻塞问题；
+    4. 网络迁移需要重新建立 TCP 连接;
+</code></pre>
+<p>市面上已经有基于 UDP 协议实现的可靠传输协议的成熟方案了，那就是 QUIC 协议，已经应用在了 HTTP&#x2F;3。</p>
+<h2 id="什么是-TCP-？"><a href="#什么是-TCP-？" class="headerlink" title="什么是 TCP ？"></a>什么是 TCP ？</h2><p>TCP 是面向连接的、可靠的、基于字节流的传输层通信协议。</p>
+<h2 id="什么是-TCP-连接？"><a href="#什么是-TCP-连接？" class="headerlink" title="什么是 TCP 连接？"></a>什么是 TCP 连接？</h2><p>用于保证可靠性和流量控制维护的某些状态信息，这些信息的组合，包括 Socket、序列号和窗口大小称为连接。</p>
+<p>建立一个 TCP 连接是需要客户端与服务端达成上述三个信息的共识。</p>
+<pre><code>Socket：由 IP 地址和端口号组成
+序列号：用来解决乱序问题等
+窗口大小：用来做流量控制
+</code></pre>
+<h2 id="UDP-和-TCP-有什么区别呢？"><a href="#UDP-和-TCP-有什么区别呢？" class="headerlink" title="UDP 和 TCP 有什么区别呢？"></a>UDP 和 TCP 有什么区别呢？</h2><ol>
+<li>连接<ol>
+<li>TCP 是面向连接的传输层协议，传输数据前先要建立连接。</li>
+<li>UDP 是不需要连接，即刻传输数据。</li>
+</ol>
+</li>
+<li>服务对象<ol>
+<li>TCP 是一对一的两点服务，即一条连接只有两个端点。</li>
+<li>UDP 支持一对一、一对多、多对多的交互通信。</li>
+</ol>
+</li>
+<li>可靠性<ol>
+<li>TCP 是可靠交付数据的，数据可以无差错、不丢失、不重复、按序到达。</li>
+<li>UDP 是尽最大努力交付，不保证可靠交付数据。</li>
+</ol>
+</li>
+<li>拥塞控制、流量控制<ol>
+<li>TCP 有拥塞控制和流量控制机制，保证数据传输的安全性。</li>
+<li>UDP 则没有，即使网络非常拥堵了，也不会影响 UDP 的发送速率。</li>
+</ol>
+</li>
+<li>首部开销<ol>
+<li>TCP 首部长度较长，会有一定的开销。</li>
+<li>UDP 首部只有 8 个字节，并且是固定不变的，开销较小。</li>
+</ol>
+</li>
+<li>传输方式<ol>
+<li>TCP 是流式传输，没有边界，但保证顺序和可靠。</li>
+<li>UDP 是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+</ol>
+</li>
+</ol>
+<h2 id="端口的TCP最大连接数是多少？"><a href="#端口的TCP最大连接数是多少？" class="headerlink" title="端口的TCP最大连接数是多少？"></a>端口的TCP最大连接数是多少？</h2><pre><code>TCP最大连接数 = 客户端的ip数 x 客户端的端口数
+            = 2^32 x 2^16
+            = 2^48
+</code></pre>
+<p>还受以下影响</p>
+<pre><code>1. 文件描述符
+    每个 TCP 连接都是一个文件，如果文件描述符被占满了，会发生 Too many open files。
+2. 内存限制
+    每个 TCP 连接都要占用一定内存，操作系统的内存是有限的，如果内存资源被占满后，会发生 OOM。
+</code></pre>
+<h2 id="TCP-和-UDP-可以同时绑定相同的端口吗？"><a href="#TCP-和-UDP-可以同时绑定相同的端口吗？" class="headerlink" title="TCP 和 UDP 可以同时绑定相同的端口吗？"></a>TCP 和 UDP 可以同时绑定相同的端口吗？</h2><p>可以的。<br>传输层有两个传输协议分别是 TCP 和 UDP，在内核中是两个完全独立的软件模块。</p>
+<h2 id="多个-TCP-服务进程可以绑定同一个端口吗？"><a href="#多个-TCP-服务进程可以绑定同一个端口吗？" class="headerlink" title="多个 TCP 服务进程可以绑定同一个端口吗？"></a>多个 TCP 服务进程可以绑定同一个端口吗？</h2><p>如果两个 TCP 服务进程同时绑定的 IP 地址和端口都相同，那么执行 bind() 时候就会出错，错误是“Address already in use”。</p>
+<h2 id="重启-TCP-服务进程时，为什么会有“Address-in-use”的报错信息？"><a href="#重启-TCP-服务进程时，为什么会有“Address-in-use”的报错信息？" class="headerlink" title="重启 TCP 服务进程时，为什么会有“Address in use”的报错信息？"></a>重启 TCP 服务进程时，为什么会有“Address in use”的报错信息？</h2><p>当我们重启 TCP 服务进程的时候，意味着通过服务器端发起了关闭连接操作，于是就会经过四次挥手，而对于主动关闭方，会在 TIME_WAIT 这个状态里停留一段时间，这个时间大约为 2MSL。</p>
+<h2 id="客户端的端口可以重复使用吗？"><a href="#客户端的端口可以重复使用吗？" class="headerlink" title="客户端的端口可以重复使用吗？"></a>客户端的端口可以重复使用吗？</h2><p>可以，因为内核是通过四元组信息来定位一个 TCP 连接的，并不会因为客户端的端口号相同，而导致连接冲突的问题。</p>
+<h2 id="tcp-为什么是三次握手"><a href="#tcp-为什么是三次握手" class="headerlink" title="tcp 为什么是三次握手"></a>tcp 为什么是三次握手</h2><p>TCP 建立连接时，通过三次握手能防止历史连接的建立，能减少双方不必要的资源开销，能帮助双方同步初始化序列号。序列号能够保证数据包不重复、不丢弃和按序传输。</p>
+<p>不使用「两次握手」和「四次握手」的原因：</p>
+<pre><code>「两次握手」：无法防止历史连接的建立，会造成双方资源的浪费，也无法可靠的同步双方序列号；
+「四次握手」：三次握手就已经理论上最少可靠连接建立，所以不需要使用更多的通信次数。
+</code></pre>
+<h2 id="为什么每次建立-TCP-连接时，初始化的序列号都要求不一样呢？"><a href="#为什么每次建立-TCP-连接时，初始化的序列号都要求不一样呢？" class="headerlink" title="为什么每次建立 TCP 连接时，初始化的序列号都要求不一样呢？"></a>为什么每次建立 TCP 连接时，初始化的序列号都要求不一样呢？</h2><ol>
+<li>为了防止历史报文被下一个相同四元组的连接接收（主要方面）。</li>
+<li>为了安全性，防止黑客伪造的相同序列号的 TCP 报文被对方接收；</li>
+</ol>
+<h2 id="既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？"><a href="#既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？" class="headerlink" title="既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？"></a>既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？</h2><ol>
+<li>如果仅有IP分片，那么当如果一个 IP 分片丢失，整个 IP 报文的所有分片都得重传。<br>因为 IP 层本身没有超时重传机制，它由传输层的 TCP 来负责超时和重传。<br>经过 TCP 层分片后，如果一个 TCP 分片丢失后，进行重发时也是以 MSS 为单位，而不用重传所有的分片，大大增加了重传的效率。</li>
+</ol>
+<h2 id="为什么挥手需要四次？"><a href="#为什么挥手需要四次？" class="headerlink" title="为什么挥手需要四次？"></a>为什么挥手需要四次？</h2><p>在特定情况下，四次挥手是可以变成三次挥手的。主要看服务端关闭后是否需要处理数据，如果不需要处理数据，则可以直接将第二次和第三次挥手整合成一次。</p>
+<h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><h2 id="ping-的工作原理"><a href="#ping-的工作原理" class="headerlink" title="ping 的工作原理"></a>ping 的工作原理</h2><p>ping 是基于网络层的 ICMP 协议工作的，是其查询报文类型的使用。</p>
+<p>ICMP 全称是 Internet Control Message Protocol，也就是互联网控制报文协议。</p>
+<p>ICMP 主要的功能包括：确认 IP 包是否成功送达目标地址、报告发送过程中 IP 包被废弃的原因和改善网络设置等。</p>
+<p>ICMP 的这种通知消息会使用 IP 进行发送 。</p>
+<p>ping 这个程序是使用了 ICMP 里面的 ECHO REQUEST（类型为 8 ） 和 ECHO REPLY （类型为 0）。</p>
+<h2 id="断网了，还能-ping-通-127-0-0-1-吗？"><a href="#断网了，还能-ping-通-127-0-0-1-吗？" class="headerlink" title="断网了，还能 ping 通 127.0.0.1 吗？"></a>断网了，还能 ping 通 127.0.0.1 吗？</h2><p>拔了网线，ping 127.0.0.1 是能ping通的。</p>
+<p>从应用层到传输层再到网络层。这段路径跟ping外网的时候是几乎是一样的。到了网络层，系统会根据目的IP，在路由表中获取对应的路由信息，而这其中就包含选择哪个网卡把消息发出。</p>
+<pre><code>当发现目标IP是外网IP时，会从&quot;真网卡&quot;发出。
+当发现目标IP是回环地址时，就会选择本地网卡。
+</code></pre>
+<p>IPV4: 127 开头的都属于回环地址，127.0.0.1是众多回环地址中的一个。<br>IPV6: 回环地址是 ::1，中间把连续的0给省略了，之所以不是7个 冒号，而是2个冒号: ， 是因为一个 IPV6 地址中只允许出现⼀次两个连续的冒号。</p>
+<p>在IPV4下用的是 ping 127.0.0.1 命令。在IPV6下用的是 ping6 ::1 命令。</p>
+<p>虽然ICMP协议和IP协议都属于网络层协议，但其实ICMP也是利用了IP协议进行消息的传输。</p>
+<h2 id="TCP发数据和ping的区别"><a href="#TCP发数据和ping的区别" class="headerlink" title="TCP发数据和ping的区别"></a>TCP发数据和ping的区别</h2><p>TCP: mac头 + IP头 + TCP头 + tcp数据<br>PING: mac头 + IP头 + ICMP头 + ping数据</p>
+<h2 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h2><p>linux里万物皆文件，那你要发消息的目的地，也是个文件，这里就引出了socket 的概念。</p>
+<p>在 TCP 传输中创建的方式是 socket(AF_INET, SOCK_STREAM, 0);，其中 AF_INET 表示将使用 IPV4 里 host:port 的方式去解析待会你输入的网络地址。SOCK_STREAM 是指使用面向字节流的 TCP 协议，工作在传输层。</p>
+<p>创建好了 socket 之后，就可以愉快的把要传输的数据写到这个文件里。调用 socket 的sendto接口的过程中进程会从用户态进入到内核态，最后会调用到 sock_sendmsg 方法。</p>
+<p>然后进入传输层，带上TCP头。网络层带上IP头，数据链路层带上 MAC头等一系列操作后。进入网卡的发送队列 ring buffer ，顺着网卡就发出去了。</p>
+<p>回到 ping ， 整个过程也基本跟 TCP 发数据类似，差异的地方主要在于，创建 socket 的时候用的是 socket(AF_INET,SOCK_RAW,IPPROTO_ICMP)，SOCK_RAW 是原始套接字 ，工作在网络层， 所以构建ICMP（网络层协议）的数据，是再合适不过了。ping 在进入内核态后最后也是调用的 sock_sendmsg 方法，进入到网络层后加上ICMP和IP头后，数据链路层加上MAC头，也是顺着网卡发出。因此 本质上ping 跟 普通应用发消息 在程序流程上没太大差别。</p>
+<h2 id="ping回环地址和ping本机地址有什么区别"><a href="#ping回环地址和ping本机地址有什么区别" class="headerlink" title="ping回环地址和ping本机地址有什么区别"></a>ping回环地址和ping本机地址有什么区别</h2><p>ping回环地址和ping本机地址没有区别。</p>
+<p>相关的网络数据，都是走的 lo0 “假网卡”，都会经过网络层和数据链路层等逻辑，最后在快要出网卡前狠狠拐了个弯， 将数据插入到一个链表后就软中断通知 ksoftirqd 来进行收数据的逻辑，压根就不出网络。所以断网了也能 ping 通回环地址。</p>
+<h2 id="127-0-0-1-和-localhost-以及-0-0-0-0-有区别吗"><a href="#127-0-0-1-和-localhost-以及-0-0-0-0-有区别吗" class="headerlink" title="127.0.0.1 和 localhost 以及 0.0.0.0 有区别吗"></a>127.0.0.1 和 localhost 以及 0.0.0.0 有区别吗</h2><p>127.0.0.1: 本地回环地址<br>localhost: 是一个域名，只不过默认会把它解析为 127.0.0.1，当然这可以在 &#x2F;etc&#x2F;hosts 文件下进行修改。<br>0.0.0.0: 执行 ping 0.0.0.0，是会失败的，因为它在IPV4中表示的是无效的目标地址。<br>    我们启动服务器的时候，一般会 listen 一个 IP 和端口，等待客户端的连接。<br>    如果此时 listen 的是本机的 0.0.0.0 , 那么它表示本机上的所有IPV4地址。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/">图解网络介绍</a></p>
+
+    </div>
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">------------->本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="jesonlin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="jesonlin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>jesonlin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://jesonlin.com/%E9%9D%A2%E8%AF%95/network-%E9%9D%A2%E8%AF%95/" title="network-面试">https://jesonlin.com/面试/network-面试/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/network/" rel="tag"># network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" rel="prev" title="nginx">
+                  <i class="fa fa-chevron-left"></i> nginx
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jesonlin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">238k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"linjinzhong","repo":"blog","client_id":"8548519d63363d8264e2","client_secret":"72867db898357c6f54e568137fb92545663b5c4a","admin_user":"linjinzhong","distraction_free_mode":true,"proxy":"https://strong-caramel-969805.netlify.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"396b6d0a9ec8918004dae651e289a3de"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
