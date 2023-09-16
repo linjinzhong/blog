@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://jesonlin.com/%E5%AD%98%E5%82%A8/mysql-%E7%B4%A2%E5%BC%95/B+%E6%A0%91.webp">
 <meta property="og:image" content="https://jesonlin.com/%E5%AD%98%E5%82%A8/mysql-%E7%B4%A2%E5%BC%95/count%E6%AF%94%E8%BE%83.webp">
 <meta property="article:published_time" content="2022-12-08T14:07:30.000Z">
-<meta property="article:modified_time" content="2023-05-18T13:14:09.876Z">
+<meta property="article:modified_time" content="2023-09-13T11:41:29.256Z">
 <meta property="article:author" content="jesonlin">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">索引的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">索引分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95%E9%80%89%E6%8B%A9"><span class="nav-number">3.</span> <span class="nav-text">InnoDB存储引擎索引选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-tree%E7%B4%A2%E5%BC%95"><span class="nav-number">4.</span> <span class="nav-text">B+tree索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A1%B5%E8%A7%92%E5%BA%A6%E7%9C%8BB-%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">数据页角度看B+树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-MySQL-%E9%87%87%E7%94%A8-B-%E6%A0%91%E4%BD%9C%E4%B8%BA%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">为什么 MySQL 采用 B+ 树作为索引？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E5%8D%95%E8%A1%A8%E4%B8%8D%E8%A6%81%E8%B6%85%E8%BF%87-2000W-%E8%A1%8C%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">MySQL 单表不要超过 2000W 行？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E6%83%85%E5%86%B5"><span class="nav-number">8.</span> <span class="nav-text">索引失效情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E4%BD%BF%E7%94%A8-like-%E2%80%9C-x%E2%80%9C%EF%BC%8C%E7%B4%A2%E5%BC%95%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%A4%B1%E6%95%88%E5%90%97%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">MySQL 使用 like “%x“，索引一定会失效吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-%E5%92%8C-count-1-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9C%80%E5%A5%BD%EF%BC%9F"><span class="nav-number">10.</span> <span class="nav-text">count(*) 和 count(1) 有什么区别？哪个性能最好？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">11.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">索引的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">索引分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95%E9%80%89%E6%8B%A9"><span class="nav-number">3.</span> <span class="nav-text">InnoDB存储引擎索引选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-tree%E7%B4%A2%E5%BC%95"><span class="nav-number">4.</span> <span class="nav-text">B+tree索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A1%B5%E8%A7%92%E5%BA%A6%E7%9C%8BB-%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">数据页角度看B+树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-MySQL-%E9%87%87%E7%94%A8-B-%E6%A0%91%E4%BD%9C%E4%B8%BA%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">为什么 MySQL 采用 B+ 树作为索引？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E5%8D%95%E8%A1%A8%E4%B8%8D%E8%A6%81%E8%B6%85%E8%BF%87-2000W-%E8%A1%8C%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">MySQL 单表不要超过 2000W 行？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E4%BD%BF%E7%94%A8-like-%E2%80%9C-x%E2%80%9C%EF%BC%8C%E7%B4%A2%E5%BC%95%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%A4%B1%E6%95%88%E5%90%97%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">MySQL 使用 like “%x“，索引一定会失效吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-%E5%92%8C-count-1-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9C%80%E5%A5%BD%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">count(*) 和 count(1) 有什么区别？哪个性能最好？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REFERENCE"><span class="nav-number">10.</span> <span class="nav-text">REFERENCE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,7 +165,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-05-18 21:14:09" itemprop="dateModified" datetime="2023-05-18T21:14:09+08:00">2023-05-18</time>
+      <time title="修改时间：2023-09-13 19:41:29" itemprop="dateModified" datetime="2023-09-13T19:41:29+08:00">2023-09-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,14 +284,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.3k</span>
+      <span>6.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -428,7 +428,6 @@
 </li>
 </ol>
 <h2 id="为什么-MySQL-采用-B-树作为索引？"><a href="#为什么-MySQL-采用-B-树作为索引？" class="headerlink" title="为什么 MySQL 采用 B+ 树作为索引？"></a>为什么 MySQL 采用 B+ 树作为索引？</h2><p>不单单要从数据结构的角度出发，还要考虑磁盘 I&#x2F;O 操作次数，因为 MySQL 的数据是存储在磁盘中的嘛。</p>
-<p>由于数据库的索引是保存到磁盘上的，因此当我们通过索引查找某行数据的时候，就需要先从磁盘读取索引到内存，再通过索引从磁盘中找到某行数据，然后读入到内存，也就是说查询过程中会发生多次磁盘 I&#x2F;O，而磁盘 I&#x2F;O 次数越多，所消耗的时间也就越大。</p>
 <ol>
 <li><p>怎样的索引数据结构是好的<br> MySQL 的数据是持久化的，意味着数据（索引+记录）是保存到磁盘上的，因为这样即使设备断电了，数据也不会丢失。</p>
 <p> 磁盘读写的最小单位是扇区，扇区的大小只有 512B 大小，操作系统一次会读写多个扇区，所以操作系统的最小读写单位是块（Block）。Linux 中的块大小为 4KB，也就是一次磁盘 I&#x2F;O 操作会直接读写 8 个扇区。</p>
@@ -477,50 +476,6 @@
 <li>页的空间是 16K, 并不是所有的空间都是用来存放数据的，会有一些固定的信息，如，页头，页尾，页码，校验码等等。</li>
 <li>在 B+ 树中，叶子节点和非叶子节点的数据结构是一样的，区别在于，叶子节点存放的是实际的行数据，而非叶子节点存放的是主键和页号。</li>
 <li>索引结构不会影响单表最大行数，2000W 也只是推荐值，超过了这个值可能会导致 B + 树层级更高，影响查询性能。更多的与单记录数据大小有关，数据越大，页节点越多，整个树层级就会越高。</li>
-</ol>
-</li>
-</ol>
-<h2 id="索引失效情况"><a href="#索引失效情况" class="headerlink" title="索引失效情况"></a>索引失效情况</h2><ol>
-<li><p>对索引使用左或者左右模糊匹配<br> 使用左或者左右模糊匹配的时候，也就是 like %xx 或者 like %xx% 都会造成索引失效。</p>
-<p> 因为索引 B+ 树是按照「索引值」有序排列存储的，只能根据前缀进行比较。</p>
-</li>
-<li><p>对索引使用函数<br> 如果查询条件中对索引字段使用函数，就会导致索引失效。</p>
-<p> 因为索引保存的是索引字段的原始值，而不是经过函数计算后的值，自然就没办法走索引了。</p>
-<p> 从 MySQL 8.0 开始，索引特性增加了函数索引</p>
-</li>
-<li><p>对索引进行表达式计算<br> 失效： where id + 1 &#x3D; 10;<br> 不失效：where id &#x3D; 10 - 1; </p>
-</li>
-<li><p>对索引隐式类型转换<br> 失效： phone &#x3D; 1300000001; where CAST(phone AS signed int) &#x3D; 1300000001;<br> 不失效： id &#x3D; ‘1’; where id &#x3D; CAST(“1” AS signed int);</p>
-<p> 通过 select “10” &gt; 9 的结果来知道MySQL 的数据类型转换规则是什么：</p>
-<p> 自动「字符串」转换成「数字」，就相当于 select 10 &gt; 9，这个就是数字比较，所以结果应该是 1；</p>
-<p> 自动「数字」转换成「字符串」，就相当于 select “10” &gt; “9”，所以结果应该是 0。</p>
-<p> 说明 MySQL 在遇到字符串和数字比较的时候，会自动把字符串转为数字，然后再进行比较。</p>
-</li>
-<li><p>联合索引非最左匹配<br> 创建了一个 (a, b, c) 联合索引</p>
-<ol>
-<li><p>有效（顺序无关，优化器调整）</p>
-<ol>
-<li>where a&#x3D;1；</li>
-<li>where a&#x3D;1 and b&#x3D;2 and c&#x3D;3；</li>
-<li>where a&#x3D;1 and b&#x3D;2；</li>
-</ol>
-</li>
-<li><p>无效</p>
-<ol>
-<li>where b&#x3D;2；</li>
-<li>where c&#x3D;3；</li>
-<li>where b&#x3D;2 and c&#x3D;3；</li>
-</ol>
-</li>
-<li><p>截断<br> where a &#x3D; 1 and c &#x3D; 3</p>
-<p> 只使用前面 a 会走索引</p>
-<p> mysql5.5在联合索引找到主键值后，开始回表，到主键索引读取数据行，Server 层从存储引擎层获取到数据行后，然后在 Server 层再比对 c 字段的值。</p>
-<p> 从 MySQL 5.6 之后，有一个索引下推功能，可以在存储引擎层进行索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，再返还给 Server 层，从而减少回表次数。</p>
-</li>
-<li><p>为什么联合索引不遵循最左匹配原则就会失效？<br> 原因是，在联合索引的情况下，数据是按照索引第一列排序，第一列数据相同时才会按照第二列排序。</p>
-</li>
-<li><p>WHERE 子句中的 OR<br> 在 WHERE 子句中，如果在 OR 前的条件列是索引列，而在 OR 后的条件列不是索引列，那么索引会失效。</p>
-</li>
 </ol>
 </li>
 </ol>
@@ -678,14 +633,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">252k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:49</span>
   </span>
 </div>
 <div class="busuanzi-count">
